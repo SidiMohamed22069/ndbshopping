@@ -359,7 +359,7 @@ def category_attribute_delete(request, category_id, attribute_id):
 # Produits
 # ---------------------------------------------------------------------------
 
-def _product_payload(request) -> dict:
+def _product_payload(request, existing: dict | None = None) -> dict:
     attributs = []
     for key in request.POST:
         if key.startswith("attr_"):
@@ -378,10 +378,19 @@ def _product_payload(request) -> dict:
     source_url = (request.POST.get("sourceUrl") or "").strip() or None
     if source_url and _is_local_media_url(source_url):
         source_url = None
+    prix_raw = (request.POST.get("prix") or "").strip()
+    if prix_raw:
+        prix = prix_raw
+    elif existing and existing.get("prix") is not None:
+        # Le champ n'a pas été retransmis (ex: soumission hors formulaire) :
+        # on garde le prix actuel du produit au lieu de l'écraser par 0.
+        prix = str(existing["prix"])
+    else:
+        prix = "0"
     return {
         "nom": (request.POST.get("nom") or "").strip(),
         "description": (request.POST.get("description") or "").strip() or None,
-        "prix": request.POST.get("prix") or "0",
+        "prix": prix,
         "stock": int(stock) if str(stock).isdigit() else 0,
         "categoryId": int(category_id) if category_id else None,
         "sourceOrigine": request.POST.get("sourceOrigine") or "MANUEL",
@@ -475,7 +484,7 @@ def product_edit(request, product_id):
     cats = api_client.get_categories()
     flat = flatten_categories(cats.data if cats.ok else [])
     if request.method == "POST":
-        payload = _product_payload(request)
+        payload = _product_payload(request, existing=prod.data if isinstance(prod.data, dict) else None)
         result = api_client.admin_update_product(token, product_id, payload)
         if result.ok:
             messages.success(request, _("Produit mis à jour."))

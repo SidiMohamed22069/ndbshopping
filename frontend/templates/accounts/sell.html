@@ -8,7 +8,7 @@
   <h1 class="page-title">{% trans "Vendre un produit" %}</h1>
   <p class="muted">{% trans "Votre annonce sera visible sur le catalogue après validation par notre équipe." %}</p>
 
-  <form method="post" class="form-panel">
+  <form method="post" class="form-panel" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="row g-3">
       <div class="col-md-8">
@@ -40,7 +40,17 @@
 
     <hr>
     <h2 class="h6">{% trans "Photos et vidéos" %}</h2>
-    <p class="form-text">{% trans "Vous pourrez ajouter photos et vidéos à l'étape suivante." %}</p>
+    <p class="form-text">{% trans "JPG, PNG ou WebP (5 Mo max, 6 images) et MP4/WebM (20 Mo max, 2 vidéos). Optionnel." %}</p>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label" for="images">{% trans "Images" %}</label>
+        <input class="form-control" type="file" id="images" name="images" accept="image/jpeg,image/png,image/webp" multiple>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label" for="videos">{% trans "Vidéos" %}</label>
+        <input class="form-control" type="file" id="videos" name="videos" accept="video/mp4,video/webm" multiple>
+      </div>
+    </div>
 
     <hr>
     <h2 class="h6">{% trans "Attributs de la catégorie" %}</h2>

@@ -8,7 +8,16 @@ from django.views.decorators.http import require_http_methods, require_POST
 
 from cart.utils import clear_cart, sync_if_authenticated, to_sync_payload
 from core.decorators import login_required_api
-from core.media_upload import json_error, json_ok, media_initial_json, upload_and_respond, validate_image, validate_video
+from core.media_upload import (
+    MAX_IMAGES,
+    MAX_VIDEOS,
+    json_error,
+    json_ok,
+    media_initial_json,
+    upload_and_respond,
+    validate_image,
+    validate_video,
+)
 from core.utils import normalize_product_images, page_from_request, safe_next_url
 from services import api_client
 
@@ -211,6 +220,32 @@ def _client_product_payload(request) -> dict:
     }
 
 
+def _upload_initial_media(request, product_id) -> list[str]:
+    """Envoie les images/vidéos jointes au formulaire de création (ignorées si aucune)."""
+    errors = []
+    for upload in request.FILES.getlist("images")[:MAX_IMAGES]:
+        if not getattr(upload, "size", 0):
+            continue
+        error = validate_image(upload)
+        if error:
+            errors.append(f"{upload.name} : {error}")
+            continue
+        result = api_client.upload_product_image(request.jwt_token, product_id, upload)
+        if not result.ok:
+            errors.append(f"{upload.name} : {result.error or _('Envoi impossible.')}")
+    for upload in request.FILES.getlist("videos")[:MAX_VIDEOS]:
+        if not getattr(upload, "size", 0):
+            continue
+        error = validate_video(upload)
+        if error:
+            errors.append(f"{upload.name} : {error}")
+            continue
+        result = api_client.upload_product_video(request.jwt_token, product_id, upload)
+        if not result.ok:
+            errors.append(f"{upload.name} : {result.error or _('Envoi impossible.')}")
+    return errors
+
+
 @login_required_api
 @require_http_methods(["GET", "POST"])
 def sell(request):
@@ -228,7 +263,10 @@ def sell(request):
         else:
             result = api_client.submit_product(request.jwt_token, payload)
             if result.ok and isinstance(result.data, dict) and result.data.get("id"):
-                return redirect("accounts:sell_media", product_id=result.data["id"])
+                for error in _upload_initial_media(request, result.data["id"]):
+                    messages.warning(request, error)
+                request.session["product_submitted"] = True
+                return redirect("accounts:sell_confirmation")
             messages.error(request, result.error or _("Soumission impossible."))
     return render(
         request,
