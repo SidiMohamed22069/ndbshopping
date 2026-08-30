@@ -1,0 +1,77 @@
+server:
+  port: ${SERVER_PORT:8080}
+  error:
+    include-message: never
+    include-stacktrace: never
+
+spring:
+  application:
+    name: ndb-shopping-backend
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:ndbshopping}
+    username: ${DB_USERNAME:ndbshopping}
+    password: ${DB_PASSWORD:changeme}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+        format_sql: true
+        default_batch_fetch_size: 16
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 3s
+  servlet:
+    multipart:
+      max-file-size: 25MB
+      max-request-size: 25MB
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+    time-zone: UTC
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+  api-docs:
+    path: /v3/api-docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+app:
+  frontend-url: ${FRONTEND_URL:http://localhost:8000}
+  upload:
+    dir: ${UPLOAD_DIR:./uploads}
+  jwt:
+    secret: ${JWT_SECRET:changeme_super_secret_key_min_32_chars}
+    expiration-ms: ${JWT_EXPIRATION_MS:604800000}
+  otp:
+    ttl-minutes: ${OTP_TTL_MINUTES:10}
+    max-send-per-window: ${OTP_MAX_SEND:5}
+    send-window-minutes: ${OTP_SEND_WINDOW_MINUTES:15}
+    max-verify-attempts: ${OTP_MAX_VERIFY_ATTEMPTS:5}
+  chinguisoft:
+    base-url: https://chinguisoft.com/api/sms/validation
+    validation-key: ${SMS_VALIDATION_KEY:}
+    token: ${SMS_TOKEN:}
+    low-balance-threshold: ${SMS_LOW_BALANCE_THRESHOLD:10}
+    mock-enabled: ${SMS_MOCK_ENABLED:false}
+    mock-code: "123456"

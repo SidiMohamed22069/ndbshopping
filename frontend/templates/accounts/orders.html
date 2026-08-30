@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n ndb_tags %}
+
+{% block title %}{% trans "Mes commandes" %}{% endblock %}
+
+{% block content %}
+<section class="container page-wrap">
+  <h1 class="page-title">{% trans "Mes commandes" %}</h1>
+  {% for order in orders %}
+    <article class="listing-card mb-3">
+      <div class="listing-card-body">
+        <div class="d-flex justify-content-between flex-wrap gap-2">
+          <h2 class="h6 mb-0">{% blocktrans with id=order.id %}Commande #{{ id }}{% endblocktrans %}</h2>
+          <span class="badge text-bg-{{ order.statut|statut_badge }}">{{ order.statut|statut_label }}</span>
+        </div>
+        <p class="muted small mb-2">{{ order.createdAt }} · {{ order.villeLivraison|ville_label }}</p>
+        <ul class="small mb-2">
+          {% for item in order.items %}
+            <li>{{ item.productNom }} × {{ item.quantite }} — {{ item.sousTotal|mru }}</li>
+          {% endfor %}
+        </ul>
+        <p class="listing-price mb-0">{% trans "Total" %} {{ order.total|mru }}</p>
+      </div>
+    </article>
+  {% empty %}
+    <p class="muted">{% trans "Vous n'avez pas encore de commande." %}</p>
+  {% endfor %}
+  {% include "includes/pagination.html" %}
+</section>
+{% endblock %}

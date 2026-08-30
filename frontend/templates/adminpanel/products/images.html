@@ -1,0 +1,16 @@
+{% extends "base_admin.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Photos et vidéos" %} · {{ product.nom }}{% endblock %}
+
+{% block content %}
+<p><a href="{% url 'adminpanel:product_edit' product.id %}">{{ product.nom }}</a></p>
+<h1 class="h4 mb-3">{% trans "Photos et vidéos" %}</h1>
+<div class="form-panel">
+  {% include "includes/product_media_form.html" %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/product-media.js' %}"></script>
+{% endblock %}

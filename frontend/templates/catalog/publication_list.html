@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n ndb_tags %}
+
+{% block title %}{% trans "Actualités" %}{% endblock %}
+
+{% block content %}
+<section class="container page-wrap">
+  <h1 class="page-title">{% trans "Actualités" %}</h1>
+  {% for pub in publications %}
+    <article class="listing-card mb-3">
+      <div class="row g-0">
+        {% if pub.imageUrl %}
+          <div class="col-md-3">
+            <img src="{{ pub.imageUrl|media_url }}" class="pub-cover w-100" alt="">
+          </div>
+        {% endif %}
+        <div class="col">
+          <div class="listing-card-body">
+            <h2 class="h5"><a href="{% url 'catalog:publication_detail' pub.id %}">{{ pub.titre }}</a></h2>
+            <p class="muted small">{{ pub.datePublication }}</p>
+            <p>{{ pub.contenu|truncatewords:40 }}</p>
+            <a class="btn-cta" href="{% url 'catalog:publication_detail' pub.id %}">{% trans "Lire" %}</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  {% empty %}
+    <p class="muted">{% trans "Aucune actualité publiée." %}</p>
+  {% endfor %}
+  {% include "includes/pagination.html" %}
+</section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Livraison" %}{% endblock %}
+
+{% block content %}
+<section class="container page-wrap form-narrow">
+  <h1 class="page-title">{% trans "Finaliser la commande" %}</h1>
+  <p class="muted">{% trans "Précisez l'adresse. Le paiement se fait à la livraison." %}</p>
+  <form method="post" class="form-panel">
+    {% csrf_token %}
+    <p class="mb-3">{% trans "Livraison à Nouadhibou" %}</p>
+    <div class="mb-3">
+      <label class="form-label" for="adresseDetails">{% trans "Adresse / précisions" %}</label>
+      <textarea class="form-control" id="adresseDetails" name="adresseDetails" rows="3" required></textarea>
+    </div>
+    <button class="btn-cta w-100" type="submit">{% trans "Confirmer la commande" %}</button>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,191 @@
+{% load static i18n ndb_tags %}
+{# i18n : textes d'interface seulement. Noms de produits / catégories / publications = contenu admin, non traduit. #}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}NDB SHOPPING{% endblock %} · {% trans "Marketplace Mauritanie" %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap" rel="stylesheet">
+  {% if LANGUAGE_BIDI %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.rtl.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  {% else %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  {% endif %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+  {% if LANGUAGE_BIDI %}
+    <link rel="stylesheet" href="{% static 'css/theme-rtl.css' %}">
+  {% endif %}
+  <link rel="icon" href="{% static 'img/logo.png' %}" type="image/png">
+  {% block extra_css %}{% endblock %}
+</head>
+<body class="d-flex flex-column min-vh-100">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo-link" href="{% url 'core:home' %}">
+        <img src="{% static 'img/logo.png' %}" alt="NDB Shopping" class="site-logo">
+      </a>
+
+      <nav class="header-nav d-none d-lg-flex" aria-label="{% trans 'Navigation principale' %}">
+        <a class="nav-link" href="{% url 'core:home' %}">{% trans "Accueil" %}</a>
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle" href="{% url 'catalog:categories' %}" data-bs-toggle="dropdown">{% trans "Catégories" %}</a>
+          <ul class="dropdown-menu">
+            {% for cat in nav_categories %}
+              <li><a class="dropdown-item" href="{% url 'catalog:category_products' cat.id %}">{{ cat.nom }}</a></li>
+            {% empty %}
+              <li><span class="dropdown-item-text muted">{% trans "Aucune catégorie" %}</span></li>
+            {% endfor %}
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'catalog:categories' %}">{% trans "Toutes les catégories" %}</a></li>
+          </ul>
+        </div>
+        <a class="nav-link" href="{% url 'catalog:product_list' %}">{% trans "Produits" %}</a>
+        <a class="nav-link" href="{% url 'catalog:publication_list' %}">{% trans "Actualités" %}</a>
+      </nav>
+
+      <div class="header-actions">
+        {% include "includes/language_switcher.html" %}
+        <a class="header-icon-link" href="{% url 'cart:detail' %}" aria-label="{% trans 'Panier' %}">
+          <i class="bi bi-bag"></i>
+          <span class="badge rounded-pill cart-badge" id="cartBadge">{{ cart_count }}</span>
+        </a>
+        <div class="d-none d-lg-flex align-items-center gap-2">
+          {% if is_authenticated_api %}
+            <div class="dropdown">
+              <a class="header-login dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                <i class="bi bi-person-circle"></i> {{ user_nom }}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{% url 'accounts:orders' %}">{% trans "Mes commandes" %}</a></li>
+                <li><a class="dropdown-item" href="{% url 'accounts:my_listings' %}">{% trans "Mes annonces" %}</a></li>
+                {% if is_admin_api %}
+                  <li><a class="dropdown-item" href="{% url 'adminpanel:dashboard' %}">{% trans "Espace admin" %}</a></li>
+                {% endif %}
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <form action="{% url 'accounts:logout' %}" method="post">{% csrf_token %}
+                    <button class="dropdown-item" type="submit">{% trans "Déconnexion" %}</button>
+                  </form>
+                </li>
+              </ul>
+            </div>
+          {% else %}
+            <a class="header-login" href="{% url 'accounts:login' %}">{% trans "Connexion" %}</a>
+          {% endif %}
+          {% if is_authenticated_api %}
+            <a class="header-sell" href="{% url 'accounts:sell' %}">{% trans "Vendre un produit" %}</a>
+          {% else %}
+            <a class="header-sell" href="{% url 'accounts:login' %}?next={% url 'accounts:sell' %}">{% trans "Vendre un produit" %}</a>
+          {% endif %}
+          <a class="btn-cta" href="{% url 'cart:detail' %}">{% trans "Commander" %}</a>
+        </div>
+        <button class="header-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#headerMenu" aria-controls="headerMenu" aria-expanded="false" aria-label="{% trans 'Menu' %}">
+          <i class="bi bi-list fs-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="collapse header-collapse d-lg-none" id="headerMenu">
+      <nav class="header-nav" aria-label="{% trans 'Navigation mobile' %}">
+        <a class="nav-link" href="{% url 'core:home' %}">{% trans "Accueil" %}</a>
+        <a class="nav-link" href="{% url 'catalog:categories' %}">{% trans "Catégories" %}</a>
+        <a class="nav-link" href="{% url 'catalog:product_list' %}">{% trans "Produits" %}</a>
+        <a class="nav-link" href="{% url 'catalog:publication_list' %}">{% trans "Actualités" %}</a>
+      </nav>
+      <div class="header-actions-mobile">
+        {% if is_authenticated_api %}
+          <a class="header-login" href="{% url 'accounts:orders' %}">{% trans "Mes commandes" %}</a>
+          <a class="header-login" href="{% url 'accounts:my_listings' %}">{% trans "Mes annonces" %}</a>
+          {% if is_admin_api %}
+            <a class="header-login" href="{% url 'adminpanel:dashboard' %}">{% trans "Espace admin" %}</a>
+          {% endif %}
+          <form action="{% url 'accounts:logout' %}" method="post">{% csrf_token %}
+            <button class="header-login btn btn-link p-0" type="submit">{% trans "Déconnexion" %}</button>
+          </form>
+          <a class="header-sell" href="{% url 'accounts:sell' %}">{% trans "Vendre un produit" %}</a>
+        {% else %}
+          <a class="header-login" href="{% url 'accounts:login' %}">{% trans "Connexion" %}</a>
+          <a class="header-sell" href="{% url 'accounts:login' %}?next={% url 'accounts:sell' %}">{% trans "Vendre un produit" %}</a>
+        {% endif %}
+        <a class="btn-cta" href="{% url 'cart:detail' %}">{% trans "Commander" %}</a>
+      </div>
+    </div>
+  </header>
+
+  {% include "includes/promo_banner.html" %}
+
+  {% block hero %}{% endblock %}
+
+  <main class="flex-grow-1">
+    <div class="container alerts-wrap">
+      {% if api_unavailable %}
+        <div class="alert alert-danger" role="alert">{% trans "Service temporairement indisponible. Veuillez réessayer dans un instant." %}</div>
+      {% endif %}
+      {% include "includes/messages.html" %}
+    </div>
+    {% block content %}{% endblock %}
+  </main>
+
+  <aside class="cta-band">
+    <div class="container cta-band-inner">
+      <div class="cta-band-brand">
+        <a class="site-logo-link site-logo-link--footer" href="{% url 'core:home' %}">
+          <img src="{% static 'img/logo.png' %}" alt="NDB Shopping" class="site-logo">
+        </a>
+        <p>{% trans "Marketplace mauritanienne — Nouadhibou." %}</p>
+      </div>
+      <div class="cta-band-action">
+        <p class="cta-band-title">{% trans "Vous vendez quelque chose ?" %}</p>
+        <a class="btn-cta" href="{% url 'accounts:sell' %}">{% trans "Vendre un produit" %}</a>
+      </div>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a class="site-logo-link site-logo-link--footer" href="{% url 'core:home' %}">
+            <img src="{% static 'img/logo.png' %}" alt="NDB Shopping" class="site-logo">
+          </a>
+          <p>{% trans "Marketplace mauritanienne — Nouadhibou." %}</p>
+          <p class="footer-zone">{% trans "Livraison uniquement à Nouadhibou." %}</p>
+        </div>
+        <div class="footer-col">
+          <h2 class="footer-heading">{% trans "Liens utiles" %}</h2>
+          <ul class="footer-links">
+            <li><a href="{% url 'core:home' %}">{% trans "Accueil" %}</a></li>
+            <li><a href="{% url 'catalog:categories' %}">{% trans "Catégories" %}</a></li>
+            <li><a href="{% url 'catalog:product_list' %}">{% trans "Produits" %}</a></li>
+            <li><a href="{% url 'catalog:publication_list' %}">{% trans "Actualités" %}</a></li>
+            <li><a href="{% url 'accounts:sell' %}">{% trans "Vendre un produit" %}</a></li>
+            {% if is_authenticated_api %}
+              <li><a href="{% url 'accounts:my_listings' %}">{% trans "Mes annonces" %}</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+      <p class="footer-copy">© {% now "Y" %} NDB SHOPPING</p>
+    </div>
+  </footer>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+  <script>
+    {% trans "Ajouté au panier" as ndb_added %}
+    {% trans "Impossible d'ajouter au panier" as ndb_cannot_add %}
+    {% trans "Service temporairement indisponible" as ndb_unavailable %}
+    window.NDB_I18N = {
+      addedToCart: "{{ ndb_added|escapejs }}",
+      cannotAddToCart: "{{ ndb_cannot_add|escapejs }}",
+      unavailable: "{{ ndb_unavailable|escapejs }}"
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="{% static 'js/cart.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

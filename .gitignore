@@ -1,0 +1,10 @@
+backend/.env
+frontend/.env
+backend/target/
+frontend/__pycache__/
+frontend/staticfiles/
+frontend/*.pyc
+.idea/
+*.iml
+.DS_Store
+

@@ -1,0 +1,68 @@
+name: ndbshopping_backend
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "127.0.0.1:8000:8000"
+    env_file:
+      - ./frontend/.env
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    ports:
+      - "8085:8080"
+    env_file:
+      - path: ./backend/.env
+        required: false
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ndbshopping
+      DB_USERNAME: ndbshopping
+      DB_PASSWORD: ${DB_PASSWORD:-changeme}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      JWT_SECRET: ${JWT_SECRET:-changeme_super_secret_key_min_32_chars}
+      SMS_VALIDATION_KEY: ${SMS_VALIDATION_KEY:-}
+      SMS_TOKEN: ${SMS_TOKEN:-}
+      SMS_MOCK_ENABLED: ${SMS_MOCK_ENABLED:-false}
+      UPLOAD_DIR: /app/uploads
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:8000}
+    volumes:
+      - /home/ubuntu/ndbshopping-uploads:/app/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ndbshopping
+      POSTGRES_USER: ndbshopping
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ndbshopping -d ndbshopping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

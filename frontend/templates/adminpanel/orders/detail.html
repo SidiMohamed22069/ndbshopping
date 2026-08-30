@@ -1,0 +1,49 @@
+{% extends "base_admin.html" %}
+{% load i18n ndb_tags %}
+
+{% block title %}{% blocktrans with id=order.id %}Commande #{{ id }}{% endblocktrans %}{% endblock %}
+
+{% block content %}
+<p><a href="{% url 'adminpanel:order_list' %}">{% trans "Commandes" %}</a></p>
+<h1 class="h4">{% blocktrans with id=order.id %}Commande #{{ id }}{% endblocktrans %}</h1>
+<p>
+  <span class="badge text-bg-{{ order.statut|statut_badge }}">{{ order.statut|statut_label }}</span>
+  · {{ order.createdAt }}
+</p>
+<p>
+  <strong>{{ order.clientNom }}</strong> · {{ order.clientTelephone }}<br>
+  {{ order.villeLivraison|ville_label }} — {{ order.adresseDetails }}
+</p>
+
+<table class="table bg-white">
+  <thead>
+    <tr><th>{% trans "Produit" %}</th><th>{% trans "Qté" %}</th><th>{% trans "Prix unit." %}</th><th>{% trans "Sous-total" %}</th></tr>
+  </thead>
+  <tbody>
+    {% for item in order.items %}
+      <tr>
+        <td>{{ item.productNom }}</td>
+        <td>{{ item.quantite }}</td>
+        <td>{{ item.prixUnitaire|mru }}</td>
+        <td>{{ item.sousTotal|mru }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<p class="h5">{% trans "Total" %} {{ order.total|mru }}</p>
+
+<form method="post" class="row g-2 align-items-end form-narrow">
+  {% csrf_token %}
+  <div class="col">
+    <label class="form-label" for="statut">{% trans "Changer le statut" %}</label>
+    <select class="form-select" id="statut" name="statut">
+      {% for code, label in statuses %}
+        <option value="{{ code }}" {% if order.statut == code %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-auto">
+    <button class="btn-cta" type="submit">{% trans "Enregistrer" %}</button>
+  </div>
+</form>
+{% endblock %}

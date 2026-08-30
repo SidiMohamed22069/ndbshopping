@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Page introuvable" %}{% endblock %}
+{% block content %}
+<section class="container page-wrap text-center">
+  <h1 class="page-title">404</h1>
+  <p class="muted">{% trans "Cette page n'existe pas." %}</p>
+  <a class="btn-cta" href="{% url 'core:home' %}">{% trans "Retour à l'accueil" %}</a>
+</section>
+{% endblock %}

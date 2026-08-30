@@ -1,0 +1,47 @@
+{% extends "base_admin.html" %}
+{% load i18n ndb_tags %}
+
+{% block title %}{% if category %}{% trans "Modifier" %}{% else %}{% trans "Nouvelle" %}{% endif %} {% trans "catégorie" %}{% endblock %}
+
+{% block content %}
+<h1 class="h4 mb-3">{% if category %}{% trans "Modifier" %} {{ category.nom }}{% else %}{% trans "Nouvelle catégorie" %}{% endif %}</h1>
+<form method="post" enctype="multipart/form-data" class="form-panel form-narrow">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label class="form-label" for="nom">{% trans "Nom" %}</label>
+    <input class="form-control" id="nom" name="nom" required maxlength="150" value="{{ category.nom }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="type">{% trans "Type" %}</label>
+    <select class="form-select" id="type" name="type">
+      {% for code, label in types %}
+        <option value="{{ code }}" {% if category.type == code %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="parentId">{% trans "Catégorie parente" %}</label>
+    <select class="form-select" id="parentId" name="parentId">
+      <option value="">{% trans "— Aucune (racine) —" %}</option>
+      {% for p in parents %}
+        <option value="{{ p.id }}" {% if category.parentId == p.id %}selected{% endif %}>{{ p.nom }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="image">{% trans "Image" %}</label>
+    {% with path=category|image_path %}
+      {% if path %}
+      <div class="mb-2">
+        <img src="{{ path|media_url }}" alt="{{ category.nom }}" class="admin-image-preview">
+        <div class="form-text">{% trans "Image actuelle. Choisissez un fichier pour la remplacer." %}</div>
+      </div>
+      {% endif %}
+    {% endwith %}
+    <input class="form-control" type="file" id="image" name="image" accept="image/jpeg,image/png,image/webp">
+    <div class="form-text">{% trans "JPG, PNG ou WebP — 5 Mo maximum." %}</div>
+  </div>
+  <button class="btn-cta" type="submit">{% trans "Enregistrer" %}</button>
+  <a class="btn btn-link" href="{% url 'adminpanel:category_list' %}">{% trans "Annuler" %}</a>
+</form>
+{% endblock %}
