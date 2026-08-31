@@ -1,5 +1,5 @@
 {% extends "base_admin.html" %}
-{% load i18n static ndb_tags %}
+{% load i18n l10n static ndb_tags %}
 
 {% block title %}{% if product %}{% trans "Modifier" %}{% else %}{% trans "Nouveau" %}{% endif %} {% trans "produit" %}{% endblock %}
 
@@ -26,7 +26,7 @@
     </div>
     <div class="col-md-4">
       <label class="form-label" for="prix">{% trans "Prix (UM)" %}</label>
-      <input class="form-control" id="prix" name="prix" type="number" step="0.01" min="0" required value="{{ product.prix }}">
+      <input class="form-control" id="prix" name="prix" type="number" step="0.01" min="0" required value="{{ product.prix|unlocalize }}">
     </div>
     <div class="col-md-4">
       <label class="form-label" for="stock">{% trans "Stock" %}</label>
