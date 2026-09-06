@@ -260,6 +260,67 @@ def sync_cart(token: str, items: list[dict]) -> ApiResult:
 
 
 # ---------------------------------------------------------------------------
+# Notifications (client) — 100% in-app
+# ---------------------------------------------------------------------------
+
+def get_client_notifications(token: str, page: int = 0, size: int = 20) -> ApiResult:
+    return call("GET", "/notifications/me", token=token, params={"page": page, "size": size})
+
+
+def get_client_unread_count(token: str) -> ApiResult:
+    return call("GET", "/notifications/count-non-lues", token=token)
+
+
+def mark_notification_read(token: str, notification_id: int | str) -> ApiResult:
+    return call("PATCH", f"/notifications/{notification_id}/lire", token=token)
+
+
+def mark_all_notifications_read(token: str) -> ApiResult:
+    return call("PATCH", "/notifications/lire-tout", token=token)
+
+
+# ---------------------------------------------------------------------------
+# Avis produits
+# ---------------------------------------------------------------------------
+
+def get_product_reviews(product_id: int | str, page: int = 0, size: int = 10) -> ApiResult:
+    return call("GET", f"/products/{product_id}/reviews", params={"page": page, "size": size})
+
+
+def submit_review(token: str, product_id: int | str, rating: int, commentaire: str | None = None) -> ApiResult:
+    return call(
+        "POST",
+        f"/products/{product_id}/reviews",
+        token=token,
+        json={"rating": rating, "commentaire": commentaire},
+    )
+
+
+def delete_my_review(token: str, product_id: int | str) -> ApiResult:
+    return call("DELETE", f"/products/{product_id}/reviews/me", token=token)
+
+
+# ---------------------------------------------------------------------------
+# Favoris
+# ---------------------------------------------------------------------------
+
+def get_my_favorites(token: str, page: int = 0, size: int = 20) -> ApiResult:
+    return call("GET", "/favorites/me", token=token, params={"page": page, "size": size})
+
+
+def is_favorited(token: str, product_id: int | str) -> ApiResult:
+    return call("GET", f"/favorites/product/{product_id}", token=token)
+
+
+def add_favorite(token: str, product_id: int | str) -> ApiResult:
+    return call("POST", "/favorites", token=token, json={"productId": product_id})
+
+
+def remove_favorite(token: str, product_id: int | str) -> ApiResult:
+    return call("DELETE", f"/favorites/{product_id}", token=token)
+
+
+# ---------------------------------------------------------------------------
 # Négociation de prix (client)
 # ---------------------------------------------------------------------------
 

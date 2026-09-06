@@ -91,7 +91,12 @@ public class PriceNegotiationService {
         addMessageInternal(negotiation, actor, offerText(message, price), price);
 
         if (actorRole == NegotiationActor.ADMIN) {
-            // Pas de canal push acheteur pour l'instant : il verra la contre-offre sur "Mes négociations".
+            notificationService.createForUser(
+                    negotiation.getUser(),
+                    NotificationType.NEGOCIATION_REPONSE,
+                    "Contre-offre reçue pour " + negotiation.getProduct().getNom() + " : " + price + " UM",
+                    "/negotiations/" + negotiation.getId()
+            );
         } else {
             notificationService.createAndPush(
                     NotificationType.NEGOCIATION_PRIX,
@@ -120,6 +125,15 @@ public class PriceNegotiationService {
                 blankToDefault(message, "Prix accepté : " + negotiation.getProposedPrice() + " UM"),
                 null
         );
+        if (actorRole == NegotiationActor.ADMIN) {
+            notificationService.createForUser(
+                    negotiation.getUser(),
+                    NotificationType.NEGOCIATION_REPONSE,
+                    "Votre proposition pour " + negotiation.getProduct().getNom() + " a été acceptée à "
+                            + negotiation.getProposedPrice() + " UM",
+                    "/negotiations/" + negotiation.getId()
+            );
+        }
         return PriceNegotiationResponse.from(negotiation);
     }
 
@@ -131,6 +145,14 @@ public class PriceNegotiationService {
 
         negotiation.setStatut(PriceNegotiationStatus.REJECTED);
         addMessageInternal(negotiation, actor, blankToDefault(message, "Négociation refusée"), null);
+        if (isAdmin(actor)) {
+            notificationService.createForUser(
+                    negotiation.getUser(),
+                    NotificationType.NEGOCIATION_REPONSE,
+                    "Votre proposition pour " + negotiation.getProduct().getNom() + " a été refusée",
+                    "/negotiations/" + negotiation.getId()
+            );
+        }
         return PriceNegotiationResponse.from(negotiation);
     }
 

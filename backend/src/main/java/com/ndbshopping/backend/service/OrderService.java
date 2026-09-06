@@ -112,7 +112,23 @@ public class OrderService {
                 .orElseThrow(() -> ApiException.notFound("Commande introuvable"));
         order.setStatut(statut);
         touch(order);
+        notificationService.createForUser(
+                order.getUser(),
+                NotificationType.COMMANDE_STATUT,
+                "Votre commande #" + order.getId() + " est maintenant : " + statusLabel(statut),
+                "/orders/" + order.getId()
+        );
         return OrderResponse.from(order);
+    }
+
+    private static String statusLabel(OrderStatus statut) {
+        return switch (statut) {
+            case EN_ATTENTE -> "En attente";
+            case CONFIRMEE -> "Confirmée";
+            case EN_LIVRAISON -> "En livraison";
+            case LIVREE -> "Livrée";
+            case ANNULEE -> "Annulée";
+        };
     }
 
     private void touch(Order order) {

@@ -56,6 +56,14 @@
 
       <div class="header-actions">
         {% include "includes/language_switcher.html" %}
+        {% if is_authenticated_api %}
+          <a class="header-icon-link" href="{% url 'accounts:notifications' %}" aria-label="{% trans 'Notifications' %}">
+            <i class="bi bi-bell"></i>
+            {% if unread_notifications_client %}
+              <span class="badge rounded-pill cart-badge">{{ unread_notifications_client }}</span>
+            {% endif %}
+          </a>
+        {% endif %}
         <a class="header-icon-link" href="{% url 'cart:detail' %}" aria-label="{% trans 'Panier' %}">
           <i class="bi bi-bag"></i>
           <span class="badge rounded-pill cart-badge" id="cartBadge">{{ cart_count }}</span>
@@ -70,6 +78,7 @@
                 <li><a class="dropdown-item" href="{% url 'accounts:orders' %}">{% trans "Mes commandes" %}</a></li>
                 <li><a class="dropdown-item" href="{% url 'accounts:my_listings' %}">{% trans "Mes annonces" %}</a></li>
                 <li><a class="dropdown-item" href="{% url 'negotiations:list' %}">{% trans "Mes négociations" %}</a></li>
+                <li><a class="dropdown-item" href="{% url 'accounts:favorites' %}">{% trans "Mes favoris" %}</a></li>
                 {% if is_admin_api %}
                   <li><a class="dropdown-item" href="{% url 'adminpanel:dashboard' %}">{% trans "Espace admin" %}</a></li>
                 {% endif %}
@@ -115,6 +124,7 @@
           <a class="header-login" href="{% url 'accounts:orders' %}">{% trans "Mes commandes" %}</a>
           <a class="header-login" href="{% url 'accounts:my_listings' %}">{% trans "Mes annonces" %}</a>
           <a class="header-login" href="{% url 'negotiations:list' %}">{% trans "Mes négociations" %}</a>
+          <a class="header-login" href="{% url 'accounts:favorites' %}">{% trans "Mes favoris" %}</a>
           {% if is_admin_api %}
             <a class="header-login" href="{% url 'adminpanel:dashboard' %}">{% trans "Espace admin" %}</a>
           {% endif %}

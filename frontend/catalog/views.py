@@ -1,9 +1,11 @@
 from django.contrib import messages
 from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.utils.translation import gettext as _now
 from django.utils.translation import gettext_lazy as _
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET, require_POST
 
+from core.decorators import login_required_api
 from core.utils import (
     ETAT_CHOICES,
     VILLE_CHOICES,
@@ -101,10 +103,24 @@ def product_detail(request, product_id):
         return render(request, "catalog/product_detail.html", {"product": None})
 
     active_negotiation = None
+    is_favorited = False
     if request.jwt_token:
         neg_result = api_client.get_active_negotiation_for_product(request.jwt_token, product_id)
         if neg_result.ok and isinstance(neg_result.data, dict):
             active_negotiation = neg_result.data
+        fav_result = api_client.is_favorited(request.jwt_token, product_id)
+        if fav_result.ok and isinstance(fav_result.data, dict):
+            is_favorited = bool(fav_result.data.get("favorited"))
+
+    avis_page = page_from_request(request, default=1)
+    reviews_result = api_client.get_product_reviews(product_id, page=avis_page - 1, size=10)
+    reviews, reviews_pagination, note_moyenne, total_avis = [], None, None, 0
+    if reviews_result.ok and isinstance(reviews_result.data, dict):
+        note_moyenne = reviews_result.data.get("noteMoyenne")
+        total_avis = reviews_result.data.get("totalAvis") or 0
+        avis_data = reviews_result.data.get("avis") or {}
+        reviews = avis_data.get("content") or []
+        reviews_pagination = avis_data
 
     return render(
         request,
@@ -112,8 +128,66 @@ def product_detail(request, product_id):
         {
             "product": normalize_product_images(result.data),
             "active_negotiation": active_negotiation,
+            "is_favorited": is_favorited,
+            "reviews": reviews,
+            "reviews_pagination": reviews_pagination,
+            "note_moyenne": note_moyenne,
+            "total_avis": total_avis,
         },
     )
+
+
+@login_required_api
+@require_POST
+def review_add(request, product_id):
+    rating_raw = (request.POST.get("rating") or "").strip()
+    commentaire = (request.POST.get("commentaire") or "").strip()
+    try:
+        rating = int(rating_raw)
+    except ValueError:
+        rating = 0
+    if rating < 1 or rating > 5:
+        messages.error(request, _now("Indiquez une note entre 1 et 5."))
+    else:
+        result = api_client.submit_review(request.jwt_token, product_id, rating, commentaire or None)
+        if result.ok:
+            messages.success(request, _now("Merci pour votre avis !"))
+        else:
+            messages.error(request, result.error or _now("Impossible d'enregistrer votre avis."))
+    return redirect("catalog:product_detail", product_id=product_id)
+
+
+@login_required_api
+@require_POST
+def review_delete(request, product_id):
+    result = api_client.delete_my_review(request.jwt_token, product_id)
+    if result.ok:
+        messages.success(request, _now("Votre avis a été supprimé."))
+    else:
+        messages.error(request, result.error or _now("Suppression impossible."))
+    return redirect("catalog:product_detail", product_id=product_id)
+
+
+@login_required_api
+@require_POST
+def favorite_add(request, product_id):
+    result = api_client.add_favorite(request.jwt_token, product_id)
+    if result.ok:
+        messages.success(request, _now("Ajouté à vos favoris."))
+    else:
+        messages.error(request, result.error or _now("Impossible d'ajouter aux favoris."))
+    return redirect("catalog:product_detail", product_id=product_id)
+
+
+@login_required_api
+@require_POST
+def favorite_remove(request, product_id):
+    result = api_client.remove_favorite(request.jwt_token, product_id)
+    if result.ok:
+        messages.success(request, _now("Retiré de vos favoris."))
+    else:
+        messages.error(request, result.error or _now("Suppression impossible."))
+    return redirect("catalog:product_detail", product_id=product_id)
 
 
 @require_GET

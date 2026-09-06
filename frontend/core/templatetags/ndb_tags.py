@@ -4,6 +4,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 from django import template
 from django.conf import settings
 from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as _
 
 from core.utils import extract_image_path
@@ -97,6 +98,25 @@ def mru(value) -> str:
 
 
 @register.filter
+def stars(rating) -> str:
+    """5 icônes étoile (pleine / demie / vide) depuis une note numérique 0-5."""
+    try:
+        value = float(rating)
+    except (TypeError, ValueError):
+        value = 0.0
+    value = max(0.0, min(5.0, value))
+    full = int(value)
+    half = 1 if (value - full) >= 0.5 else 0
+    empty = 5 - full - half
+    icons = (
+        '<i class="bi bi-star-fill" aria-hidden="true"></i>' * full
+        + '<i class="bi bi-star-half" aria-hidden="true"></i>' * half
+        + '<i class="bi bi-star" aria-hidden="true"></i>' * empty
+    )
+    return mark_safe(icons)
+
+
+@register.filter
 def ville_label(code: str | None) -> str:
     labels = {
         "NOUADHIBOU": _("Nouadhibou"),
@@ -138,6 +158,9 @@ def statut_label(code: str | None) -> str:
         "ADMIN": _("Admin"),
         "NOUVELLE_COMMANDE": _("Nouvelle commande"),
         "PRODUIT_A_VALIDER": _("Produit à valider"),
+        "NEGOCIATION_PRIX": _("Négociation de prix"),
+        "NEGOCIATION_REPONSE": _("Réponse à ma négociation"),
+        "COMMANDE_STATUT": _("Statut de commande"),
         "SOLDE_SMS_BAS": _("Solde SMS bas"),
         "MANUEL": _("Manuel"),
         "FACEBOOK": "Facebook",

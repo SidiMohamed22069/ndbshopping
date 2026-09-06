@@ -1382,6 +1382,11 @@ textarea.form-control {
     padding-bottom: 3.5rem;
 }
 
+.stars {
+    color: #f5a623;
+    letter-spacing: 0.05em;
+}
+
 .negotiate-thumb {
     width: 72px;
     height: 72px;

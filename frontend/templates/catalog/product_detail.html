@@ -60,6 +60,16 @@
         <p class="muted mb-1">{{ product.categoryNom }}</p>
         <h1 class="page-title">{{ product.nom }}</h1>
         <p class="listing-price">{{ product.prix|mru }}</p>
+        <p class="mb-2">
+          <a class="text-decoration-none" href="#avis">
+            <span class="stars">{{ note_moyenne|default:0|stars }}</span>
+            {% if total_avis %}
+              <span class="muted small">{{ note_moyenne|floatformat:1 }}/5 · {{ total_avis }} {% trans "avis" %}</span>
+            {% else %}
+              <span class="muted small">{% trans "Aucun avis pour l'instant" %}</span>
+            {% endif %}
+          </a>
+        </p>
         {% if product.stock is not None %}
           <p class="small {% if product.stock < 1 %}text-danger{% else %}muted{% endif %}">
             {% if product.stock < 1 %}
@@ -86,7 +96,7 @@
           </form>
         {% endif %}
 
-        <div class="mt-3">
+        <div class="mt-3 d-flex flex-wrap gap-2">
           {% if active_negotiation %}
             {% if active_negotiation.statut == "ACCEPTED" %}
               <a class="btn-cta-outline" href="{% url 'negotiations:detail' active_negotiation.id %}">
@@ -101,6 +111,28 @@
           {% else %}
             <a class="btn-cta-outline" href="{% url 'negotiations:start' product.id %}">
               <i class="bi bi-tags" aria-hidden="true"></i> {% trans "Négocier le prix" %}
+            </a>
+          {% endif %}
+
+          {% if is_authenticated_api %}
+            {% if is_favorited %}
+              <form method="post" action="{% url 'catalog:favorite_remove' product.id %}">
+                {% csrf_token %}
+                <button class="btn-cta-outline" type="submit">
+                  <i class="bi bi-heart-fill" aria-hidden="true"></i> {% trans "Retirer des favoris" %}
+                </button>
+              </form>
+            {% else %}
+              <form method="post" action="{% url 'catalog:favorite_add' product.id %}">
+                {% csrf_token %}
+                <button class="btn-cta-outline" type="submit">
+                  <i class="bi bi-heart" aria-hidden="true"></i> {% trans "Ajouter aux favoris" %}
+                </button>
+              </form>
+            {% endif %}
+          {% else %}
+            <a class="btn-cta-outline" href="{% url 'accounts:login' %}?next={{ request.path }}">
+              <i class="bi bi-heart" aria-hidden="true"></i> {% trans "Ajouter aux favoris" %}
             </a>
           {% endif %}
         </div>
@@ -122,6 +154,68 @@
         </table>
       </div>
     {% endif %}
+
+    <h2 class="h5 mt-5" id="avis">
+      {% trans "Avis" %}
+      {% if total_avis %}
+        <span class="stars">{{ note_moyenne|stars }}</span>
+        <span class="muted small">{{ note_moyenne|floatformat:1 }}/5 · {{ total_avis }} {% trans "avis" %}</span>
+      {% endif %}
+    </h2>
+
+    {% if is_authenticated_api %}
+      <form method="post" action="{% url 'catalog:review_add' product.id %}" class="surface-card p-3 mb-3">
+        {% csrf_token %}
+        <div class="row g-2 align-items-end">
+          <div class="col-auto">
+            <label class="form-label" for="rating">{% trans "Votre note" %}</label>
+            <select class="form-select" id="rating" name="rating" required>
+              <option value="5">5 — {% trans "Excellent" %}</option>
+              <option value="4">4 — {% trans "Très bien" %}</option>
+              <option value="3">3 — {% trans "Correct" %}</option>
+              <option value="2">2 — {% trans "Décevant" %}</option>
+              <option value="1">1 — {% trans "Mauvais" %}</option>
+            </select>
+          </div>
+          <div class="col">
+            <label class="form-label" for="commentaire">{% trans "Commentaire (optionnel)" %}</label>
+            <input class="form-control" id="commentaire" name="commentaire" type="text" maxlength="2000">
+          </div>
+          <div class="col-auto">
+            <button class="btn-cta" type="submit">{% trans "Publier mon avis" %}</button>
+          </div>
+        </div>
+      </form>
+    {% else %}
+      <p class="muted">
+        <a href="{% url 'accounts:login' %}?next={{ request.path }}">{% trans "Connectez-vous" %}</a>
+        {% trans "pour laisser un avis." %}
+      </p>
+    {% endif %}
+
+    <div class="d-flex flex-column gap-3 mb-3">
+      {% for review in reviews %}
+        <div class="surface-card p-3">
+          <div class="d-flex justify-content-between flex-wrap gap-2">
+            <span class="fw-semibold">{{ review.userNom }}</span>
+            <span class="stars">{{ review.rating|stars }}</span>
+          </div>
+          {% if review.commentaire %}<p class="mb-1">{{ review.commentaire }}</p>{% endif %}
+          <div class="d-flex justify-content-between align-items-end">
+            <p class="muted small mb-0">{{ review.createdAt }}</p>
+            {% if review.userId == current_user_id %}
+              <form method="post" action="{% url 'catalog:review_delete' product.id %}">
+                {% csrf_token %}
+                <button class="btn btn-link btn-sm text-danger p-0" type="submit">{% trans "Supprimer" %}</button>
+              </form>
+            {% endif %}
+          </div>
+        </div>
+      {% empty %}
+        <p class="muted">{% trans "Aucun avis pour ce produit pour le moment." %}</p>
+      {% endfor %}
+    </div>
+    {% include "includes/pagination.html" with pagination=reviews_pagination %}
   {% endif %}
 </section>
 {% endblock %}

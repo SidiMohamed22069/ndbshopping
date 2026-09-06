@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n ndb_tags %}
+
+{% block title %}{% trans "Notifications" %}{% endblock %}
+
+{% block content %}
+<section class="container page-wrap form-narrow-lg">
+  <h1 class="page-title">{% trans "Notifications" %}</h1>
+  <ul class="list-group">
+    {% for n in notifications %}
+      <li class="list-group-item {% if not n.lu %}list-group-item-light fw-semibold{% endif %}">
+        <span class="badge text-bg-{% if n.type == 'NEGOCIATION_REPONSE' %}info{% elif n.type == 'COMMANDE_STATUT' %}success{% else %}secondary{% endif %}">
+          {{ n.type|statut_label }}
+        </span>
+        {{ n.message }}
+        <div class="small text-muted fw-normal">{{ n.createdAt }}</div>
+        {% if n.detail_url %}
+          <a class="small" href="{{ n.detail_url }}">{% trans "Voir le détail" %}</a>
+        {% endif %}
+      </li>
+    {% empty %}
+      <li class="list-group-item text-muted">{% trans "Aucune notification pour le moment." %}</li>
+    {% endfor %}
+  </ul>
+  {% include "includes/pagination.html" %}
+</section>
+{% endblock %}

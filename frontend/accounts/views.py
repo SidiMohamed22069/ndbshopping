@@ -189,6 +189,62 @@ def orders(request):
     )
 
 
+def _notification_detail_url(lien_ressource: str | None) -> str | None:
+    if not lien_ressource:
+        return None
+    if "/negotiations/" in lien_ressource:
+        negotiation_id = lien_ressource.rsplit("/", 1)[-1]
+        if negotiation_id.isdigit():
+            return reverse("negotiations:detail", args=[negotiation_id])
+    if "/orders/" in lien_ressource:
+        return reverse("accounts:orders")
+    return None
+
+
+@login_required_api
+@require_http_methods(["GET"])
+def notifications(request):
+    """Liste mes notifications in-app et les marque comme lues à la consultation."""
+    page = page_from_request(request)
+    result = api_client.get_client_notifications(request.jwt_token, page=page - 1, size=15)
+    items, pagination = [], None
+    if result.ok and isinstance(result.data, dict):
+        items = result.data.get("content") or []
+        pagination = result.data
+        for item in items:
+            item["detail_url"] = _notification_detail_url(item.get("lienRessource"))
+    else:
+        messages.error(request, result.error or api_client.UNAVAILABLE)
+    if any(not item.get("lu") for item in items):
+        api_client.mark_all_notifications_read(request.jwt_token)
+    return render(
+        request,
+        "accounts/notifications.html",
+        {"notifications": items, "pagination": pagination, "page": page},
+    )
+
+
+@login_required_api
+@require_http_methods(["GET"])
+def favorites(request):
+    page = page_from_request(request)
+    result = api_client.get_my_favorites(request.jwt_token, page=page - 1, size=12)
+    items, pagination = [], None
+    if result.ok and isinstance(result.data, dict):
+        for fav in result.data.get("content") or []:
+            if isinstance(fav.get("product"), dict):
+                fav["product"] = normalize_product_images(fav["product"])
+        items = result.data.get("content") or []
+        pagination = result.data
+    else:
+        messages.error(request, result.error or api_client.UNAVAILABLE)
+    return render(
+        request,
+        "accounts/favorites.html",
+        {"favorites": items, "pagination": pagination, "page": page},
+    )
+
+
 def _client_product_payload(request) -> dict:
     attributs = []
     for key in request.POST:

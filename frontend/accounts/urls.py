@@ -11,6 +11,8 @@ urlpatterns = [
     path("deconnexion/", views.logout_view, name="logout"),
     path("commander/", views.checkout, name="checkout"),
     path("commandes/", views.orders, name="orders"),
+    path("notifications/", views.notifications, name="notifications"),
+    path("favoris/", views.favorites, name="favorites"),
     path("vendre/", views.sell, name="sell"),
     path("vendre/<int:product_id>/medias/", views.sell_media, name="sell_media"),
     path(

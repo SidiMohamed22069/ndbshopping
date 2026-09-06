@@ -47,14 +47,27 @@ def storefront(request):
                     featured_result.error,
                 )
 
+    token = request.session.get("jwt_token")
+    unread_notifications_client = 0
+    if token:
+        try:
+            unread_result = api_client.get_client_unread_count(token)
+        except Exception:
+            logger.exception("Échec GET /notifications/count-non-lues (contexte storefront)")
+        else:
+            if unread_result.ok and isinstance(unread_result.data, dict):
+                unread_notifications_client = unread_result.data.get("count") or 0
+
     return {
         "nav_categories": categories,
         "nav_categories_flat": flatten_categories(categories),
         "featured_publications": featured,
         "cart_count": cart_quantity(request.session),
-        "is_authenticated_api": bool(request.session.get("jwt_token")),
+        "is_authenticated_api": bool(token),
         "is_admin_api": request.session.get("user_role") == "ADMIN",
         "user_nom": request.session.get("user_nom") or "",
+        "current_user_id": request.session.get("user_id"),
+        "unread_notifications_client": unread_notifications_client,
         "MEDIA_BACKEND_URL": settings.MEDIA_BACKEND_URL.rstrip("/"),
         "PUBLIC_BACKEND_HOST": settings.PUBLIC_BACKEND_HOST,
         "api_unavailable": not categories_result.ok,

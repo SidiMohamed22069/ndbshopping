@@ -10,6 +10,7 @@ import com.ndbshopping.backend.entity.enums.ProductStatus;
 import com.ndbshopping.backend.entity.enums.Role;
 import com.ndbshopping.backend.repository.CartItemRepository;
 import com.ndbshopping.backend.repository.CategoryRepository;
+import com.ndbshopping.backend.repository.NotificationRepository;
 import com.ndbshopping.backend.repository.OrderRepository;
 import com.ndbshopping.backend.repository.PriceNegotiationRepository;
 import com.ndbshopping.backend.repository.ProductRepository;
@@ -69,6 +70,9 @@ class PriceNegotiationControllerTest {
 
     @Autowired
     private PriceNegotiationRepository negotiationRepository;
+
+    @Autowired
+    private NotificationRepository notificationRepository;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -261,6 +265,7 @@ class PriceNegotiationControllerTest {
     }
 
     private void clean() {
+        notificationRepository.deleteAll();
         orderRepository.deleteAll();
         cartItemRepository.deleteAll();
         negotiationRepository.deleteAll();
