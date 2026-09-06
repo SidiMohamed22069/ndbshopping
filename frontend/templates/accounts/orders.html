@@ -23,7 +23,11 @@
       </div>
     </article>
   {% empty %}
-    <p class="muted">{% trans "Vous n'avez pas encore de commande." %}</p>
+    <div class="empty-state">
+      <i class="bi bi-receipt" aria-hidden="true"></i>
+      <p>{% trans "Vous n'avez pas encore de commande." %}</p>
+      <a class="btn-cta" href="{% url 'catalog:product_list' %}">{% trans "Parcourir les produits" %}</a>
+    </div>
   {% endfor %}
   {% include "includes/pagination.html" %}
 </section>

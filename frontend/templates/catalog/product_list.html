@@ -79,7 +79,10 @@
           {% for product in products %}
             {% include "includes/product_card.html" %}
           {% empty %}
-            <p class="muted">{% trans "Aucun produit ne correspond à votre recherche." %}</p>
+            <div class="empty-state w-100">
+              <i class="bi bi-search" aria-hidden="true"></i>
+              <p>{% trans "Aucun produit ne correspond à votre recherche." %}</p>
+            </div>
           {% endfor %}
         </div>
         {% include "includes/pagination.html" %}

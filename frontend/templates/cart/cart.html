@@ -7,8 +7,11 @@
 <section class="container page-wrap">
   <h1 class="page-title">{% trans "Votre panier" %}</h1>
   {% if not lines %}
-    <p class="muted">{% trans "Le panier est vide." %}</p>
-    <a class="btn-cta" href="{% url 'catalog:product_list' %}">{% trans "Parcourir les produits" %}</a>
+    <div class="empty-state">
+      <i class="bi bi-cart-x" aria-hidden="true"></i>
+      <p>{% trans "Le panier est vide." %}</p>
+      <a class="btn-cta" href="{% url 'catalog:product_list' %}">{% trans "Parcourir les produits" %}</a>
+    </div>
   {% else %}
     <div class="table-responsive surface-card">
       <table class="table align-middle mb-0">

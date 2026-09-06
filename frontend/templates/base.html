@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{% static 'css/theme-rtl.css' %}">
   {% endif %}
   <link rel="icon" href="{% static 'img/logo.png' %}" type="image/png">
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
   {% block extra_css %}{% endblock %}
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -211,6 +212,9 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{% static 'js/cart.js' %}"></script>
+  <script src="{% static 'js/reveal.js' %}"></script>
+  <script src="{% static 'js/forms.js' %}"></script>
+  <script src="{% static 'js/password-toggle.js' %}"></script>
   {% block extra_js %}{% endblock %}
 </body>
 </html>

@@ -18,7 +18,11 @@
       </div>
     </a>
   {% empty %}
-    <p class="muted">{% trans "Vous n'avez pas encore négocié de prix." %}</p>
+    <div class="empty-state">
+      <i class="bi bi-chat-dots" aria-hidden="true"></i>
+      <p>{% trans "Vous n'avez pas encore négocié de prix." %}</p>
+      <a class="btn-cta" href="{% url 'catalog:product_list' %}">{% trans "Parcourir les produits" %}</a>
+    </div>
   {% endfor %}
   {% include "includes/pagination.html" %}
 </section>

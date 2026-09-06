@@ -118,7 +118,7 @@
             {% if is_favorited %}
               <form method="post" action="{% url 'catalog:favorite_remove' product.id %}">
                 {% csrf_token %}
-                <button class="btn-cta-outline" type="submit">
+                <button class="btn-cta-outline favorite-toggle-btn" type="submit">
                   <i class="bi bi-heart-fill" aria-hidden="true"></i> {% trans "Retirer des favoris" %}
                 </button>
               </form>

@@ -19,7 +19,12 @@
         {% endif %}
       </li>
     {% empty %}
-      <li class="list-group-item text-muted">{% trans "Aucune notification pour le moment." %}</li>
+      <li class="list-group-item border-0">
+        <div class="empty-state">
+          <i class="bi bi-bell-slash" aria-hidden="true"></i>
+          <p class="mb-0">{% trans "Aucune notification pour le moment." %}</p>
+        </div>
+      </li>
     {% endfor %}
   </ul>
   {% include "includes/pagination.html" %}

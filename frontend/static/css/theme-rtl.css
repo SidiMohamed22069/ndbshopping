@@ -5,10 +5,6 @@
    qui restent spécifiques au sens de lecture (sélecteur de langue, flèches
    du bandeau, offcanvas admin déjà géré par Bootstrap RTL).
 */
-[dir="rtl"] .lang-switcher select {
-    text-align: right;
-}
-
 [dir="rtl"] .promo-banner-link {
     flex-direction: row;
 }

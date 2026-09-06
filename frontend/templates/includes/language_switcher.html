@@ -1,12 +1,22 @@
 {% load i18n %}
+{% get_current_language as CURRENT_LANGUAGE %}
 <form class="lang-switcher" action="{% url 'set_language' %}" method="post">
   {% csrf_token %}
   <input type="hidden" name="next" value="{{ request.get_full_path }}">
-  <select name="language" onchange="this.form.submit()" aria-label="{% trans 'Langue' %}">
-    {% get_current_language as CURRENT_LANGUAGE %}
-    {% get_available_languages as AVAILABLE_LANGUAGES %}
-    {% for lang_code, lang_name in AVAILABLE_LANGUAGES %}
-      <option value="{{ lang_code }}" {% if lang_code == CURRENT_LANGUAGE %}selected{% endif %}>{{ lang_name }}</option>
-    {% endfor %}
-  </select>
+  <div class="lang-toggle" role="group" aria-label="{% trans 'Langue' %}">
+    <button
+      type="submit"
+      name="language"
+      value="fr"
+      class="lang-toggle-btn {% if CURRENT_LANGUAGE == 'fr' %}active{% endif %}"
+      aria-pressed="{% if CURRENT_LANGUAGE == 'fr' %}true{% else %}false{% endif %}"
+    >FR</button>
+    <button
+      type="submit"
+      name="language"
+      value="ar"
+      class="lang-toggle-btn {% if CURRENT_LANGUAGE == 'ar' %}active{% endif %}"
+      aria-pressed="{% if CURRENT_LANGUAGE == 'ar' %}true{% else %}false{% endif %}"
+    >ع</button>
+  </div>
 </form>

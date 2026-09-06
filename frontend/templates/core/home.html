@@ -15,28 +15,28 @@
       </div>
       <div class="col-lg-6">
         <div class="trust-panel">
-          <div class="trust-item">
+          <div class="trust-item reveal">
             <span class="trust-icon" aria-hidden="true"><i class="bi bi-cash-stack"></i></span>
             <div>
               <h3>{% trans "Payez à la livraison" %}</h3>
               <p>{% trans "Vous réglez en recevant votre commande." %}</p>
             </div>
           </div>
-          <div class="trust-item">
+          <div class="trust-item reveal">
             <span class="trust-icon" aria-hidden="true"><i class="bi bi-shield-check"></i></span>
             <div>
               <h3>{% trans "Vendeurs vérifiés par notre équipe" %}</h3>
               <p>{% trans "Chaque annonce est validée avant d'être en ligne." %}</p>
             </div>
           </div>
-          <div class="trust-item">
+          <div class="trust-item reveal">
             <span class="trust-icon" aria-hidden="true"><i class="bi bi-lightning-charge"></i></span>
             <div>
               <h3>{% trans "Publication rapide" %}</h3>
               <p>{% trans "Déposez une annonce en quelques minutes." %}</p>
             </div>
           </div>
-          <div class="trust-item">
+          <div class="trust-item reveal">
             <span class="trust-icon" aria-hidden="true"><i class="bi bi-geo-alt"></i></span>
             <div>
               <h3>{% trans "Support local à Nouadhibou" %}</h3>
@@ -83,7 +83,7 @@
     </div>
     <div class="row g-4 cat-grid">
       {% for cat in nav_categories %}
-        <div class="col-12 col-md-6 col-lg-3">
+        <div class="col-12 col-md-6 col-lg-3 reveal">
           {% include "includes/category_card.html" %}
         </div>
       {% empty %}
@@ -102,7 +102,7 @@
     </div>
     <div class="row g-4 cat-grid">
       {% for pub in publications %}
-        <div class="col-12 col-md-6 col-lg-3">
+        <div class="col-12 col-md-6 col-lg-3 reveal">
           {% include "includes/publication_card.html" %}
         </div>
       {% endfor %}
@@ -117,28 +117,28 @@
 <section class="section-block">
   <div class="container">
     <div class="row g-4">
-      <div class="col-12 col-md-6 col-lg-3">
+      <div class="col-12 col-md-6 col-lg-3 reveal">
         <div class="perk">
           <div class="perk-icon"><i class="bi bi-geo-alt"></i></div>
           <h3>{% trans "Nouadhibou" %}</h3>
           <p>{% trans "Livraison à Nouadhibou." %}</p>
         </div>
       </div>
-      <div class="col-12 col-md-6 col-lg-3">
+      <div class="col-12 col-md-6 col-lg-3 reveal">
         <div class="perk">
           <div class="perk-icon"><i class="bi bi-bag"></i></div>
           <h3>{% trans "Panier libre" %}</h3>
           <p>{% trans "Ajoutez des articles sans créer de compte." %}</p>
         </div>
       </div>
-      <div class="col-12 col-md-6 col-lg-3">
+      <div class="col-12 col-md-6 col-lg-3 reveal">
         <div class="perk">
           <div class="perk-icon"><i class="bi bi-shield-check"></i></div>
           <h3>{% trans "Compte vérifié" %}</h3>
           <p>{% trans "Connexion sécurisée par code SMS." %}</p>
         </div>
       </div>
-      <div class="col-12 col-md-6 col-lg-3">
+      <div class="col-12 col-md-6 col-lg-3 reveal">
         <div class="perk">
           <div class="perk-icon"><i class="bi bi-receipt"></i></div>
           <h3>{% trans "Suivi simple" %}</h3>

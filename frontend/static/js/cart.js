@@ -44,7 +44,12 @@
       const payload = await response.json();
       if (payload.ok) {
         const badge = document.getElementById("cartBadge");
-        if (badge) badge.textContent = payload.cart_count;
+        if (badge) {
+          badge.textContent = payload.cart_count;
+          badge.classList.remove("is-updated");
+          void badge.offsetWidth; // relance l'animation même si déjà appliquée
+          badge.classList.add("is-updated");
+        }
         toast(payload.message || (window.NDB_I18N && window.NDB_I18N.addedToCart) || "Ajouté au panier", true);
       } else {
         toast(payload.error || (window.NDB_I18N && window.NDB_I18N.cannotAddToCart) || "Impossible d'ajouter au panier", false);
