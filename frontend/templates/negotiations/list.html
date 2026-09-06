@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n ndb_tags %}
+
+{% block title %}{% trans "Mes négociations" %}{% endblock %}
+
+{% block content %}
+<section class="container page-wrap">
+  <h1 class="page-title">{% trans "Mes négociations" %}</h1>
+  {% for negotiation in negotiations %}
+    <a class="listing-card mb-3 d-block text-decoration-none text-reset" href="{% url 'negotiations:detail' negotiation.id %}">
+      <div class="listing-card-body">
+        <div class="d-flex justify-content-between flex-wrap gap-2">
+          <h2 class="h6 mb-0">{{ negotiation.productNom }}</h2>
+          <span class="badge text-bg-{{ negotiation.statut|statut_badge }}">{{ negotiation.statut|statut_label }}</span>
+        </div>
+        <p class="muted small mb-2">{% trans "Prix catalogue" %} : {{ negotiation.productPrixActuel|mru }}</p>
+        <p class="listing-price mb-0">{{ negotiation.proposedPrice|mru }}</p>
+      </div>
+    </a>
+  {% empty %}
+    <p class="muted">{% trans "Vous n'avez pas encore négocié de prix." %}</p>
+  {% endfor %}
+  {% include "includes/pagination.html" %}
+</section>
+{% endblock %}

@@ -24,6 +24,12 @@
   <a class="admin-nav-link {% if 'order' in url_name %}active{% endif %}" href="{% url 'adminpanel:order_list' %}">
     <i class="bi bi-receipt"></i> {% trans "Commandes" %}
   </a>
+  <a class="admin-nav-link {% if 'negotiation' in url_name %}active{% endif %}" href="{% url 'adminpanel:negotiation_list' %}">
+    <i class="bi bi-chat-dots"></i> {% trans "Négociations" %}
+    {% if pending_negotiations_count %}
+      <span class="badge rounded-pill admin-nav-count">{{ pending_negotiations_count }}</span>
+    {% endif %}
+  </a>
   <a class="admin-nav-link {% if 'publication' in url_name %}active{% endif %}" href="{% url 'adminpanel:publication_list' %}">
     <i class="bi bi-newspaper"></i> {% trans "Publications" %}
   </a>

@@ -26,6 +26,9 @@
             <tr>
               <td>
                 <a href="{% url 'catalog:product_detail' line.product_id %}">{{ line.product.nom }}</a>
+                {% if line.is_negotiated %}
+                  <span class="badge text-bg-success ms-1">{% trans "Prix négocié" %}</span>
+                {% endif %}
               </td>
               <td>{{ line.prix|mru }}</td>
               <td>

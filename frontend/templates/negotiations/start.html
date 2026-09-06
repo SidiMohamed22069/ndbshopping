@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n ndb_tags %}
+
+{% block title %}{% trans "Négocier le prix" %}{% endblock %}
+
+{% block content %}
+<section class="container page-wrap form-narrow">
+  <p><a href="{% url 'catalog:product_detail' product.id %}">&larr; {{ product.nom }}</a></p>
+  <h1 class="page-title">{% trans "Proposer un prix" %}</h1>
+  <div class="surface-card p-3 mb-3 d-flex align-items-center gap-3">
+    {% with img=product.images.0 %}
+      {% include "includes/media_img.html" with src_path=img|image_path version=img.id alt=product.nom extra_class="negotiate-thumb" placeholder="img/placeholder-produit.png" %}
+    {% endwith %}
+    <div>
+      <p class="fw-semibold mb-0">{{ product.nom }}</p>
+      <p class="muted mb-0">{% trans "Prix catalogue" %} : {{ product.prix|mru }}</p>
+    </div>
+  </div>
+
+  <form method="post" class="form-panel">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label" for="proposed_price">{% trans "Votre prix proposé (UM)" %}</label>
+      <input class="form-control" id="proposed_price" name="proposed_price" type="number" step="0.01" min="0" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="message">{% trans "Message (optionnel)" %}</label>
+      <textarea class="form-control" id="message" name="message" rows="3" placeholder="{% trans 'Expliquez votre offre…' %}"></textarea>
+    </div>
+    <button class="btn-cta w-100" type="submit">{% trans "Envoyer ma proposition" %}</button>
+  </form>
+</section>
+{% endblock %}

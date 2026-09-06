@@ -69,6 +69,7 @@
               <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="{% url 'accounts:orders' %}">{% trans "Mes commandes" %}</a></li>
                 <li><a class="dropdown-item" href="{% url 'accounts:my_listings' %}">{% trans "Mes annonces" %}</a></li>
+                <li><a class="dropdown-item" href="{% url 'negotiations:list' %}">{% trans "Mes négociations" %}</a></li>
                 {% if is_admin_api %}
                   <li><a class="dropdown-item" href="{% url 'adminpanel:dashboard' %}">{% trans "Espace admin" %}</a></li>
                 {% endif %}
@@ -113,6 +114,7 @@
         {% if is_authenticated_api %}
           <a class="header-login" href="{% url 'accounts:orders' %}">{% trans "Mes commandes" %}</a>
           <a class="header-login" href="{% url 'accounts:my_listings' %}">{% trans "Mes annonces" %}</a>
+          <a class="header-login" href="{% url 'negotiations:list' %}">{% trans "Mes négociations" %}</a>
           {% if is_admin_api %}
             <a class="header-login" href="{% url 'adminpanel:dashboard' %}">{% trans "Espace admin" %}</a>
           {% endif %}

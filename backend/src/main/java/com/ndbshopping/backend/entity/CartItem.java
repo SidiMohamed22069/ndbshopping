@@ -16,6 +16,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(
         name = "cart_items",
@@ -42,4 +44,13 @@ public class CartItem {
 
     @Column(nullable = false)
     private Integer quantite;
+
+    /** Négociation acceptée dont ce prix est issu ; null = prix catalogue normal. */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "negotiation_id")
+    private PriceNegotiation negotiation;
+
+    /** Prix figé négocié pour cet utilisateur ; prévaut sur product.prix quand renseigné. */
+    @Column(name = "prix_convenu", precision = 14, scale = 2)
+    private BigDecimal prixConvenu;
 }

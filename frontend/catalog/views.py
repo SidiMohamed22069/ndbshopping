@@ -99,10 +99,20 @@ def product_detail(request, product_id):
             raise Http404("Produit introuvable")
         messages.error(request, result.error or api_client.UNAVAILABLE)
         return render(request, "catalog/product_detail.html", {"product": None})
+
+    active_negotiation = None
+    if request.jwt_token:
+        neg_result = api_client.get_active_negotiation_for_product(request.jwt_token, product_id)
+        if neg_result.ok and isinstance(neg_result.data, dict):
+            active_negotiation = neg_result.data
+
     return render(
         request,
         "catalog/product_detail.html",
-        {"product": normalize_product_images(result.data)},
+        {
+            "product": normalize_product_images(result.data),
+            "active_negotiation": active_negotiation,
+        },
     )
 
 

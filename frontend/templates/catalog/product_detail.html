@@ -85,6 +85,25 @@
             </div>
           </form>
         {% endif %}
+
+        <div class="mt-3">
+          {% if active_negotiation %}
+            {% if active_negotiation.statut == "ACCEPTED" %}
+              <a class="btn-cta-outline" href="{% url 'negotiations:detail' active_negotiation.id %}">
+                <i class="bi bi-check-circle" aria-hidden="true"></i>
+                {% trans "Prix négocié accepté" %} — {{ active_negotiation.proposedPrice|mru }}
+              </a>
+            {% else %}
+              <a class="btn-cta-outline" href="{% url 'negotiations:detail' active_negotiation.id %}">
+                <i class="bi bi-chat-dots" aria-hidden="true"></i> {% trans "Voir ma négociation en cours" %}
+              </a>
+            {% endif %}
+          {% else %}
+            <a class="btn-cta-outline" href="{% url 'negotiations:start' product.id %}">
+              <i class="bi bi-tags" aria-hidden="true"></i> {% trans "Négocier le prix" %}
+            </a>
+          {% endif %}
+        </div>
       </div>
     </div>
 

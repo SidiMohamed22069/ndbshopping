@@ -1,4 +1,5 @@
 import json
+from decimal import Decimal, InvalidOperation
 
 from django.contrib import messages
 from django.shortcuts import redirect, render
@@ -53,6 +54,12 @@ ORDER_STATUSES = [
     ("EN_LIVRAISON", _lazy("En livraison")),
     ("LIVREE", _lazy("Livrée")),
     ("ANNULEE", _lazy("Annulée")),
+]
+NEGOTIATION_STATUSES = [
+    ("PENDING", _lazy("En attente")),
+    ("COUNTER_OFFER", _lazy("Contre-offre")),
+    ("ACCEPTED", _lazy("Acceptée")),
+    ("REJECTED", _lazy("Refusée")),
 ]
 PUB_STATUSES = [("BROUILLON", _lazy("Brouillon")), ("PUBLIE", _lazy("Publié"))]
 
@@ -815,6 +822,90 @@ def order_detail(request, order_id):
         request,
         "adminpanel/orders/detail.html",
         {"order": order, "statuses": ORDER_STATUSES},
+    )
+
+
+# ---------------------------------------------------------------------------
+# Négociations de prix
+# ---------------------------------------------------------------------------
+
+@admin_required_api
+@require_http_methods(["GET"])
+def negotiation_list(request):
+    page = page_from_request(request)
+    statut = request.GET.get("statut") or ""
+    result = api_client.admin_get_negotiations(_token(request), statut=statut or None, page=page - 1, size=20)
+    negotiations, pagination = [], None
+    if result.ok and isinstance(result.data, dict):
+        negotiations = result.data.get("content") or []
+        pagination = result.data
+    else:
+        messages.error(request, result.error or api_client.UNAVAILABLE)
+    return render(
+        request,
+        "adminpanel/negotiations/list.html",
+        {
+            "negotiations": negotiations,
+            "pagination": pagination,
+            "page": page,
+            "statut": statut,
+            "statuses": NEGOTIATION_STATUSES,
+        },
+    )
+
+
+@admin_required_api
+@require_http_methods(["GET", "POST"])
+def negotiation_detail(request, negotiation_id):
+    token = _token(request)
+    if request.method == "POST":
+        action = request.POST.get("action")
+        if action == "message":
+            text = (request.POST.get("message") or "").strip()
+            if not text:
+                messages.error(request, _("Message vide."))
+            else:
+                result = api_client.admin_add_negotiation_message(token, negotiation_id, text)
+                if not result.ok:
+                    messages.error(request, result.error or _("Message non envoyé."))
+        elif action == "offer":
+            price_raw = (request.POST.get("proposed_price") or "").strip()
+            message = (request.POST.get("message") or "").strip()
+            try:
+                price = str(Decimal(price_raw))
+            except InvalidOperation:
+                messages.error(request, _("Indiquez un prix valide."))
+            else:
+                result = api_client.admin_add_negotiation_offer(token, negotiation_id, price, message or None)
+                if result.ok:
+                    messages.success(request, _("Contre-offre envoyée."))
+                else:
+                    messages.error(request, result.error or _("Impossible d'envoyer la contre-offre."))
+        elif action == "accept":
+            result = api_client.admin_accept_negotiation(token, negotiation_id)
+            if result.ok:
+                messages.success(request, _("Prix validé."))
+            else:
+                messages.error(request, result.error or _("Impossible de valider ce prix."))
+        elif action == "reject":
+            message = (request.POST.get("message") or "").strip()
+            result = api_client.admin_reject_negotiation(token, negotiation_id, message or None)
+            if result.ok:
+                messages.success(request, _("Négociation refusée."))
+            else:
+                messages.error(request, result.error or _("Impossible de refuser."))
+        return redirect("adminpanel:negotiation_detail", negotiation_id=negotiation_id)
+
+    result = api_client.admin_get_negotiation(token, negotiation_id)
+    if not result.ok or not isinstance(result.data, dict):
+        messages.error(request, result.error or _("Négociation introuvable."))
+        return redirect("adminpanel:negotiation_list")
+    negotiation = result.data
+    can_accept = negotiation.get("derniereActionPar") != "ADMIN"
+    return render(
+        request,
+        "adminpanel/negotiations/detail.html",
+        {"negotiation": negotiation, "can_accept": can_accept},
     )
 
 

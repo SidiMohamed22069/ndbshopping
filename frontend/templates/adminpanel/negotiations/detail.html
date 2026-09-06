@@ -1,0 +1,89 @@
+{% extends "base_admin.html" %}
+{% load i18n ndb_tags %}
+
+{% block title %}{% blocktrans with id=negotiation.id %}Négociation #{{ id }}{% endblocktrans %}{% endblock %}
+
+{% block content %}
+<p><a href="{% url 'adminpanel:negotiation_list' %}">{% trans "Négociations" %}</a></p>
+<h1 class="h4">{{ negotiation.productNom }}</h1>
+
+<div class="order-contact-card mb-3">
+  <div class="order-contact-identity">
+    <p class="order-contact-name mb-1"><i class="bi bi-person-fill" aria-hidden="true"></i> {{ negotiation.userNom }}</p>
+    <p class="order-contact-address mb-0">{% trans "Produit" %} : {{ negotiation.productNom }}</p>
+  </div>
+  <a class="btn-cta order-call-btn" href="tel:{{ negotiation.userTelephone }}">
+    <i class="bi bi-telephone-fill" aria-hidden="true"></i> {{ negotiation.userTelephone }}
+  </a>
+</div>
+
+<div class="negotiation-price-banner">
+  <div>
+    <p class="muted mb-0">{% trans "Prix catalogue" %} : {{ negotiation.productPrixActuel|mru }}</p>
+    <p class="current-price mb-0">{{ negotiation.proposedPrice|mru }}</p>
+    <span class="badge text-bg-{{ negotiation.statut|statut_badge }}">{{ negotiation.statut|statut_label }}</span>
+  </div>
+</div>
+
+<div class="negotiation-chat">
+  {% for msg in negotiation.messages %}
+    <div class="negotiation-bubble {% if msg.senderIsAdmin %}negotiation-bubble--user{% else %}negotiation-bubble--admin{% endif %}">
+      <p class="negotiation-bubble-meta mb-0">
+        {% if msg.senderIsAdmin %}{% trans "Vous (admin)" %}{% else %}{{ msg.senderNom }}{% endif %}
+      </p>
+      <p class="mb-0">{{ msg.message }}</p>
+      {% if msg.offeredPrice %}<span class="negotiation-bubble-price">{{ msg.offeredPrice|mru }}</span>{% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+{% if negotiation.statut == "PENDING" or negotiation.statut == "COUNTER_OFFER" %}
+  <div class="bg-white rounded shadow-sm p-3 mb-3">
+    <form method="post" class="row g-2 align-items-end">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="message">
+      <div class="col-12">
+        <label class="form-label" for="message">{% trans "Votre message" %}</label>
+        <input class="form-control" id="message" name="message" type="text" placeholder="{% trans 'Écrire un message…' %}">
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-outline-secondary" type="submit">{% trans "Envoyer" %}</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-7">
+      <form method="post" class="bg-white rounded shadow-sm p-3 row g-2 align-items-end">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="offer">
+        <div class="col-8">
+          <label class="form-label" for="proposed_price">{% trans "Contre-proposer un prix (UM)" %}</label>
+          <input class="form-control" id="proposed_price" name="proposed_price" type="number" step="0.01" min="0" required>
+        </div>
+        <div class="col-4 d-grid">
+          <button class="btn btn-outline-primary" type="submit">{% trans "Contre-offre" %}</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-5 d-flex flex-column gap-2">
+      {% if can_accept %}
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="accept">
+          <button class="btn-cta w-100" type="submit">{% trans "Valider ce prix" %}</button>
+        </form>
+      {% else %}
+        <p class="muted small mb-0">{% trans "En attente de la réponse de l'acheteur…" %}</p>
+      {% endif %}
+      <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="reject">
+        <button class="btn btn-outline-danger w-100" type="submit">{% trans "Refuser" %}</button>
+      </form>
+    </div>
+  </div>
+{% else %}
+  <p class="muted">{% trans "Cette négociation est close." %}</p>
+{% endif %}
+{% endblock %}

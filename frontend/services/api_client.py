@@ -260,6 +260,48 @@ def sync_cart(token: str, items: list[dict]) -> ApiResult:
 
 
 # ---------------------------------------------------------------------------
+# Négociation de prix (client)
+# ---------------------------------------------------------------------------
+
+def start_negotiation(token: str, product_id: int | str, proposed_price, message: str | None = None) -> ApiResult:
+    payload: dict[str, Any] = {"productId": product_id, "proposedPrice": proposed_price}
+    if message:
+        payload["message"] = message
+    return call("POST", "/negotiations", token=token, json=payload)
+
+
+def get_my_negotiations(token: str, page: int = 0, size: int = 20) -> ApiResult:
+    return call("GET", "/negotiations/me", token=token, params={"page": page, "size": size})
+
+
+def get_active_negotiation_for_product(token: str, product_id: int | str) -> ApiResult:
+    return call("GET", f"/negotiations/product/{product_id}", token=token)
+
+
+def get_negotiation(token: str, negotiation_id: int | str) -> ApiResult:
+    return call("GET", f"/negotiations/{negotiation_id}", token=token)
+
+
+def add_negotiation_message(token: str, negotiation_id: int | str, message: str) -> ApiResult:
+    return call("POST", f"/negotiations/{negotiation_id}/messages", token=token, json={"message": message})
+
+
+def add_negotiation_offer(token: str, negotiation_id: int | str, price, message: str | None = None) -> ApiResult:
+    payload: dict[str, Any] = {"price": price}
+    if message:
+        payload["message"] = message
+    return call("POST", f"/negotiations/{negotiation_id}/offers", token=token, json=payload)
+
+
+def accept_negotiation(token: str, negotiation_id: int | str, message: str | None = None) -> ApiResult:
+    return call("PATCH", f"/negotiations/{negotiation_id}/accept", token=token, json={"message": message} if message else {})
+
+
+def reject_negotiation(token: str, negotiation_id: int | str, message: str | None = None) -> ApiResult:
+    return call("PATCH", f"/negotiations/{negotiation_id}/reject", token=token, json={"message": message} if message else {})
+
+
+# ---------------------------------------------------------------------------
 # Commandes client
 # ---------------------------------------------------------------------------
 
@@ -420,6 +462,48 @@ def admin_get_orders(
 
 def admin_update_order_status(token: str, order_id: int | str, statut: str) -> ApiResult:
     return call("PATCH", f"/admin/orders/{order_id}/statut", token=token, json={"statut": statut})
+
+
+# ---------------------------------------------------------------------------
+# Admin — négociations de prix
+# ---------------------------------------------------------------------------
+
+def admin_get_negotiations(token: str, statut: str | None = None, page: int = 0, size: int = 20) -> ApiResult:
+    params: dict[str, Any] = {"page": page, "size": size}
+    if statut:
+        params["statut"] = statut
+    return call("GET", "/admin/negotiations", token=token, params=params)
+
+
+def admin_get_negotiation(token: str, negotiation_id: int | str) -> ApiResult:
+    return call("GET", f"/admin/negotiations/{negotiation_id}", token=token)
+
+
+def admin_add_negotiation_message(token: str, negotiation_id: int | str, message: str) -> ApiResult:
+    return call("POST", f"/admin/negotiations/{negotiation_id}/messages", token=token, json={"message": message})
+
+
+def admin_add_negotiation_offer(token: str, negotiation_id: int | str, price, message: str | None = None) -> ApiResult:
+    payload: dict[str, Any] = {"price": price}
+    if message:
+        payload["message"] = message
+    return call("POST", f"/admin/negotiations/{negotiation_id}/offers", token=token, json=payload)
+
+
+def admin_accept_negotiation(token: str, negotiation_id: int | str, message: str | None = None) -> ApiResult:
+    return call(
+        "PATCH", f"/admin/negotiations/{negotiation_id}/accept", token=token, json={"message": message} if message else {}
+    )
+
+
+def admin_reject_negotiation(token: str, negotiation_id: int | str, message: str | None = None) -> ApiResult:
+    return call(
+        "PATCH", f"/admin/negotiations/{negotiation_id}/reject", token=token, json={"message": message} if message else {}
+    )
+
+
+def admin_negotiations_awaiting_count(token: str) -> ApiResult:
+    return call("GET", "/admin/negotiations/count-en-attente", token=token)
 
 
 # ---------------------------------------------------------------------------

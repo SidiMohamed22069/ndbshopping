@@ -63,13 +63,15 @@ public class OrderService {
             if (product.getStock() != null) {
                 product.setStock(product.getStock() - cartItem.getQuantite());
             }
-            BigDecimal line = product.getPrix().multiply(BigDecimal.valueOf(cartItem.getQuantite()));
+            // Prix convenu par négociation acceptée > prix catalogue courant.
+            BigDecimal prixUnitaire = cartItem.getPrixConvenu() != null ? cartItem.getPrixConvenu() : product.getPrix();
+            BigDecimal line = prixUnitaire.multiply(BigDecimal.valueOf(cartItem.getQuantite()));
             total = total.add(line);
             order.getItems().add(OrderItem.builder()
                     .order(order)
                     .product(product)
                     .quantite(cartItem.getQuantite())
-                    .prixUnitaire(product.getPrix())
+                    .prixUnitaire(prixUnitaire)
                     .build());
         }
         order.setTotal(total);

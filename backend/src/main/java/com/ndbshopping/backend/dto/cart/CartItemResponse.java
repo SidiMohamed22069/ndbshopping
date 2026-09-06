@@ -9,11 +9,15 @@ public record CartItemResponse(
         Long id,
         ProductResponse product,
         Integer quantite,
-        BigDecimal sousTotal
+        BigDecimal prixUnitaire,
+        BigDecimal sousTotal,
+        boolean prixNegocie
 ) {
     public static CartItemResponse from(CartItem item) {
         ProductResponse product = ProductResponse.from(item.getProduct());
-        BigDecimal sousTotal = product.prix().multiply(BigDecimal.valueOf(item.getQuantite()));
-        return new CartItemResponse(item.getId(), product, item.getQuantite(), sousTotal);
+        boolean prixNegocie = item.getPrixConvenu() != null;
+        BigDecimal prixUnitaire = prixNegocie ? item.getPrixConvenu() : product.prix();
+        BigDecimal sousTotal = prixUnitaire.multiply(BigDecimal.valueOf(item.getQuantite()));
+        return new CartItemResponse(item.getId(), product, item.getQuantite(), prixUnitaire, sousTotal, prixNegocie);
     }
 }

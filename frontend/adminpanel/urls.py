@@ -59,6 +59,9 @@ urlpatterns = [
     # Commandes
     path("commandes/", views.order_list, name="order_list"),
     path("commandes/<int:order_id>/", views.order_detail, name="order_detail"),
+    # Négociations de prix
+    path("negociations/", views.negotiation_list, name="negotiation_list"),
+    path("negociations/<int:negotiation_id>/", views.negotiation_detail, name="negotiation_detail"),
     # Publications
     path("publications/", views.publication_list, name="publication_list"),
     path("publications/nouvelle/", views.publication_create, name="publication_create"),

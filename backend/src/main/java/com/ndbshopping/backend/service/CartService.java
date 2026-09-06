@@ -5,6 +5,7 @@ import com.ndbshopping.backend.dto.cart.CartItemResponse;
 import com.ndbshopping.backend.dto.cart.CartResponse;
 import com.ndbshopping.backend.dto.cart.CartSyncRequest;
 import com.ndbshopping.backend.entity.CartItem;
+import com.ndbshopping.backend.entity.PriceNegotiation;
 import com.ndbshopping.backend.entity.Product;
 import com.ndbshopping.backend.entity.User;
 import com.ndbshopping.backend.entity.enums.ProductStatus;
@@ -21,10 +22,16 @@ public class CartService {
 
     private final CartItemRepository cartItemRepository;
     private final ProductService productService;
+    private final PriceNegotiationService priceNegotiationService;
 
-    public CartService(CartItemRepository cartItemRepository, ProductService productService) {
+    public CartService(
+            CartItemRepository cartItemRepository,
+            ProductService productService,
+            PriceNegotiationService priceNegotiationService
+    ) {
         this.cartItemRepository = cartItemRepository;
         this.productService = productService;
+        this.priceNegotiationService = priceNegotiationService;
     }
 
     @Transactional(readOnly = true)
@@ -48,11 +55,17 @@ public class CartService {
         for (CartItemInput input : request.items()) {
             Product product = requirePublished(input.productId());
             assertStock(product, input.quantite());
-            cartItemRepository.save(CartItem.builder()
+            CartItem.CartItemBuilder builder = CartItem.builder()
                     .user(user)
                     .product(product)
-                    .quantite(input.quantite())
-                    .build());
+                    .quantite(input.quantite());
+            if (input.negotiationId() != null) {
+                priceNegotiationService.findAcceptedForCart(input.negotiationId(), user.getId(), product.getId())
+                        .ifPresent(negotiation -> builder
+                                .negotiation(negotiation)
+                                .prixConvenu(negotiation.getProposedPrice()));
+            }
+            cartItemRepository.save(builder.build());
         }
         return getCart(user);
     }

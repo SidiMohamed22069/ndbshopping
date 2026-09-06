@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 
 public record CartItemInput(
         @NotNull Long productId,
-        @NotNull @Min(1) Integer quantite
+        @NotNull @Min(1) Integer quantite,
+        /** Négociation ACCEPTÉE dont ce produit doit hériter le prix ; ignoré si invalide. */
+        Long negotiationId
 ) {
 }

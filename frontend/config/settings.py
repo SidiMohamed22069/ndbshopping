@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "core",
     "catalog",
     "cart",
+    "negotiations",
     "accounts",
     "adminpanel",
 ]

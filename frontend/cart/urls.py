@@ -9,4 +9,5 @@ urlpatterns = [
     path("ajouter/", views.add, name="add"),
     path("modifier/", views.update, name="update"),
     path("retirer/", views.remove, name="remove"),
+    path("ajouter-negocie/", views.add_negotiated, name="add_negotiated"),
 ]

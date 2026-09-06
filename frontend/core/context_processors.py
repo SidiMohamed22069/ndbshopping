@@ -62,8 +62,8 @@ def storefront(request):
 
 
 def admin_badges(request):
-    """Badges admin : notifications non lues + produits EN_ATTENTE."""
-    empty = {"unread_notifications": 0, "pending_products_count": 0}
+    """Badges admin : notifications non lues + produits EN_ATTENTE + négociations en attente."""
+    empty = {"unread_notifications": 0, "pending_products_count": 0, "pending_negotiations_count": 0}
     if not request.path.startswith("/admin-ndb/"):
         return empty
     token = request.session.get("jwt_token")
@@ -77,4 +77,12 @@ def admin_badges(request):
     pending_result = api_client.admin_get_products(token, statut="EN_ATTENTE", page=0, size=1)
     if pending_result.ok and isinstance(pending_result.data, dict):
         pending = pending_result.data.get("totalElements") or 0
-    return {"unread_notifications": unread, "pending_products_count": pending}
+    pending_negotiations = 0
+    negotiations_result = api_client.admin_negotiations_awaiting_count(token)
+    if negotiations_result.ok and isinstance(negotiations_result.data, dict):
+        pending_negotiations = negotiations_result.data.get("count") or 0
+    return {
+        "unread_notifications": unread,
+        "pending_products_count": pending,
+        "pending_negotiations_count": pending_negotiations,
+    }

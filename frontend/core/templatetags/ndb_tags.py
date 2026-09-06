@@ -146,6 +146,10 @@ def statut_label(code: str | None) -> str:
         "NOMBRE": _("Nombre"),
         "DATE": _("Date"),
         "BOOLEEN": _("Oui / Non"),
+        "PENDING": _("En attente"),
+        "ACCEPTED": _("Acceptée"),
+        "REJECTED": _("Refusée"),
+        "COUNTER_OFFER": _("Contre-offre"),
     }
     return labels.get(code or "", code or "—")
 
@@ -165,6 +169,10 @@ def statut_badge(code: str | None) -> str:
         "ARCHIVE": "light",
         "NOUVELLE_COMMANDE": "warning",
         "PRODUIT_A_VALIDER": "info",
+        "PENDING": "warning",
+        "ACCEPTED": "success",
+        "REJECTED": "danger",
+        "COUNTER_OFFER": "info",
     }
     return mapping.get(code or "", "secondary")
 
