@@ -5,6 +5,7 @@ import com.ndbshopping.backend.dto.product.ProductImageResponse;
 import com.ndbshopping.backend.dto.product.ProductRequest;
 import com.ndbshopping.backend.dto.product.ProductResponse;
 import com.ndbshopping.backend.dto.product.ProductVideoResponse;
+import com.ndbshopping.backend.entity.enums.ProductEtat;
 import com.ndbshopping.backend.security.CurrentUserService;
 import com.ndbshopping.backend.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -48,9 +49,11 @@ public class ProductController {
             @RequestParam(required = false) BigDecimal minPrix,
             @RequestParam(required = false) BigDecimal maxPrix,
             @RequestParam(required = false) String q,
+            @RequestParam(required = false) String ville,
+            @RequestParam(required = false) ProductEtat etat,
             @PageableDefault(size = 20) Pageable pageable
     ) {
-        return productService.searchPublic(categoryId, minPrix, maxPrix, q, pageable);
+        return productService.searchPublic(categoryId, minPrix, maxPrix, q, ville, etat, pageable);
     }
 
     @GetMapping("/me")

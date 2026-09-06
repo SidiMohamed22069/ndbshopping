@@ -107,6 +107,15 @@ def ville_label(code: str | None) -> str:
 
 
 @register.filter
+def etat_label(code: str | None) -> str:
+    labels = {
+        "NEUF": _("Neuf"),
+        "OCCASION": _("Occasion"),
+    }
+    return labels.get(code or "", code or "—")
+
+
+@register.filter
 def statut_label(code: str | None) -> str:
     labels = {
         "EN_ATTENTE": _("En attente"),

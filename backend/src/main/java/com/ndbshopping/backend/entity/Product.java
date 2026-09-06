@@ -1,5 +1,6 @@
 package com.ndbshopping.backend.entity;
 
+import com.ndbshopping.backend.entity.enums.ProductEtat;
 import com.ndbshopping.backend.entity.enums.ProductSource;
 import com.ndbshopping.backend.entity.enums.ProductStatus;
 import jakarta.persistence.CascadeType;
@@ -55,6 +56,14 @@ public class Product {
 
     /** Nullable : un hôtel ou un service n'a pas forcément de stock. */
     private Integer stock;
+
+    /** Ville de l'annonce (code libre, ex. NOUADHIBOU) — utilisée pour le filtre catalogue. */
+    @Column(length = 40)
+    private String ville;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private ProductEtat etat;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "category_id", nullable = false)

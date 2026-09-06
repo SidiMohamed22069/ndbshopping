@@ -1,10 +1,24 @@
 from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import render
+from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_GET
 
-from core.utils import normalize_category_image, normalize_product_images, page_from_request
+from core.utils import (
+    ETAT_CHOICES,
+    VILLE_CHOICES,
+    normalize_category_image,
+    normalize_product_images,
+    page_from_request,
+)
 from services import api_client
+
+SORT_CHOICES = [
+    ("", _("Plus récents")),
+    ("prix,asc", _("Prix croissant")),
+    ("prix,desc", _("Prix décroissant")),
+]
+SORT_VALUES = {code for code, _label in SORT_CHOICES}
 
 
 @require_GET
@@ -14,12 +28,20 @@ def product_list(request, category_id=None):
     q = (request.GET.get("q") or "").strip()
     min_prix = request.GET.get("min_prix") or ""
     max_prix = request.GET.get("max_prix") or ""
+    ville = request.GET.get("ville") or ""
+    etat = request.GET.get("etat") or ""
+    sort = request.GET.get("sort") or ""
+    if sort not in SORT_VALUES:
+        sort = ""
 
     result = api_client.get_products(
         category_id=category_id or None,
         q=q or None,
         min_prix=min_prix or None,
         max_prix=max_prix or None,
+        ville=ville or None,
+        etat=etat or None,
+        sort=sort or None,
         page=page - 1,
         size=12,
     )
@@ -57,6 +79,12 @@ def product_list(request, category_id=None):
             "category_id": str(category_id),
             "min_prix": min_prix,
             "max_prix": max_prix,
+            "ville": ville,
+            "etat": etat,
+            "sort": sort,
+            "ville_choices": VILLE_CHOICES,
+            "etat_choices": ETAT_CHOICES,
+            "sort_choices": SORT_CHOICES,
             "selected_category": selected_category,
             "page": page,
         },

@@ -41,6 +41,24 @@
         {% endfor %}
       </select>
     </div>
+    <div class="col-md-4">
+      <label class="form-label" for="ville">{% trans "Ville" %}</label>
+      <select class="form-select" id="ville" name="ville">
+        <option value="">{% trans "— Non précisé —" %}</option>
+        {% for code in ville_choices %}
+          <option value="{{ code }}" {% if product.ville == code %}selected{% endif %}>{{ code|ville_label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label" for="etat">{% trans "État" %}</label>
+      <select class="form-select" id="etat" name="etat">
+        <option value="">{% trans "— Non précisé —" %}</option>
+        {% for code in etat_choices %}
+          <option value="{{ code }}" {% if product.etat == code %}selected{% endif %}>{{ code|etat_label }}</option>
+        {% endfor %}
+      </select>
+    </div>
   </div>
 
   <hr>

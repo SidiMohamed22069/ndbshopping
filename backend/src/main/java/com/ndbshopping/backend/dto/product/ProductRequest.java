@@ -1,5 +1,6 @@
 package com.ndbshopping.backend.dto.product;
 
+import com.ndbshopping.backend.entity.enums.ProductEtat;
 import com.ndbshopping.backend.entity.enums.ProductSource;
 import com.ndbshopping.backend.entity.enums.ProductStatus;
 import jakarta.validation.Valid;
@@ -20,6 +21,8 @@ public record ProductRequest(
         ProductSource sourceOrigine,
         String sourceUrl,
         ProductStatus statut,
+        String ville,
+        ProductEtat etat,
         @Valid List<ProductAttributeInput> attributs
 ) {
 }

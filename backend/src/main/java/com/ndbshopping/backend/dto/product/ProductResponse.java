@@ -4,6 +4,7 @@ import com.ndbshopping.backend.entity.Product;
 import com.ndbshopping.backend.entity.ProductAttributeValue;
 import com.ndbshopping.backend.entity.ProductImage;
 import com.ndbshopping.backend.entity.ProductVideo;
+import com.ndbshopping.backend.entity.enums.ProductEtat;
 import com.ndbshopping.backend.entity.enums.ProductSource;
 import com.ndbshopping.backend.entity.enums.ProductStatus;
 
@@ -23,6 +24,8 @@ public record ProductResponse(
         ProductSource sourceOrigine,
         String sourceUrl,
         ProductStatus statut,
+        String ville,
+        ProductEtat etat,
         Long soumisParUserId,
         String raisonRejet,
         Instant createdAt,
@@ -62,6 +65,8 @@ public record ProductResponse(
                 product.getSourceOrigine(),
                 product.getSourceUrl(),
                 product.getStatut(),
+                product.getVille(),
+                product.getEtat(),
                 product.getSoumisPar() == null ? null : product.getSoumisPar().getId(),
                 product.getRaisonRejet(),
                 product.getCreatedAt(),

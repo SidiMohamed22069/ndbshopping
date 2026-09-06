@@ -18,6 +18,13 @@
       {% if product.categoryNom %}
         <p class="mb-1">{{ product.categoryNom }}</p>
       {% endif %}
+      {% if product.ville or product.etat %}
+        <p class="mb-1 muted small">
+          {% if product.ville %}<i class="bi bi-geo-alt" aria-hidden="true"></i> {{ product.ville|ville_label }}{% endif %}
+          {% if product.ville and product.etat %} · {% endif %}
+          {% if product.etat %}{{ product.etat|etat_label }}{% endif %}
+        </p>
+      {% endif %}
       {% if product.description %}
         <p>{{ product.description|truncatewords:12 }}</p>
       {% endif %}

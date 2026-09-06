@@ -160,6 +160,9 @@ def get_products(
     q: str | None = None,
     min_prix=None,
     max_prix=None,
+    ville: str | None = None,
+    etat: str | None = None,
+    sort: str | None = None,
     page: int = 0,
     size: int = 20,
 ) -> ApiResult:
@@ -172,6 +175,12 @@ def get_products(
         params["minPrix"] = min_prix
     if max_prix not in (None, ""):
         params["maxPrix"] = max_prix
+    if ville:
+        params["ville"] = ville
+    if etat:
+        params["etat"] = etat
+    if sort:
+        params["sort"] = sort
     return call("GET", "/products", params=params)
 
 
@@ -316,6 +325,8 @@ def admin_get_products(
     statut: str | None = None,
     category_id: int | str | None = None,
     q: str | None = None,
+    ville: str | None = None,
+    etat: str | None = None,
     page: int = 0,
     size: int = 20,
 ) -> ApiResult:
@@ -326,6 +337,10 @@ def admin_get_products(
         params["categoryId"] = category_id
     if q:
         params["q"] = q
+    if ville:
+        params["ville"] = ville
+    if etat:
+        params["etat"] = etat
     return call("GET", "/admin/products", token=token, params=params)
 
 

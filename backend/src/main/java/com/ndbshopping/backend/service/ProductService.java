@@ -16,6 +16,7 @@ import com.ndbshopping.backend.entity.ProductImage;
 import com.ndbshopping.backend.entity.ProductVideo;
 import com.ndbshopping.backend.entity.User;
 import com.ndbshopping.backend.entity.enums.NotificationType;
+import com.ndbshopping.backend.entity.enums.ProductEtat;
 import com.ndbshopping.backend.entity.enums.ProductSource;
 import com.ndbshopping.backend.entity.enums.ProductStatus;
 import com.ndbshopping.backend.entity.enums.Role;
@@ -90,9 +91,11 @@ public class ProductService {
             BigDecimal minPrix,
             BigDecimal maxPrix,
             String q,
+            String ville,
+            ProductEtat etat,
             Pageable pageable
     ) {
-        return search(ProductStatus.PUBLIE, categoryId, minPrix, maxPrix, q, pageable);
+        return search(ProductStatus.PUBLIE, categoryId, minPrix, maxPrix, q, ville, etat, pageable);
     }
 
     @Transactional(readOnly = true)
@@ -102,9 +105,11 @@ public class ProductService {
             BigDecimal minPrix,
             BigDecimal maxPrix,
             String q,
+            String ville,
+            ProductEtat etat,
             Pageable pageable
     ) {
-        return search(statut, categoryId, minPrix, maxPrix, q, pageable);
+        return search(statut, categoryId, minPrix, maxPrix, q, ville, etat, pageable);
     }
 
     private PageResponse<ProductResponse> search(
@@ -113,6 +118,8 @@ public class ProductService {
             BigDecimal minPrix,
             BigDecimal maxPrix,
             String q,
+            String ville,
+            ProductEtat etat,
             Pageable pageable
     ) {
         String query = (q == null || q.isBlank()) ? null : q.trim();
@@ -124,7 +131,7 @@ public class ProductService {
                         Sort.by(Sort.Direction.DESC, "createdAt")
                 );
         Page<Product> page = productRepository.findAll(
-                ProductSpecifications.matching(statut, categoryId, minPrix, maxPrix, query),
+                ProductSpecifications.matching(statut, categoryId, minPrix, maxPrix, query, ville, etat),
                 sorted
         );
         page.forEach(this::touchAssociations);
@@ -165,6 +172,8 @@ public class ProductService {
                 .sourceOrigine(request.sourceOrigine() == null ? ProductSource.MANUEL : request.sourceOrigine())
                 .sourceUrl(request.sourceUrl())
                 .statut(request.statut() == null ? ProductStatus.BROUILLON : request.statut())
+                .ville(normalizeVille(request.ville()))
+                .etat(request.etat())
                 .build();
         applyAttributes(product, category.getId(), request.attributs());
         Product saved = productRepository.save(product);
@@ -184,6 +193,8 @@ public class ProductService {
                 .sourceOrigine(request.sourceOrigine() == null ? ProductSource.MANUEL : request.sourceOrigine())
                 .sourceUrl(request.sourceUrl())
                 .statut(ProductStatus.EN_ATTENTE)
+                .ville(normalizeVille(request.ville()))
+                .etat(request.etat())
                 .soumisPar(user)
                 .build();
         applyAttributes(product, category.getId(), request.attributs());
@@ -290,6 +301,8 @@ public class ProductService {
             product.setSourceOrigine(request.sourceOrigine());
         }
         product.setSourceUrl(request.sourceUrl());
+        product.setVille(normalizeVille(request.ville()));
+        product.setEtat(request.etat());
         if (request.statut() != null) {
             product.setStatut(request.statut());
         }
@@ -488,6 +501,10 @@ public class ProductService {
     public Product get(Long id) {
         return productRepository.findById(id)
                 .orElseThrow(() -> ApiException.notFound("Produit introuvable"));
+    }
+
+    private static String normalizeVille(String ville) {
+        return (ville == null || ville.isBlank()) ? null : ville.trim().toUpperCase(Locale.ROOT);
     }
 
     private void assertCanManageListing(User user, Product product) {

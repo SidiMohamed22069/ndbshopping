@@ -1,3 +1,6 @@
+VILLE_CHOICES = ["NOUADHIBOU", "ZOUERAT", "NOUAKCHOTT"]
+ETAT_CHOICES = ["NEUF", "OCCASION"]
+
 IMAGE_PATH_KEYS = (
     "relativePath",
     "relative_path",

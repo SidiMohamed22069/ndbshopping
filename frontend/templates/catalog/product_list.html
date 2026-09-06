@@ -7,37 +7,84 @@
 <section class="container page-wrap">
   <h1 class="page-title">{% if selected_category %}{{ selected_category.nom }}{% else %}{% trans "Catalogue" %}{% endif %}</h1>
 
-  <form class="search-bar search-bar--filters mb-4" method="get" action="{% url 'catalog:product_list' %}" role="search">
-    <button class="search-submit" type="submit">
-      <i class="bi bi-search" aria-hidden="true"></i>
-      <span>{% trans "Rechercher" %}</span>
-    </button>
-    <div class="search-category">
-      <i class="bi bi-grid search-category-icon" aria-hidden="true"></i>
-      <select class="form-select" name="category" aria-label="{% trans 'Catégorie' %}">
-        <option value="">{% trans "Toutes les catégories" %}</option>
-        {% for cat in nav_categories_flat %}
-          <option value="{{ cat.id }}" {% if category_id == cat.id|stringformat:"s" %}selected{% endif %}>{{ cat.nom }}</option>
-        {% endfor %}
-      </select>
-      <i class="bi bi-chevron-down search-category-caret" aria-hidden="true"></i>
+  <form method="get" action="{% url 'catalog:product_list' %}" role="search">
+    <div class="search-bar search-bar--filters mb-4">
+      <button class="search-submit" type="submit">
+        <i class="bi bi-search" aria-hidden="true"></i>
+        <span>{% trans "Rechercher" %}</span>
+      </button>
+      <div class="search-category">
+        <i class="bi bi-grid search-category-icon" aria-hidden="true"></i>
+        <select class="form-select" name="category" aria-label="{% trans 'Catégorie' %}">
+          <option value="">{% trans "Toutes les catégories" %}</option>
+          {% for cat in nav_categories_flat %}
+            <option value="{{ cat.id }}" {% if category_id == cat.id|stringformat:"s" %}selected{% endif %}>{{ cat.nom }}</option>
+          {% endfor %}
+        </select>
+        <i class="bi bi-chevron-down search-category-caret" aria-hidden="true"></i>
+      </div>
+      <span class="search-divider" aria-hidden="true"></span>
+      <input class="form-control search-price" type="number" name="min_prix" value="{{ min_prix }}" placeholder="{% trans 'Prix min' %}" min="0" aria-label="{% trans 'Prix minimum' %}">
+      <input class="form-control search-price" type="number" name="max_prix" value="{{ max_prix }}" placeholder="{% trans 'Prix max' %}" min="0" aria-label="{% trans 'Prix maximum' %}">
+      <div class="search-query">
+        <input class="form-control" type="search" name="q" value="{{ q }}" placeholder="{% trans 'Rechercher un produit, une catégorie…' %}" aria-label="{% trans 'Recherche' %}">
+        <i class="bi bi-search search-query-icon" aria-hidden="true"></i>
+      </div>
     </div>
-    <span class="search-divider" aria-hidden="true"></span>
-    <input class="form-control search-price" type="number" name="min_prix" value="{{ min_prix }}" placeholder="{% trans 'Prix min' %}" min="0" aria-label="{% trans 'Prix minimum' %}">
-    <input class="form-control search-price" type="number" name="max_prix" value="{{ max_prix }}" placeholder="{% trans 'Prix max' %}" min="0" aria-label="{% trans 'Prix maximum' %}">
-    <div class="search-query">
-      <input class="form-control" type="search" name="q" value="{{ q }}" placeholder="{% trans 'Rechercher un produit, une catégorie…' %}" aria-label="{% trans 'Recherche' %}">
-      <i class="bi bi-search search-query-icon" aria-hidden="true"></i>
+
+    <div class="row g-4">
+      <aside class="col-lg-3">
+        <div class="catalog-sidebar">
+          <h2 class="catalog-sidebar-title">{% trans "Filtrer" %}</h2>
+          <div class="catalog-sidebar-group">
+            <label class="form-label" for="filterVille">{% trans "Ville" %}</label>
+            <select class="form-select" id="filterVille" name="ville" onchange="this.form.submit()">
+              <option value="">{% trans "Toutes les villes" %}</option>
+              {% for code in ville_choices %}
+                <option value="{{ code }}" {% if ville == code %}selected{% endif %}>{{ code|ville_label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="catalog-sidebar-group">
+            <label class="form-label" for="filterEtat">{% trans "État" %}</label>
+            <select class="form-select" id="filterEtat" name="etat" onchange="this.form.submit()">
+              <option value="">{% trans "Tous les états" %}</option>
+              {% for code in etat_choices %}
+                <option value="{{ code }}" {% if etat == code %}selected{% endif %}>{{ code|etat_label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          {% if ville or etat %}
+            <a class="catalog-sidebar-reset" href="?{% qs_replace ville='' etat='' page='' %}">{% trans "Réinitialiser les filtres" %}</a>
+          {% endif %}
+        </div>
+      </aside>
+
+      <div class="col-lg-9">
+        <div class="catalog-toolbar">
+          <span class="catalog-toolbar-count">
+            {% if pagination %}{% blocktrans count total=pagination.totalElements %}{{ total }} produit{% plural %}{{ total }} produits{% endblocktrans %}{% endif %}
+          </span>
+          <div class="catalog-sort">
+            <label class="form-label visually-hidden" for="sortSelect">{% trans "Trier par" %}</label>
+            <select class="form-select" id="sortSelect" name="sort" onchange="this.form.submit()">
+              {% for code, label in sort_choices %}
+                <option value="{{ code }}" {% if sort == code %}selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 product-grid">
+          {% for product in products %}
+            {% include "includes/product_card.html" %}
+          {% empty %}
+            <p class="muted">{% trans "Aucun produit ne correspond à votre recherche." %}</p>
+          {% endfor %}
+        </div>
+        {% include "includes/pagination.html" %}
+      </div>
     </div>
   </form>
-
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 product-grid">
-    {% for product in products %}
-      {% include "includes/product_card.html" %}
-    {% empty %}
-      <p class="muted">{% trans "Aucun produit ne correspond à votre recherche." %}</p>
-    {% endfor %}
-  </div>
-  {% include "includes/pagination.html" %}
 </section>
 {% endblock %}

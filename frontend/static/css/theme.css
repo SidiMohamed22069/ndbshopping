@@ -410,6 +410,53 @@ textarea.form-control {
     flex-shrink: 0;
 }
 
+.header-search {
+    align-items: stretch;
+    flex: 0 1 16rem;
+    min-width: 0;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    overflow: hidden;
+}
+
+.header-search .form-control {
+    background: transparent;
+    border: 0;
+    color: var(--color-text-white);
+    padding-inline-start: 1rem;
+    box-shadow: none;
+}
+
+.header-search .form-control::placeholder {
+    color: var(--color-grey-mid);
+}
+
+.header-search .form-control:focus {
+    background: transparent;
+    color: var(--color-text-white);
+    box-shadow: none;
+}
+
+.header-search-submit {
+    background: transparent;
+    border: 0;
+    color: var(--color-text-white);
+    padding-inline: 0.9rem;
+    flex: 0 0 auto;
+    cursor: pointer;
+}
+
+.header-search-submit:hover {
+    color: var(--color-secondary);
+}
+
+.header-search--mobile {
+    display: flex;
+    margin-bottom: 0.75rem;
+    background: rgba(255, 255, 255, 0.08);
+}
+
 .header-icon-link {
     position: relative;
     color: var(--color-text-white);
@@ -1333,6 +1380,58 @@ textarea.form-control {
 
 .page-wrap {
     padding-bottom: 3.5rem;
+}
+
+.catalog-sidebar {
+    background: var(--color-text-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 1.25rem;
+    position: sticky;
+    top: calc(var(--header-height) + 1rem);
+}
+
+.catalog-sidebar-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.catalog-sidebar-group {
+    margin-bottom: 1rem;
+}
+
+.catalog-sidebar-reset {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--color-text-grey);
+    text-decoration: underline;
+}
+
+.catalog-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.catalog-toolbar-count {
+    color: var(--color-text-grey);
+    font-size: 0.9rem;
+}
+
+.catalog-sort {
+    min-width: 12rem;
+}
+
+@media (max-width: 991.98px) {
+    .catalog-sidebar {
+        position: static;
+        margin-bottom: 1.5rem;
+    }
 }
 
 .alerts-wrap {

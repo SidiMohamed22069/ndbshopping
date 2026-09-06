@@ -18,7 +18,7 @@ from core.media_upload import (
     validate_image,
     validate_video,
 )
-from core.utils import normalize_product_images, page_from_request, safe_next_url
+from core.utils import ETAT_CHOICES, VILLE_CHOICES, normalize_product_images, page_from_request, safe_next_url
 from services import api_client
 
 VILLE_LIVRAISON = "NOUADHIBOU"
@@ -216,6 +216,8 @@ def _client_product_payload(request) -> dict:
         "prix": prix,
         "stock": int(stock) if str(stock).isdigit() else 0,
         "categoryId": int(category_id) if category_id else None,
+        "ville": (request.POST.get("ville") or "").strip() or None,
+        "etat": (request.POST.get("etat") or "").strip() or None,
         "attributs": attributs,
     }
 
@@ -255,6 +257,8 @@ def sell(request):
         "prix": request.POST.get("prix") or "",
         "stock": request.POST.get("stock") or "0",
         "categoryId": request.POST.get("categoryId") or "",
+        "ville": request.POST.get("ville") or "",
+        "etat": request.POST.get("etat") or "",
     }
     if request.method == "POST":
         payload = _client_product_payload(request)
@@ -271,7 +275,12 @@ def sell(request):
     return render(
         request,
         "accounts/sell.html",
-        {"form": form, "product_attrs_json": "[]"},
+        {
+            "form": form,
+            "product_attrs_json": "[]",
+            "ville_choices": VILLE_CHOICES,
+            "etat_choices": ETAT_CHOICES,
+        },
     )
 
 

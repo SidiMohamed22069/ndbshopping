@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n static %}
+{% load i18n static ndb_tags %}
 
 {% block title %}{% trans "Vendre un produit" %}{% endblock %}
 
@@ -35,6 +35,24 @@
       <div class="col-md-6">
         <label class="form-label" for="stock">{% trans "Stock" %}</label>
         <input class="form-control" id="stock" name="stock" type="number" min="0" value="{{ form.stock|default:0 }}">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label" for="ville">{% trans "Ville" %}</label>
+        <select class="form-select" id="ville" name="ville">
+          <option value="">{% trans "— Non précisé —" %}</option>
+          {% for code in ville_choices %}
+            <option value="{{ code }}" {% if form.ville == code %}selected{% endif %}>{{ code|ville_label }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label" for="etat">{% trans "État" %}</label>
+        <select class="form-select" id="etat" name="etat">
+          <option value="">{% trans "— Non précisé —" %}</option>
+          {% for code in etat_choices %}
+            <option value="{{ code }}" {% if form.etat == code %}selected{% endif %}>{{ code|etat_label }}</option>
+          {% endfor %}
+        </select>
       </div>
     </div>
 

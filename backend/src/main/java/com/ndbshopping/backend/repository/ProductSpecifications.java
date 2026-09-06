@@ -1,6 +1,7 @@
 package com.ndbshopping.backend.repository;
 
 import com.ndbshopping.backend.entity.Product;
+import com.ndbshopping.backend.entity.enums.ProductEtat;
 import com.ndbshopping.backend.entity.enums.ProductStatus;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
@@ -20,7 +21,9 @@ public final class ProductSpecifications {
             Long categoryId,
             BigDecimal minPrix,
             BigDecimal maxPrix,
-            String q
+            String q,
+            String ville,
+            ProductEtat etat
     ) {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
@@ -42,6 +45,12 @@ public final class ProductSpecifications {
                         cb.like(cb.lower(root.get("nom")), pattern),
                         cb.like(cb.lower(cb.coalesce(root.get("description"), "")), pattern)
                 ));
+            }
+            if (ville != null && !ville.isBlank()) {
+                predicates.add(cb.equal(cb.upper(root.get("ville")), ville.trim().toUpperCase(Locale.ROOT)));
+            }
+            if (etat != null) {
+                predicates.add(cb.equal(root.get("etat"), etat));
             }
             if (predicates.isEmpty()) {
                 return cb.conjunction();

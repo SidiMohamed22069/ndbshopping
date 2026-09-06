@@ -47,6 +47,13 @@
         <a class="nav-link" href="{% url 'catalog:publication_list' %}">{% trans "Actualités" %}</a>
       </nav>
 
+      <form class="header-search d-none d-lg-flex" method="get" action="{% url 'catalog:product_list' %}" role="search">
+        <input class="form-control" type="search" name="q" value="{{ request.GET.q }}" placeholder="{% trans 'Rechercher un produit…' %}" aria-label="{% trans 'Recherche' %}">
+        <button class="header-search-submit" type="submit" aria-label="{% trans 'Rechercher' %}">
+          <i class="bi bi-search" aria-hidden="true"></i>
+        </button>
+      </form>
+
       <div class="header-actions">
         {% include "includes/language_switcher.html" %}
         <a class="header-icon-link" href="{% url 'cart:detail' %}" aria-label="{% trans 'Panier' %}">
@@ -90,6 +97,12 @@
     </div>
 
     <div class="collapse header-collapse d-lg-none" id="headerMenu">
+      <form class="header-search header-search--mobile" method="get" action="{% url 'catalog:product_list' %}" role="search">
+        <input class="form-control" type="search" name="q" value="{{ request.GET.q }}" placeholder="{% trans 'Rechercher un produit…' %}" aria-label="{% trans 'Recherche' %}">
+        <button class="header-search-submit" type="submit" aria-label="{% trans 'Rechercher' %}">
+          <i class="bi bi-search" aria-hidden="true"></i>
+        </button>
+      </form>
       <nav class="header-nav" aria-label="{% trans 'Navigation mobile' %}">
         <a class="nav-link" href="{% url 'core:home' %}">{% trans "Accueil" %}</a>
         <a class="nav-link" href="{% url 'catalog:categories' %}">{% trans "Catégories" %}</a>

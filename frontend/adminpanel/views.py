@@ -9,7 +9,14 @@ from django.views.decorators.http import require_http_methods, require_POST
 
 from core.decorators import admin_required_api
 from core.media_upload import json_error, json_ok, media_initial_json, upload_and_respond, validate_image, validate_video
-from core.utils import flatten_categories, normalize_category_image, normalize_product_images, page_from_request
+from core.utils import (
+    ETAT_CHOICES,
+    VILLE_CHOICES,
+    flatten_categories,
+    normalize_category_image,
+    normalize_product_images,
+    page_from_request,
+)
 from services import api_client
 
 CATEGORY_TYPES = [
@@ -396,6 +403,8 @@ def _product_payload(request, existing: dict | None = None) -> dict:
         "sourceOrigine": request.POST.get("sourceOrigine") or "MANUEL",
         "sourceUrl": source_url,
         "statut": request.POST.get("statut") or "BROUILLON",
+        "ville": (request.POST.get("ville") or "").strip() or None,
+        "etat": (request.POST.get("etat") or "").strip() or None,
         "attributs": attributs,
     }
 
@@ -409,6 +418,8 @@ def _product_form_context(product, categories_flat) -> dict:
         "categories_flat": categories_flat,
         "statuses": PRODUCT_STATUSES,
         "sources": PRODUCT_SOURCES,
+        "ville_choices": VILLE_CHOICES,
+        "etat_choices": ETAT_CHOICES,
         "media_url_ns": extra["media_url_ns"],
         "media_initial_json": extra["media_initial_json"],
     }
