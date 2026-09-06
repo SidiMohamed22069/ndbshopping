@@ -25,6 +25,7 @@
       <tr>
         <th>#</th>
         <th>{% trans "Client" %}</th>
+        <th>{% trans "Téléphone" %}</th>
         <th>{% trans "Ville" %}</th>
         <th>{% trans "Statut" %}</th>
         <th>{% trans "Total" %}</th>
@@ -35,14 +36,19 @@
       {% for o in orders %}
         <tr>
           <td>{{ o.id }}</td>
-          <td>{{ o.clientNom }}<br><span class="small text-muted">{{ o.clientTelephone }}</span></td>
+          <td class="fw-semibold">{{ o.clientNom }}</td>
+          <td>
+            <a class="order-phone-link" href="tel:{{ o.clientTelephone }}">
+              <i class="bi bi-telephone-fill" aria-hidden="true"></i> {{ o.clientTelephone }}
+            </a>
+          </td>
           <td>{{ o.villeLivraison|ville_label }}</td>
           <td><span class="badge text-bg-{{ o.statut|statut_badge }}">{{ o.statut|statut_label }}</span></td>
           <td>{{ o.total|mru }}</td>
           <td><a class="btn btn-sm btn-outline-primary" href="{% url 'adminpanel:order_detail' o.id %}">{% trans "Détail" %}</a></td>
         </tr>
       {% empty %}
-        <tr><td colspan="6" class="text-muted">{% trans "Aucune commande." %}</td></tr>
+        <tr><td colspan="7" class="text-muted">{% trans "Aucune commande." %}</td></tr>
       {% endfor %}
     </tbody>
   </table>

@@ -1,5 +1,6 @@
 package com.ndbshopping.backend.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ndbshopping.backend.entity.CartItem;
 import com.ndbshopping.backend.entity.Category;
 import com.ndbshopping.backend.entity.Order;
@@ -29,6 +30,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import java.math.BigDecimal;
 
@@ -79,6 +81,9 @@ class OrderControllerTest {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     private User client;
     private Product product;
@@ -163,6 +168,34 @@ class OrderControllerTest {
                                 """))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.villeLivraison").value("Nouadhibou"));
+    }
+
+    @Test
+    void unitPriceStaysFrozen_whenProductPriceChangesAfterOrder() throws Exception {
+        seedCart();
+        MvcResult created = mockMvc.perform(post("/api/orders")
+                        .header("Authorization", bearer(client))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"adresseDetails":"Cité plage, Nouadhibou"}
+                                """))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.items[0].prixUnitaire").value(200.00))
+                .andExpect(jsonPath("$.items[0].prixActuel").value(200.00))
+                .andReturn();
+        Long orderId = objectMapper.readTree(created.getResponse().getContentAsString()).get("id").asLong();
+
+        product.setPrix(new BigDecimal("350.00"));
+        productRepository.save(product);
+
+        mockMvc.perform(get("/api/orders/me")
+                        .header("Authorization", bearer(client)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content[0].id").value(orderId))
+                .andExpect(jsonPath("$.content[0].items[0].prixUnitaire").value(200.00))
+                .andExpect(jsonPath("$.content[0].items[0].prixActuel").value(350.00))
+                .andExpect(jsonPath("$.content[0].items[0].sousTotal").value(200.00))
+                .andExpect(jsonPath("$.content[0].total").value(200.00));
     }
 
     @Test

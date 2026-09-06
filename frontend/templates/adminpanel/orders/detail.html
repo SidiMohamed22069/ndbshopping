@@ -10,21 +10,35 @@
   <span class="badge text-bg-{{ order.statut|statut_badge }}">{{ order.statut|statut_label }}</span>
   · {{ order.createdAt }}
 </p>
-<p>
-  <strong>{{ order.clientNom }}</strong> · {{ order.clientTelephone }}<br>
-  {{ order.villeLivraison|ville_label }} — {{ order.adresseDetails }}
-</p>
+
+<div class="order-contact-card mb-3">
+  <div class="order-contact-identity">
+    <p class="order-contact-name mb-1"><i class="bi bi-person-fill" aria-hidden="true"></i> {{ order.clientNom }}</p>
+    <p class="order-contact-address mb-0">
+      <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+      {{ order.villeLivraison|ville_label }} — {{ order.adresseDetails }}
+    </p>
+  </div>
+  <a class="btn-cta order-call-btn" href="tel:{{ order.clientTelephone }}">
+    <i class="bi bi-telephone-fill" aria-hidden="true"></i> {{ order.clientTelephone }}
+  </a>
+</div>
 
 <table class="table bg-white">
   <thead>
-    <tr><th>{% trans "Produit" %}</th><th>{% trans "Qté" %}</th><th>{% trans "Prix unit." %}</th><th>{% trans "Sous-total" %}</th></tr>
+    <tr><th>{% trans "Produit" %}</th><th>{% trans "Qté" %}</th><th>{% trans "Prix unit. (commande)" %}</th><th>{% trans "Sous-total" %}</th></tr>
   </thead>
   <tbody>
     {% for item in order.items %}
       <tr>
         <td>{{ item.productNom }}</td>
         <td>{{ item.quantite }}</td>
-        <td>{{ item.prixUnitaire|mru }}</td>
+        <td>
+          {{ item.prixUnitaire|mru }}
+          {% if item.prixActuel != item.prixUnitaire %}
+            <span class="order-price-changed">{% trans "Prix actuel" %} : {{ item.prixActuel|mru }}</span>
+          {% endif %}
+        </td>
         <td>{{ item.sousTotal|mru }}</td>
       </tr>
     {% endfor %}
