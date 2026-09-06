@@ -1116,6 +1116,13 @@ textarea.form-control {
     margin: 0.35rem 0 0.75rem;
 }
 
+/* Isole les montants (chiffres + "UM") du réordonnancement bidi en RTL. */
+.mru-amount {
+    unicode-bidi: isolate;
+    direction: ltr;
+    display: inline-block;
+}
+
 .listing-actions {
     display: flex;
     flex-wrap: wrap;

@@ -3,6 +3,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from django import template
 from django.conf import settings
+from django.utils.html import format_html
 from django.utils.translation import gettext as _
 
 from core.utils import extract_image_path
@@ -77,7 +78,13 @@ def media_src(value, version=None) -> str:
 
 @register.filter
 def mru(value) -> str:
-    """Formate un prix en ouguiya (UM)."""
+    """Formate un prix en ouguiya (UM).
+
+    Le montant est isolé (unicode-bidi: isolate, dir=ltr) pour ne pas être
+    réordonné par l'algorithme bidi quand la page est en arabe (RTL) :
+    sans ça, des groupes de chiffres séparés par des espaces (ex. "1 234 567")
+    peuvent s'afficher inversés ("567 234 1") dans un contexte RTL.
+    """
     if value is None or value == "":
         return "—"
     try:
@@ -86,7 +93,7 @@ def mru(value) -> str:
         return str(value)
     formatted = f"{number:,.0f}".replace(",", " ")
     unit = _("UM")
-    return f"{formatted} {unit}"
+    return format_html('<span class="mru-amount">{} {}</span>', formatted, unit)
 
 
 @register.filter
