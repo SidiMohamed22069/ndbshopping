@@ -48,7 +48,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     @Builder.Default
-    private Role role = Role.CLIENT;
+    private Role role = Role.USER;
 
     @Column(nullable = false)
     @ColumnDefault("true")

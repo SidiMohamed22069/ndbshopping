@@ -43,8 +43,10 @@
           <td>
             {% if u.role == "ADMIN" %}
               <span class="badge badge-role-admin">{% trans "Admin" %}</span>
+            {% elif u.role == "SELLER" %}
+              <span class="badge badge-role-seller">{% trans "Vendeur" %}</span>
             {% else %}
-              <span class="badge badge-role-client">{% trans "Client" %}</span>
+              <span class="badge badge-role-user">{% trans "Utilisateur" %}</span>
             {% endif %}
           </td>
           <td>
@@ -64,12 +66,14 @@
             {% if u.id != current_user_id %}
               {% trans "Changer le rôle ?" as confirm_role %}
               {% trans "Supprimer définitivement ce compte ?" as confirm_delete %}
-              <form class="d-inline" method="post" action="{% url 'adminpanel:user_toggle_role' u.id %}" onsubmit="return confirm('{{ confirm_role|escapejs }}');">
+              <form class="d-inline-flex gap-1 align-items-center" method="post" action="{% url 'adminpanel:user_update_role' u.id %}" onsubmit="return confirm('{{ confirm_role|escapejs }}');">
                 {% csrf_token %}
-                <input type="hidden" name="current_role" value="{{ u.role }}">
-                <button class="btn btn-sm btn-outline-primary" type="submit">
-                  {% if u.role == "ADMIN" %}{% trans "Passer client" %}{% else %}{% trans "Passer admin" %}{% endif %}
-                </button>
+                <select class="form-select form-select-sm" name="role" aria-label="{% trans 'Rôle' %}">
+                  {% for code, label in roles %}
+                    <option value="{{ code }}" {% if u.role == code %}selected{% endif %}>{{ label }}</option>
+                  {% endfor %}
+                </select>
+                <button class="btn btn-sm btn-outline-primary" type="submit">{% trans "Changer" %}</button>
               </form>
               <form class="d-inline" method="post" action="{% url 'adminpanel:user_toggle_status' u.id %}" onsubmit="return confirm('{% if u.actif %}{% trans "Bloquer" %}{% else %}{% trans "Débloquer" %}{% endif %}');">
                 {% csrf_token %}

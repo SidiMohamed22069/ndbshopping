@@ -501,6 +501,20 @@ msgstr "عميل"
 msgid "Admin"
 msgstr "مسؤول"
 
+#: .\adminpanel\views.py .\core\templatetags\ndb_tags.py
+#: .\templates\adminpanel\users\list.html
+msgid "Utilisateur"
+msgstr "مستخدم"
+
+#: .\adminpanel\views.py .\core\templatetags\ndb_tags.py
+#: .\templates\adminpanel\users\list.html
+msgid "Vendeur"
+msgstr "بائع"
+
+#: .\templates\adminpanel\users\list.html
+msgid "Changer"
+msgstr "تغيير"
+
 #: .\core\templatetags\ndb_tags.py:120 .\templates\base_admin.html:78
 msgid "Nouvelle commande"
 msgstr "طلب جديد"

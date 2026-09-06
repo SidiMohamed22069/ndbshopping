@@ -92,7 +92,7 @@ class ProductVideoControllerTest {
                 .telephone(CLIENT_PHONE)
                 .passwordHash(passwordEncoder.encode("secret12"))
                 .telephoneVerifie(true)
-                .role(Role.CLIENT)
+                .role(Role.USER)
                 .build());
         category = categoryRepository.save(Category.builder()
                 .nom("Video-Cat")

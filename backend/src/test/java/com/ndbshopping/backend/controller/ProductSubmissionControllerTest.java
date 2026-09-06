@@ -435,7 +435,7 @@ class ProductSubmissionControllerTest {
                 .telephone(telephone)
                 .passwordHash(passwordEncoder.encode("secret12"))
                 .telephoneVerifie(true)
-                .role(Role.CLIENT)
+                .role(Role.USER)
                 .build());
     }
 

@@ -64,7 +64,7 @@ public class AuthService {
                 .telephone(request.telephone())
                 .passwordHash(passwordEncoder.encode(request.password()))
                 .telephoneVerifie(false)
-                .role(Role.CLIENT)
+                .role(Role.USER)
                 .build();
         userRepository.save(user);
         otpService.sendOtp(request.telephone(), request.langOrDefault());

@@ -983,7 +983,12 @@ def notification_read(request, notification_id):
 # Comptes utilisateurs
 # ---------------------------------------------------------------------------
 
-USER_ROLES = [("ADMIN", _lazy("Admin")), ("CLIENT", _lazy("Client"))]
+USER_ROLES = [
+    ("ADMIN", _lazy("Admin")),
+    ("USER", _lazy("Utilisateur")),
+    ("SELLER", _lazy("Vendeur")),
+]
+VALID_ROLES = {code for code, _label in USER_ROLES}
 
 
 @admin_required_api
@@ -991,7 +996,7 @@ USER_ROLES = [("ADMIN", _lazy("Admin")), ("CLIENT", _lazy("Client"))]
 def user_list(request):
     page = page_from_request(request)
     role = request.GET.get("role") or ""
-    if role not in {"ADMIN", "CLIENT"}:
+    if role not in VALID_ROLES:
         role = ""
     result = api_client.admin_get_users(
         _token(request),
@@ -1025,14 +1030,14 @@ def user_create(request):
     form = {
         "nom": "",
         "telephone": "",
-        "role": "CLIENT",
+        "role": "USER",
     }
     if request.method == "POST":
         form["nom"] = (request.POST.get("nom") or "").strip()
         form["telephone"] = (request.POST.get("telephone") or "").strip()
-        form["role"] = request.POST.get("role") or "CLIENT"
+        form["role"] = request.POST.get("role") or "USER"
         password = request.POST.get("password") or ""
-        if form["role"] not in {"ADMIN", "CLIENT"}:
+        if form["role"] not in VALID_ROLES:
             messages.error(request, _("Rôle invalide."))
         elif not form["nom"] or not form["telephone"] or not password:
             messages.error(request, _("Nom, téléphone et mot de passe sont obligatoires."))
@@ -1059,12 +1064,14 @@ def user_create(request):
 
 @admin_required_api
 @require_POST
-def user_toggle_role(request, user_id):
+def user_update_role(request, user_id):
     if str(user_id) == str(request.user_id):
         messages.error(request, _("Vous ne pouvez pas modifier votre propre rôle."))
         return redirect("adminpanel:user_list")
-    current = request.POST.get("current_role") or ""
-    new_role = "CLIENT" if current == "ADMIN" else "ADMIN"
+    new_role = request.POST.get("role") or ""
+    if new_role not in VALID_ROLES:
+        messages.error(request, _("Rôle invalide."))
+        return redirect("adminpanel:user_list")
     result = api_client.admin_update_user_role(_token(request), user_id, new_role)
     if result.ok:
         messages.success(request, _("Rôle mis à jour."))

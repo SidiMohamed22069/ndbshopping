@@ -112,7 +112,7 @@ class AuthControllerTest {
 
         User created = userRepository.findByTelephone("24001111").orElseThrow();
         assertEquals("Nouveau Client", created.getNom());
-        assertEquals(Role.CLIENT, created.getRole());
+        assertEquals(Role.USER, created.getRole());
         assertFalse(created.isTelephoneVerifie());
         assertTrue(passwordEncoder.matches("secret12", created.getPasswordHash()));
         verify(otpService).sendOtp(eq("24001111"), anyString());

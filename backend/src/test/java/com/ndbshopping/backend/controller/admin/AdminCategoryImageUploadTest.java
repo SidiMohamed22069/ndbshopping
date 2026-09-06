@@ -149,7 +149,7 @@ class AdminCategoryImageUploadTest {
                 .telephone("22002222")
                 .passwordHash(passwordEncoder.encode("secret12"))
                 .telephoneVerifie(true)
-                .role(Role.CLIENT)
+                .role(Role.USER)
                 .build());
 
         mockMvc.perform(multipart("/api/admin/categories/{id}/image", category.getId())

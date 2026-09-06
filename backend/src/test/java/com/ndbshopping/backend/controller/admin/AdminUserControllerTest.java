@@ -107,10 +107,10 @@ class AdminUserControllerTest {
                         .header("Authorization", adminBearer())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                {"nom":"Un Client","telephone":"42001111","password":"secret12","role":"CLIENT"}
+                                {"nom":"Un Client","telephone":"42001111","password":"secret12","role":"USER"}
                                 """))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.role").value("CLIENT"))
+                .andExpect(jsonPath("$.role").value("USER"))
                 .andExpect(jsonPath("$.telephoneVerifie").value(true))
                 .andExpect(jsonPath("$.passwordHash").doesNotExist());
     }
@@ -121,7 +121,7 @@ class AdminUserControllerTest {
                         .header("Authorization", adminBearer())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                {"nom":"Doublon","telephone":"37565537","password":"secret12","role":"CLIENT"}
+                                {"nom":"Doublon","telephone":"37565537","password":"secret12","role":"USER"}
                                 """))
                 .andExpect(status().isConflict())
                 .andExpect(jsonPath("$.error").value("Ce numéro de téléphone est déjà utilisé"));
@@ -134,7 +134,7 @@ class AdminUserControllerTest {
                 .telephone("22001111")
                 .passwordHash(passwordEncoder.encode("secret12"))
                 .telephoneVerifie(true)
-                .role(Role.CLIENT)
+                .role(Role.USER)
                 .build());
 
         mockMvc.perform(get("/api/admin/users")
@@ -157,7 +157,7 @@ class AdminUserControllerTest {
                         .header("Authorization", adminBearer())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                {"role":"CLIENT"}
+                                {"role":"USER"}
                                 """))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.error").value("Vous ne pouvez pas modifier votre propre rôle"));

@@ -103,7 +103,7 @@ class CategoryReorderControllerTest {
                 .telephone("48112233")
                 .passwordHash(passwordEncoder.encode("secret12"))
                 .telephoneVerifie(true)
-                .role(Role.CLIENT)
+                .role(Role.USER)
                 .build());
 
         mockMvc.perform(patch("/api/admin/categories/reorder")

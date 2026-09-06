@@ -70,7 +70,7 @@ urlpatterns = [
     # Comptes
     path("utilisateurs/", views.user_list, name="user_list"),
     path("utilisateurs/creer/", views.user_create, name="user_create"),
-    path("utilisateurs/<int:user_id>/role/", views.user_toggle_role, name="user_toggle_role"),
+    path("utilisateurs/<int:user_id>/role/", views.user_update_role, name="user_update_role"),
     path("utilisateurs/<int:user_id>/statut/", views.user_toggle_status, name="user_toggle_status"),
     path("utilisateurs/<int:user_id>/supprimer/", views.user_delete, name="user_delete"),
 ]

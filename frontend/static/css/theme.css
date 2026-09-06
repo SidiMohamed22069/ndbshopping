@@ -1522,9 +1522,14 @@ textarea.form-control {
     color: var(--color-on-secondary);
 }
 
-.badge-role-client {
+.badge-role-user {
     background: var(--color-grey-mid);
     color: var(--color-text-dark);
+}
+
+.badge-role-seller {
+    background: var(--color-primary);
+    color: var(--color-on-primary, var(--color-text-white));
 }
 
 .table {
