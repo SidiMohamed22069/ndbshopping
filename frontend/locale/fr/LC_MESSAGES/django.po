@@ -1,0 +1,2471 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-07 22:12+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\accounts\views.py:40
+msgid "Connecté, mais le panier n'a pas pu être synchronisé. "
+msgstr "Connecté, mais le panier n'a pas pu être synchronisé. "
+
+#: .\accounts\views.py:42
+#, python-format
+msgid "Bienvenue %(nom)s !"
+msgstr "Bienvenue %(nom)s !"
+
+#: .\accounts\views.py:49
+msgid "Code envoyé par SMS."
+msgstr "Code envoyé par SMS."
+
+#: .\accounts\views.py:65
+msgid "Téléphone et mot de passe sont obligatoires."
+msgstr "Téléphone et mot de passe sont obligatoires."
+
+#: .\accounts\views.py:76
+msgid "Connexion impossible."
+msgstr "Connexion impossible."
+
+#: .\accounts\views.py:98 .\adminpanel\views.py:1178
+msgid "Nom, téléphone et mot de passe sont obligatoires."
+msgstr "Nom, téléphone et mot de passe sont obligatoires."
+
+#: .\accounts\views.py:107
+msgid "Inscription impossible."
+msgstr "Inscription impossible."
+
+#: .\accounts\views.py:120
+msgid "Commencez par renseigner vos informations."
+msgstr "Commencez par renseigner vos informations."
+
+#: .\accounts\views.py:126
+msgid "Saisissez le code reçu par SMS."
+msgstr "Saisissez le code reçu par SMS."
+
+#: .\accounts\views.py:137
+msgid "Code incorrect."
+msgstr "Code incorrect."
+
+#: .\accounts\views.py:145
+msgid "Vous êtes déconnecté."
+msgstr "Vous êtes déconnecté."
+
+#: .\accounts\views.py:155
+msgid "Votre panier est vide."
+msgstr "Votre panier est vide."
+
+#: .\accounts\views.py:161
+msgid "Indiquez une adresse."
+msgstr "Indiquez une adresse."
+
+#: .\accounts\views.py:167
+msgid "Commande enregistrée. Merci !"
+msgstr "Commande enregistrée. Merci !"
+
+#: .\accounts\views.py:169
+msgid "Impossible de passer la commande."
+msgstr "Impossible de passer la commande."
+
+#: .\accounts\views.py:322
+msgid "Le nom et la catégorie sont obligatoires."
+msgstr "Le nom et la catégorie sont obligatoires."
+
+#: .\accounts\views.py:330
+msgid "Soumission impossible."
+msgstr "Soumission impossible."
+
+#: .\accounts\views.py:361 .\accounts\views.py:383 .\accounts\views.py:392
+#: .\accounts\views.py:404 .\accounts\views.py:413 .\adminpanel\views.py:549
+#: .\adminpanel\views.py:601 .\cart\views.py:114 .\negotiations\views.py:30
+msgid "Produit introuvable."
+msgstr "Produit introuvable."
+
+#: .\accounts\views.py:396 .\accounts\views.py:417 .\adminpanel\views.py:330
+#: .\adminpanel\views.py:370 .\adminpanel\views.py:574
+#: .\adminpanel\views.py:621 .\adminpanel\views.py:638
+#: .\adminpanel\views.py:648 .\adminpanel\views.py:1066
+#: .\adminpanel\views.py:1243 .\templates\includes\product_media_form.html:11
+msgid "Suppression impossible."
+msgstr "Suppression impossible."
+
+#: .\accounts\views.py:453
+msgid "Annonce marquée comme vendue."
+msgstr "Annonce marquée comme vendue."
+
+#: .\accounts\views.py:455 .\accounts\views.py:466 .\accounts\views.py:477
+#: .\adminpanel\views.py:708 .\adminpanel\views.py:719
+#: .\adminpanel\views.py:730 .\adminpanel\views.py:1110
+msgid "Action impossible."
+msgstr "Action impossible."
+
+#: .\accounts\views.py:464
+msgid "Annonce archivée."
+msgstr "Annonce archivée."
+
+#: .\accounts\views.py:475
+msgid "Annonce remise en ligne."
+msgstr "Annonce remise en ligne."
+
+#: .\adminpanel\views.py:121 .\core\media_upload.py:29
+#: .\templates\includes\product_media_form.html:4
+msgid "Image trop volumineuse (5 Mo maximum)."
+msgstr "Image trop volumineuse (5 Mo maximum)."
+
+#: .\adminpanel\views.py:125 .\core\media_upload.py:33
+#: .\templates\includes\product_media_form.html:6
+msgid "Format non accepté. Utilisez JPG, PNG ou WebP."
+msgstr "Format non accepté. Utilisez JPG, PNG ou WebP."
+
+#: .\adminpanel\views.py:149
+msgid "Impossible d'enregistrer l'image."
+msgstr "Impossible d'enregistrer l'image."
+
+#: .\adminpanel\views.py:228 .\adminpanel\views.py:237
+msgid "Données invalides."
+msgstr "Données invalides."
+
+#: .\adminpanel\views.py:231
+msgid "La liste des catégories est vide."
+msgstr "La liste des catégories est vide."
+
+#: .\adminpanel\views.py:241 .\templates\adminpanel\categories\list.html:9
+msgid "Impossible d'enregistrer l'ordre."
+msgstr "Impossible d'enregistrer l'ordre."
+
+#: .\adminpanel\views.py:269
+msgid "Catégorie créée, mais l'image n'a pas pu être enregistrée : "
+msgstr "Catégorie créée, mais l'image n'a pas pu être enregistrée : "
+
+#: .\adminpanel\views.py:274
+msgid "Catégorie créée. Image enregistrée."
+msgstr "Catégorie créée. Image enregistrée."
+
+#: .\adminpanel\views.py:277
+msgid "Catégorie créée."
+msgstr "Catégorie créée."
+
+#: .\adminpanel\views.py:279 .\adminpanel\views.py:522
+#: .\adminpanel\views.py:1000 .\adminpanel\views.py:1192
+msgid "Création impossible."
+msgstr "Création impossible."
+
+#: .\adminpanel\views.py:294
+msgid "Catégorie introuvable."
+msgstr "Catégorie introuvable."
+
+#: .\adminpanel\views.py:307
+msgid "Catégorie mise à jour, mais l'image n'a pas pu être enregistrée : "
+msgstr "Catégorie mise à jour, mais l'image n'a pas pu être enregistrée : "
+
+#: .\adminpanel\views.py:311
+msgid "Catégorie mise à jour. Image enregistrée."
+msgstr "Catégorie mise à jour. Image enregistrée."
+
+#: .\adminpanel\views.py:313
+msgid "Catégorie mise à jour."
+msgstr "Catégorie mise à jour."
+
+#: .\adminpanel\views.py:315 .\adminpanel\views.py:559
+#: .\adminpanel\views.py:845 .\adminpanel\views.py:1051
+msgid "Mise à jour impossible."
+msgstr "Mise à jour impossible."
+
+#: .\adminpanel\views.py:328
+msgid "Catégorie supprimée."
+msgstr "Catégorie supprimée."
+
+#: .\adminpanel\views.py:348
+msgid "Attribut ajouté."
+msgstr "Attribut ajouté."
+
+#: .\adminpanel\views.py:350
+msgid "Ajout impossible."
+msgstr "Ajout impossible."
+
+#: .\adminpanel\views.py:368
+msgid "Attribut supprimé."
+msgstr "Attribut supprimé."
+
+#: .\adminpanel\views.py:513
+msgid "Produit créé."
+msgstr "Produit créé."
+
+#: .\adminpanel\views.py:517
+msgid ""
+"Produit créé, mais certaines images importées n'ont pas pu être enregistrées"
+" : "
+msgstr ""
+"Produit créé, mais certaines images importées n'ont pas pu être enregistrées"
+" : "
+
+#: .\adminpanel\views.py:536
+msgid "Collez une URL."
+msgstr "Collez une URL."
+
+#: .\adminpanel\views.py:539
+msgid "Extraction impossible."
+msgstr "Extraction impossible."
+
+#: .\adminpanel\views.py:557
+msgid "Produit mis à jour."
+msgstr "Produit mis à jour."
+
+#: .\adminpanel\views.py:572
+msgid "Produit supprimé."
+msgstr "Produit supprimé."
+
+#: .\adminpanel\views.py:585
+msgid "Choisissez une image (jpg, png, webp — 5 Mo max)."
+msgstr "Choisissez une image (jpg, png, webp — 5 Mo max)."
+
+#: .\adminpanel\views.py:594
+msgid "Image ajoutée."
+msgstr "Image ajoutée."
+
+#: .\adminpanel\views.py:596
+msgid "Upload impossible."
+msgstr "Upload impossible."
+
+#: .\adminpanel\views.py:646
+msgid "Image supprimée."
+msgstr "Image supprimée."
+
+#: .\adminpanel\views.py:706
+msgid "Produit marqué comme vendu."
+msgstr "Produit marqué comme vendu."
+
+#: .\adminpanel\views.py:717
+msgid "Produit archivé."
+msgstr "Produit archivé."
+
+#: .\adminpanel\views.py:728
+msgid "Produit remis en ligne."
+msgstr "Produit remis en ligne."
+
+#: .\adminpanel\views.py:739
+msgid "Produit validé. Il est maintenant en ligne."
+msgstr "Produit validé. Il est maintenant en ligne."
+
+#: .\adminpanel\views.py:741
+msgid "Validation impossible."
+msgstr "Validation impossible."
+
+#: .\adminpanel\views.py:750
+msgid "Indiquez une raison de rejet."
+msgstr "Indiquez une raison de rejet."
+
+#: .\adminpanel\views.py:754
+msgid "Produit rejeté."
+msgstr "Produit rejeté."
+
+#: .\adminpanel\views.py:756
+msgid "Rejet impossible."
+msgstr "Rejet impossible."
+
+#: .\adminpanel\views.py:769
+msgid "Choisissez un fichier CSV."
+msgstr "Choisissez un fichier CSV."
+
+#: .\adminpanel\views.py:775
+#, python-format
+msgid "Import CSV terminé : %(n)s produit(s)."
+msgstr "Import CSV terminé : %(n)s produit(s)."
+
+#: .\adminpanel\views.py:777
+msgid "Import CSV impossible."
+msgstr "Import CSV impossible."
+
+#: .\adminpanel\views.py:843
+msgid "Statut mis à jour."
+msgstr "Statut mis à jour."
+
+#: .\adminpanel\views.py:852
+msgid "Commande introuvable."
+msgstr "Commande introuvable."
+
+#: .\adminpanel\views.py:899 .\negotiations\views.py:75
+msgid "Message vide."
+msgstr "Message vide."
+
+#: .\adminpanel\views.py:903 .\negotiations\views.py:79
+msgid "Message non envoyé."
+msgstr "Message non envoyé."
+
+#: .\adminpanel\views.py:910 .\negotiations\views.py:38
+#: .\negotiations\views.py:84
+msgid "Indiquez un prix valide."
+msgstr "Indiquez un prix valide."
+
+#: .\adminpanel\views.py:914
+msgid "Contre-offre envoyée."
+msgstr "Contre-offre envoyée."
+
+#: .\adminpanel\views.py:916 .\negotiations\views.py:90
+msgid "Impossible d'envoyer la contre-offre."
+msgstr "Impossible d'envoyer la contre-offre."
+
+#: .\adminpanel\views.py:920
+msgid "Prix validé."
+msgstr "Prix validé."
+
+#: .\adminpanel\views.py:922
+msgid "Impossible de valider ce prix."
+msgstr "Impossible de valider ce prix."
+
+#: .\adminpanel\views.py:927 .\negotiations\views.py:101
+msgid "Négociation refusée."
+msgstr "Négociation refusée."
+
+#: .\adminpanel\views.py:929 .\negotiations\views.py:103
+msgid "Impossible de refuser."
+msgstr "Impossible de refuser."
+
+#: .\adminpanel\views.py:934 .\cart\views.py:170 .\negotiations\views.py:108
+msgid "Négociation introuvable."
+msgstr "Négociation introuvable."
+
+#: .\adminpanel\views.py:991
+msgid "Publication créée, mais l'image n'a pas pu être enregistrée : "
+msgstr "Publication créée, mais l'image n'a pas pu être enregistrée : "
+
+#: .\adminpanel\views.py:996
+msgid "Publication créée. Image enregistrée."
+msgstr "Publication créée. Image enregistrée."
+
+#: .\adminpanel\views.py:998
+msgid "Publication créée."
+msgstr "Publication créée."
+
+#: .\adminpanel\views.py:1029
+msgid "Publication introuvable."
+msgstr "Publication introuvable."
+
+#: .\adminpanel\views.py:1043
+msgid "Publication mise à jour, mais l'image n'a pas pu être enregistrée : "
+msgstr "Publication mise à jour, mais l'image n'a pas pu être enregistrée : "
+
+#: .\adminpanel\views.py:1047
+msgid "Publication mise à jour. Image enregistrée."
+msgstr "Publication mise à jour. Image enregistrée."
+
+#: .\adminpanel\views.py:1049
+msgid "Publication mise à jour."
+msgstr "Publication mise à jour."
+
+#: .\adminpanel\views.py:1064
+msgid "Publication supprimée."
+msgstr "Publication supprimée."
+
+#: .\adminpanel\views.py:1108
+msgid "Notification marquée comme lue."
+msgstr "Notification marquée comme lue."
+
+#: .\adminpanel\views.py:1176 .\adminpanel\views.py:1208
+msgid "Rôle invalide."
+msgstr "Rôle invalide."
+
+#: .\adminpanel\views.py:1190
+msgid "Compte créé."
+msgstr "Compte créé."
+
+#: .\adminpanel\views.py:1204
+msgid "Vous ne pouvez pas modifier votre propre rôle."
+msgstr "Vous ne pouvez pas modifier votre propre rôle."
+
+#: .\adminpanel\views.py:1212
+msgid "Rôle mis à jour."
+msgstr "Rôle mis à jour."
+
+#: .\adminpanel\views.py:1214
+msgid "Mise à jour du rôle impossible."
+msgstr "Mise à jour du rôle impossible."
+
+#: .\adminpanel\views.py:1222
+msgid "Vous ne pouvez pas modifier le statut de votre propre compte."
+msgstr "Vous ne pouvez pas modifier le statut de votre propre compte."
+
+#: .\adminpanel\views.py:1227
+msgid "Compte bloqué."
+msgstr "Compte bloqué."
+
+#: .\adminpanel\views.py:1227
+msgid "Compte débloqué."
+msgstr "Compte débloqué."
+
+#: .\adminpanel\views.py:1229
+msgid "Mise à jour du statut impossible."
+msgstr "Mise à jour du statut impossible."
+
+#: .\adminpanel\views.py:1237
+msgid "Vous ne pouvez pas supprimer votre propre compte."
+msgstr "Vous ne pouvez pas supprimer votre propre compte."
+
+#: .\adminpanel\views.py:1241
+msgid "Compte supprimé."
+msgstr "Compte supprimé."
+
+#: .\cart\views.py:89
+msgid ""
+"Une offre négociée n'est plus valable, le prix catalogue a été réappliqué."
+msgstr ""
+"Une offre négociée n'est plus valable, le prix catalogue a été réappliqué."
+
+#: .\cart\views.py:106 .\cart\views.py:107 .\cart\views.py:139
+msgid "Produit invalide."
+msgstr "Produit invalide."
+
+#: .\cart\views.py:125
+msgid "Ajouté au panier."
+msgstr "Ajouté au panier."
+
+#: .\cart\views.py:128
+msgid "Produit ajouté au panier."
+msgstr "Produit ajouté au panier."
+
+#: .\cart\views.py:143
+msgid "Panier mis à jour."
+msgstr "Panier mis à jour."
+
+#: .\cart\views.py:153
+msgid "Article retiré du panier."
+msgstr "Article retiré du panier."
+
+#: .\cart\views.py:165
+msgid "Négociation invalide."
+msgstr "Négociation invalide."
+
+#: .\cart\views.py:175
+msgid "Cette négociation n'a pas encore été acceptée."
+msgstr "Cette négociation n'a pas encore été acceptée."
+
+#: .\cart\views.py:180
+msgid "Produit ajouté au panier au prix négocié."
+msgstr "Produit ajouté au panier au prix négocié."
+
+#: .\catalog\views.py:20
+msgid "Plus récents"
+msgstr "Plus récents"
+
+#: .\catalog\views.py:21
+msgid "Prix croissant"
+msgstr "Prix croissant"
+
+#: .\catalog\views.py:22
+msgid "Prix décroissant"
+msgstr "Prix décroissant"
+
+#: .\core\decorators.py:15
+msgid "Veuillez vous connecter pour continuer."
+msgstr "Veuillez vous connecter pour continuer."
+
+#: .\core\decorators.py:29
+msgid "Connectez-vous avec un compte administrateur."
+msgstr "Connectez-vous avec un compte administrateur."
+
+#: .\core\decorators.py:33
+msgid "Accès réservé aux administrateurs."
+msgstr "Accès réservé aux administrateurs."
+
+#: .\core\media_upload.py:39 .\templates\includes\product_media_form.html:5
+msgid "Vidéo trop volumineuse (20 Mo maximum)."
+msgstr "Vidéo trop volumineuse (20 Mo maximum)."
+
+#: .\core\media_upload.py:43 .\templates\includes\product_media_form.html:7
+msgid "Format non accepté. Utilisez MP4 ou WebM."
+msgstr "Format non accepté. Utilisez MP4 ou WebM."
+
+#: .\core\media_upload.py:78
+msgid "Choisissez un fichier."
+msgstr "Choisissez un fichier."
+
+#: .\core\media_upload.py:84 .\core\media_upload.py:87
+#: .\templates\includes\product_media_form.html:10
+msgid "Impossible d'envoyer le fichier."
+msgstr "Impossible d'envoyer le fichier."
+
+#: .\core\templatetags\ndb_tags.py:107
+msgid "UM"
+msgstr "UM"
+
+#: .\core\templatetags\ndb_tags.py:150
+msgid "Nouadhibou"
+msgstr "Nouadhibou"
+
+#: .\core\templatetags\ndb_tags.py:151
+msgid "Zouérat"
+msgstr "Zouérat"
+
+#: .\core\templatetags\ndb_tags.py:152
+msgid "Nouakchott"
+msgstr "Nouakchott"
+
+#: .\core\templatetags\ndb_tags.py:160
+msgid "Neuf"
+msgstr "Neuf"
+
+#: .\core\templatetags\ndb_tags.py:161
+msgid "Occasion"
+msgstr "Occasion"
+
+#: .\core\templatetags\ndb_tags.py:169 .\core\templatetags\ndb_tags.py:200
+msgid "En attente"
+msgstr "En attente"
+
+#: .\core\templatetags\ndb_tags.py:170
+msgid "Confirmée"
+msgstr "Confirmée"
+
+#: .\core\templatetags\ndb_tags.py:171
+msgid "En livraison"
+msgstr "En livraison"
+
+#: .\core\templatetags\ndb_tags.py:172
+msgid "Livrée"
+msgstr "Livrée"
+
+#: .\core\templatetags\ndb_tags.py:173
+msgid "Annulée"
+msgstr "Annulée"
+
+#: .\core\templatetags\ndb_tags.py:174
+msgid "Brouillon"
+msgstr "Brouillon"
+
+#: .\core\templatetags\ndb_tags.py:175
+msgid "Publié"
+msgstr "Publié"
+
+#: .\core\templatetags\ndb_tags.py:176
+#: .\templates\accounts\my_listings.html:31
+msgid "Refusé"
+msgstr "Refusé"
+
+#: .\core\templatetags\ndb_tags.py:177
+#: .\templates\accounts\my_listings.html:33
+#: .\templates\adminpanel\products\list.html:63
+msgid "Vendu"
+msgstr "Vendu"
+
+#: .\core\templatetags\ndb_tags.py:178
+#: .\templates\accounts\my_listings.html:35
+#: .\templates\adminpanel\products\list.html:65
+msgid "Archivé"
+msgstr "Archivé"
+
+#: .\core\templatetags\ndb_tags.py:179
+#: .\templates\adminpanel\negotiations\detail.html:13
+#: .\templates\adminpanel\negotiations\list.html:27
+#: .\templates\adminpanel\orders\detail.html:29 .\templates\cart\cart.html:20
+#: .\templates\catalog\product_detail.html:4
+msgid "Produit"
+msgstr "Produit"
+
+#: .\core\templatetags\ndb_tags.py:180
+msgid "Hôtel"
+msgstr "Hôtel"
+
+#: .\core\templatetags\ndb_tags.py:181
+msgid "Voiture"
+msgstr "Voiture"
+
+#: .\core\templatetags\ndb_tags.py:182
+msgid "Service"
+msgstr "Service"
+
+#: .\core\templatetags\ndb_tags.py:183
+msgid "Autre"
+msgstr "Autre"
+
+#: .\core\templatetags\ndb_tags.py:184
+#: .\templates\adminpanel\users\list.html:49
+msgid "Utilisateur"
+msgstr "Utilisateur"
+
+#: .\core\templatetags\ndb_tags.py:185
+#: .\templates\adminpanel\users\list.html:47
+msgid "Vendeur"
+msgstr "Vendeur"
+
+#: .\core\templatetags\ndb_tags.py:186
+#: .\templates\adminpanel\users\list.html:45
+msgid "Admin"
+msgstr "Admin"
+
+#: .\core\templatetags\ndb_tags.py:187 .\templates\base_admin.html:78
+msgid "Nouvelle commande"
+msgstr "Nouvelle commande"
+
+#: .\core\templatetags\ndb_tags.py:188 .\templates\base_admin.html:79
+msgid "Produit à valider"
+msgstr "Produit à valider"
+
+#: .\core\templatetags\ndb_tags.py:189
+msgid "Négociation de prix"
+msgstr "Négociation de prix"
+
+#: .\core\templatetags\ndb_tags.py:190
+msgid "Réponse à ma négociation"
+msgstr "Réponse à ma négociation"
+
+#: .\core\templatetags\ndb_tags.py:191
+msgid "Statut de commande"
+msgstr "Statut de commande"
+
+#: .\core\templatetags\ndb_tags.py:192
+msgid "Solde SMS bas"
+msgstr "Solde SMS bas"
+
+#: .\core\templatetags\ndb_tags.py:193
+msgid "Manuel"
+msgstr "Manuel"
+
+#: .\core\templatetags\ndb_tags.py:196
+msgid "Texte"
+msgstr "Texte"
+
+#: .\core\templatetags\ndb_tags.py:197
+msgid "Nombre"
+msgstr "Nombre"
+
+#: .\core\templatetags\ndb_tags.py:198
+#: .\templates\adminpanel\products\pending.html:19
+#: .\templates\adminpanel\publications\list.html:15
+msgid "Date"
+msgstr "Date"
+
+#: .\core\templatetags\ndb_tags.py:199
+msgid "Oui / Non"
+msgstr "Oui / Non"
+
+#: .\core\templatetags\ndb_tags.py:201
+msgid "Acceptée"
+msgstr "Acceptée"
+
+#: .\core\templatetags\ndb_tags.py:202
+msgid "Refusée"
+msgstr "Refusée"
+
+#: .\core\templatetags\ndb_tags.py:203
+#: .\templates\adminpanel\negotiations\detail.html:65
+#: .\templates\negotiations\detail.html:65
+msgid "Contre-offre"
+msgstr "Contre-offre"
+
+#: .\negotiations\views.py:42
+msgid "Votre proposition a été envoyée à l'équipe NDB Shopping."
+msgstr "Votre proposition a été envoyée à l'équipe NDB Shopping."
+
+#: .\negotiations\views.py:44
+msgid "Impossible d'envoyer la proposition."
+msgstr "Impossible d'envoyer la proposition."
+
+#: .\negotiations\views.py:88
+msgid "Votre contre-offre a été envoyée."
+msgstr "Votre contre-offre a été envoyée."
+
+#: .\negotiations\views.py:94
+msgid "Prix accepté ! Vous pouvez l'ajouter au panier."
+msgstr "Prix accepté ! Vous pouvez l'ajouter au panier."
+
+#: .\negotiations\views.py:96
+msgid "Impossible d'accepter cette offre."
+msgstr "Impossible d'accepter cette offre."
+
+#: .\templates\404.html:3
+msgid "Page introuvable"
+msgstr "Page introuvable"
+
+#: .\templates\404.html:7
+msgid "Cette page n'existe pas."
+msgstr "Cette page n'existe pas."
+
+#: .\templates\404.html:8 .\templates\500.html:14
+msgid "Retour à l'accueil"
+msgstr "Retour à l'accueil"
+
+#: .\templates\500.html:7
+msgid "Erreur"
+msgstr "Erreur"
+
+#: .\templates\500.html:12 .\templates\base.html:275
+msgid "Service temporairement indisponible"
+msgstr "Service temporairement indisponible"
+
+#: .\templates\500.html:13
+msgid "Une erreur interne s'est produite. Réessayez dans un instant."
+msgstr "Une erreur interne s'est produite. Réessayez dans un instant."
+
+#: .\templates\accounts\checkout.html:4
+msgid "Livraison"
+msgstr "Livraison"
+
+#: .\templates\accounts\checkout.html:8
+msgid "Finaliser la commande"
+msgstr "Finaliser la commande"
+
+#: .\templates\accounts\checkout.html:9
+msgid "Précisez l'adresse. Le paiement se fait à la livraison."
+msgstr "Précisez l'adresse. Le paiement se fait à la livraison."
+
+#: .\templates\accounts\checkout.html:12
+msgid "Livraison à Nouadhibou"
+msgstr "Livraison à Nouadhibou"
+
+#: .\templates\accounts\checkout.html:14
+msgid "Adresse / précisions"
+msgstr "Adresse / précisions"
+
+#: .\templates\accounts\checkout.html:17
+msgid "Confirmer la commande"
+msgstr "Confirmer la commande"
+
+#: .\templates\accounts\favorites.html:4 .\templates\accounts\favorites.html:8
+#: .\templates\base.html:96 .\templates\base.html:164
+msgid "Mes favoris"
+msgstr "Mes favoris"
+
+#: .\templates\accounts\favorites.html:17
+msgid ""
+"Vous n'avez pas encore de favoris. Ajoutez des produits depuis leur fiche."
+msgstr ""
+"Vous n'avez pas encore de favoris. Ajoutez des produits depuis leur fiche."
+
+#: .\templates\accounts\favorites.html:18 .\templates\accounts\orders.html:29
+#: .\templates\cart\cart.html:13 .\templates\negotiations\list.html:24
+msgid "Parcourir les produits"
+msgstr "Parcourir les produits"
+
+#: .\templates\accounts\login.html:4 .\templates\base.html:109
+#: .\templates\base.html:173
+msgid "Connexion"
+msgstr "Connexion"
+
+#: .\templates\accounts\login.html:10 .\templates\accounts\login.html:38
+#: .\templates\accounts\register.html:16 .\templates\accounts\register.html:49
+msgid "Se connecter"
+msgstr "Se connecter"
+
+#: .\templates\accounts\login.html:11
+msgid "Entrez votre numéro mauritanien et votre mot de passe."
+msgstr "Entrez votre numéro mauritanien et votre mot de passe."
+
+#: .\templates\accounts\login.html:15
+msgid "Aucun compte n'existe pour ce numéro."
+msgstr "Aucun compte n'existe pour ce numéro."
+
+#: .\templates\accounts\login.html:16 .\templates\accounts\login.html:42
+#: .\templates\accounts\otp.html:23 .\templates\accounts\register.html:4
+#: .\templates\accounts\register.html:10 .\templates\accounts\register.html:45
+#: .\templates\adminpanel\users\form.html:4
+#: .\templates\adminpanel\users\form.html:8
+#: .\templates\adminpanel\users\list.html:9
+msgid "Créer un compte"
+msgstr "Créer un compte"
+
+#: .\templates\accounts\login.html:24 .\templates\accounts\register.html:31
+#: .\templates\adminpanel\orders\list.html:28
+#: .\templates\adminpanel\users\form.html:16
+#: .\templates\adminpanel\users\list.html:31 .\templates\base.html:249
+msgid "Téléphone"
+msgstr "Téléphone"
+
+#: .\templates\accounts\login.html:27 .\templates\accounts\register.html:34
+#: .\templates\adminpanel\users\form.html:17
+msgid "ex. 2xxxxxxx"
+msgstr "ex. 2xxxxxxx"
+
+#: .\templates\accounts\login.html:29 .\templates\accounts\register.html:36
+#: .\templates\adminpanel\users\form.html:18
+msgid "8 chiffres, commence par 2, 3 ou 4."
+msgstr "8 chiffres, commence par 2, 3 ou 4."
+
+#: .\templates\accounts\login.html:32 .\templates\accounts\register.html:39
+#: .\templates\adminpanel\users\form.html:21
+msgid "Mot de passe"
+msgstr "Mot de passe"
+
+#: .\templates\accounts\login.html:41
+msgid "Pas encore de compte ?"
+msgstr "Pas encore de compte ?"
+
+#: .\templates\accounts\my_listings.html:4
+#: .\templates\accounts\my_listings.html:12 .\templates\accounts\sell.html:95
+#: .\templates\accounts\sell_media.html:20 .\templates\base.html:94
+#: .\templates\base.html:162 .\templates\base.html:241
+msgid "Mes annonces"
+msgstr "Mes annonces"
+
+#: .\templates\accounts\my_listings.html:7
+msgid "Marquer cette annonce comme vendue ?"
+msgstr "Marquer cette annonce comme vendue ?"
+
+#: .\templates\accounts\my_listings.html:8
+msgid "Archiver cette annonce ? Elle ne sera plus visible dans le catalogue."
+msgstr "Archiver cette annonce ? Elle ne sera plus visible dans le catalogue."
+
+#: .\templates\accounts\my_listings.html:9
+msgid "Remettre cette annonce en ligne ?"
+msgstr "Remettre cette annonce en ligne ?"
+
+#: .\templates\accounts\my_listings.html:13 .\templates\accounts\sell.html:4
+#: .\templates\accounts\sell.html:8
+msgid "Vendre un produit"
+msgstr "Vendre un produit"
+
+#: .\templates\accounts\my_listings.html:27
+msgid "En attente de validation"
+msgstr "En attente de validation"
+
+#: .\templates\accounts\my_listings.html:29
+msgid "En ligne"
+msgstr "En ligne"
+
+#: .\templates\accounts\my_listings.html:45
+msgid "Raison"
+msgstr "Raison"
+
+#: .\templates\accounts\my_listings.html:49 .\templates\accounts\sell.html:60
+#: .\templates\accounts\sell_media.html:4
+#: .\templates\accounts\sell_media.html:8
+#: .\templates\adminpanel\products\images.html:4
+#: .\templates\adminpanel\products\images.html:8
+msgid "Photos et vidéos"
+msgstr "Photos et vidéos"
+
+#: .\templates\accounts\my_listings.html:56
+#: .\templates\adminpanel\products\list.html:75
+msgid "Marquer comme vendu"
+msgstr "Marquer comme vendu"
+
+#: .\templates\accounts\my_listings.html:60
+#: .\templates\adminpanel\products\list.html:79
+msgid "Archiver"
+msgstr "Archiver"
+
+#: .\templates\accounts\my_listings.html:67
+#: .\templates\adminpanel\products\list.html:84
+msgid "Remettre en ligne"
+msgstr "Remettre en ligne"
+
+#: .\templates\accounts\my_listings.html:74
+msgid "Vous n'avez pas encore soumis d'annonce."
+msgstr "Vous n'avez pas encore soumis d'annonce."
+
+#: .\templates\accounts\notifications.html:4
+#: .\templates\accounts\notifications.html:8
+#: .\templates\adminpanel\dashboard.html:38
+#: .\templates\adminpanel\notifications\list.html:4
+#: .\templates\adminpanel\notifications\list.html:7 .\templates\base.html:75
+#: .\templates\base_admin.html:35 .\templates\includes\admin_nav.html:37
+msgid "Notifications"
+msgstr "Notifications"
+
+#: .\templates\accounts\notifications.html:18
+msgid "Voir le détail"
+msgstr "Voir le détail"
+
+#: .\templates\accounts\notifications.html:25
+msgid "Aucune notification pour le moment."
+msgstr "Aucune notification pour le moment."
+
+#: .\templates\accounts\orders.html:4 .\templates\accounts\orders.html:8
+#: .\templates\base.html:93 .\templates\base.html:161
+msgid "Mes commandes"
+msgstr "Mes commandes"
+
+#: .\templates\accounts\orders.html:13
+#: .\templates\adminpanel\orders\detail.html:4
+#: .\templates\adminpanel\orders\detail.html:8
+#, python-format
+msgid "Commande #%(id)s"
+msgstr "Commande #%(id)s"
+
+#: .\templates\accounts\orders.html:22
+#: .\templates\adminpanel\orders\detail.html:47
+#: .\templates\adminpanel\orders\list.html:31
+msgid "Total"
+msgstr "Total"
+
+#: .\templates\accounts\orders.html:28
+msgid "Vous n'avez pas encore de commande."
+msgstr "Vous n'avez pas encore de commande."
+
+#: .\templates\accounts\otp.html:4
+msgid "Code SMS"
+msgstr "Code SMS"
+
+#: .\templates\accounts\otp.html:10
+msgid "Vérification SMS"
+msgstr "Vérification SMS"
+
+#: .\templates\accounts\otp.html:11
+#, python-format
+msgid "Un code a été envoyé au %(telephone)s."
+msgstr "Un code a été envoyé au %(telephone)s."
+
+#: .\templates\accounts\otp.html:15
+msgid "Code OTP"
+msgstr "Code OTP"
+
+#: .\templates\accounts\otp.html:18
+#: .\templates\adminpanel\products\pending.html:39
+msgid "Valider"
+msgstr "Valider"
+
+#: .\templates\accounts\otp.html:21
+msgid "Retour à la connexion"
+msgstr "Retour à la connexion"
+
+#: .\templates\accounts\register.html:11
+msgid ""
+"Indiquez votre nom, votre numéro mauritanien et un mot de passe. Un code SMS"
+" vous sera envoyé pour vérifier le téléphone."
+msgstr ""
+"Indiquez votre nom, votre numéro mauritanien et un mot de passe. Un code SMS"
+" vous sera envoyé pour vérifier le téléphone."
+
+#: .\templates\accounts\register.html:15
+msgid "Ce numéro de téléphone est déjà utilisé."
+msgstr "Ce numéro de téléphone est déjà utilisé."
+
+#: .\templates\accounts\register.html:24 .\templates\accounts\sell.html:15
+#: .\templates\adminpanel\categories\attributes.html:29
+#: .\templates\adminpanel\categories\form.html:11
+#: .\templates\adminpanel\products\form.html:42
+#: .\templates\adminpanel\products\list.html:48
+#: .\templates\adminpanel\products\pending.html:15
+#: .\templates\adminpanel\users\form.html:12
+#: .\templates\adminpanel\users\list.html:30
+msgid "Nom"
+msgstr "Nom"
+
+#: .\templates\accounts\register.html:48
+msgid "Déjà un compte ?"
+msgstr "Déjà un compte ?"
+
+#: .\templates\accounts\sell.html:9
+msgid ""
+"Votre annonce sera visible sur le catalogue après validation par notre "
+"équipe."
+msgstr ""
+"Votre annonce sera visible sur le catalogue après validation par notre "
+"équipe."
+
+#: .\templates\accounts\sell.html:19
+#: .\templates\adminpanel\products\form.html:66
+#: .\templates\adminpanel\products\list.html:49
+#: .\templates\adminpanel\products\pending.html:16 .\templates\base.html:56
+#: .\templates\catalog\product_list.html:18
+msgid "Catégorie"
+msgstr "Catégorie"
+
+#: .\templates\accounts\sell.html:21
+#: .\templates\adminpanel\products\form.html:68
+msgid "— Choisir —"
+msgstr "— Choisir —"
+
+#: .\templates\accounts\sell.html:28
+#: .\templates\adminpanel\products\form.html:54
+msgid "Description"
+msgstr "Description"
+
+#: .\templates\accounts\sell.html:32
+#: .\templates\adminpanel\products\form.html:58
+msgid "Prix (UM)"
+msgstr "Prix (UM)"
+
+#: .\templates\accounts\sell.html:36
+#: .\templates\adminpanel\products\form.html:62
+msgid "Stock"
+msgstr "Stock"
+
+#: .\templates\accounts\sell.html:40
+#: .\templates\adminpanel\orders\list.html:29
+#: .\templates\adminpanel\products\form.html:75
+#: .\templates\catalog\product_list.html:40
+msgid "Ville"
+msgstr "Ville"
+
+#: .\templates\accounts\sell.html:42 .\templates\accounts\sell.html:51
+#: .\templates\adminpanel\products\form.html:77
+#: .\templates\adminpanel\products\form.html:86
+msgid "— Non précisé —"
+msgstr "— Non précisé —"
+
+#: .\templates\accounts\sell.html:49
+#: .\templates\adminpanel\products\form.html:84
+#: .\templates\catalog\product_list.html:49
+msgid "État"
+msgstr "État"
+
+#: .\templates\accounts\sell.html:61
+msgid ""
+"JPG, PNG ou WebP (5 Mo max, 6 images) et MP4/WebM (20 Mo max, 2 vidéos). "
+"Optionnel."
+msgstr ""
+"JPG, PNG ou WebP (5 Mo max, 6 images) et MP4/WebM (20 Mo max, 2 vidéos). "
+"Optionnel."
+
+#: .\templates\accounts\sell.html:64
+#: .\templates\adminpanel\products\list.html:88
+msgid "Images"
+msgstr "Images"
+
+#: .\templates\accounts\sell.html:68
+msgid "Vidéos"
+msgstr "Vidéos"
+
+#: .\templates\accounts\sell.html:74
+#: .\templates\adminpanel\products\form.html:121
+msgid "Attributs de la catégorie"
+msgstr "Attributs de la catégorie"
+
+#: .\templates\accounts\sell.html:75
+#: .\templates\adminpanel\products\form.html:122
+msgid "Chargement des attributs…"
+msgstr "Chargement des attributs…"
+
+#: .\templates\accounts\sell.html:76
+#: .\templates\adminpanel\products\form.html:123
+msgid ""
+"Choisissez une catégorie pour afficher les champs spécifiques (hôtel, "
+"voiture, etc.)."
+msgstr ""
+"Choisissez une catégorie pour afficher les champs spécifiques (hôtel, "
+"voiture, etc.)."
+
+#: .\templates\accounts\sell.html:77
+#: .\templates\adminpanel\products\form.html:124
+msgid "Impossible de charger les attributs."
+msgstr "Impossible de charger les attributs."
+
+#: .\templates\accounts\sell.html:78
+#: .\templates\adminpanel\products\form.html:125
+msgid "Aucun attribut spécifique pour cette catégorie."
+msgstr "Aucun attribut spécifique pour cette catégorie."
+
+#: .\templates\accounts\sell.html:79
+#: .\templates\adminpanel\products\form.html:126
+msgid "Service temporairement indisponible."
+msgstr "Service temporairement indisponible."
+
+#: .\templates\accounts\sell.html:80
+#: .\templates\adminpanel\products\form.html:127
+msgid "Oui"
+msgstr "Oui"
+
+#: .\templates\accounts\sell.html:81
+#: .\templates\adminpanel\products\form.html:128
+msgid "Non"
+msgstr "Non"
+
+#: .\templates\accounts\sell.html:91
+#: .\templates\adminpanel\products\form.html:138
+msgid "Choisissez une catégorie pour charger les champs dynamiques."
+msgstr "Choisissez une catégorie pour charger les champs dynamiques."
+
+#: .\templates\accounts\sell.html:94
+msgid "Soumettre l'annonce"
+msgstr "Soumettre l'annonce"
+
+#: .\templates\accounts\sell_confirmation.html:4
+#: .\templates\accounts\sell_confirmation.html:10
+msgid "Annonce soumise"
+msgstr "Annonce soumise"
+
+#: .\templates\accounts\sell_confirmation.html:11
+msgid ""
+"Votre produit a été soumis et sera visible après validation par notre "
+"équipe."
+msgstr ""
+"Votre produit a été soumis et sera visible après validation par notre "
+"équipe."
+
+#: .\templates\accounts\sell_confirmation.html:13
+msgid "Voir mes annonces"
+msgstr "Voir mes annonces"
+
+#: .\templates\accounts\sell_confirmation.html:14
+msgid "Ajouter une autre annonce"
+msgstr "Ajouter une autre annonce"
+
+#: .\templates\accounts\sell_media.html:9
+msgid ""
+"Ajoutez jusqu'à 6 images et 2 vidéos. Vous pourrez aussi terminer sans "
+"média."
+msgstr ""
+"Ajoutez jusqu'à 6 images et 2 vidéos. Vous pourrez aussi terminer sans "
+"média."
+
+#: .\templates\accounts\sell_media.html:19
+msgid "Terminer"
+msgstr "Terminer"
+
+#: .\templates\adminpanel\categories\attributes.html:4
+#: .\templates\adminpanel\categories\attributes.html:9
+#: .\templates\adminpanel\categories\list.html:49
+msgid "Attributs"
+msgstr "Attributs"
+
+#: .\templates\adminpanel\categories\attributes.html:7
+msgid "Supprimer cet attribut ?"
+msgstr "Supprimer cet attribut ?"
+
+#: .\templates\adminpanel\categories\attributes.html:8
+#: .\templates\adminpanel\categories\list.html:4
+#: .\templates\adminpanel\categories\list.html:12 .\templates\base.html:128
+#: .\templates\base.html:154 .\templates\base.html:236
+#: .\templates\catalog\categories.html:4 .\templates\catalog\categories.html:9
+#: .\templates\includes\admin_nav.html:8
+msgid "Catégories"
+msgstr "Catégories"
+
+#: .\templates\adminpanel\categories\attributes.html:17
+#: .\templates\adminpanel\categories\list.html:53
+#: .\templates\adminpanel\products\list.html:91
+#: .\templates\adminpanel\publications\list.html:27
+#: .\templates\adminpanel\users\list.html:87
+#: .\templates\catalog\product_detail.html:209
+#: .\templates\includes\product_media_form.html:12
+msgid "Supprimer"
+msgstr "Supprimer"
+
+#: .\templates\adminpanel\categories\attributes.html:21
+msgid "Aucun attribut. Ajoutez-en pour les hôtels, voitures, etc."
+msgstr "Aucun attribut. Ajoutez-en pour les hôtels, voitures, etc."
+
+#: .\templates\adminpanel\categories\attributes.html:27
+msgid "Ajouter un attribut"
+msgstr "Ajouter un attribut"
+
+#: .\templates\adminpanel\categories\attributes.html:30
+msgid "ex. Kilométrage"
+msgstr "ex. Kilométrage"
+
+#: .\templates\adminpanel\categories\attributes.html:33
+#: .\templates\adminpanel\categories\form.html:15
+msgid "Type"
+msgstr "Type"
+
+#: .\templates\adminpanel\categories\attributes.html:40
+msgid "Ajouter"
+msgstr "Ajouter"
+
+#: .\templates\adminpanel\categories\form.html:4
+#: .\templates\adminpanel\categories\form.html:7
+#: .\templates\adminpanel\categories\list.html:50
+#: .\templates\adminpanel\products\form.html:4
+#: .\templates\adminpanel\products\form.html:7
+#: .\templates\adminpanel\products\list.html:87
+#: .\templates\adminpanel\publications\form.html:4
+#: .\templates\adminpanel\publications\form.html:7
+#: .\templates\adminpanel\publications\list.html:24
+msgid "Modifier"
+msgstr "Modifier"
+
+#: .\templates\adminpanel\categories\form.html:4
+#: .\templates\adminpanel\publications\form.html:4
+#: .\templates\adminpanel\publications\list.html:10
+msgid "Nouvelle"
+msgstr "Nouvelle"
+
+#: .\templates\adminpanel\categories\form.html:4
+msgid "catégorie"
+msgstr "catégorie"
+
+#: .\templates\adminpanel\categories\form.html:7
+#: .\templates\adminpanel\categories\list.html:13
+msgid "Nouvelle catégorie"
+msgstr "Nouvelle catégorie"
+
+#: .\templates\adminpanel\categories\form.html:23
+msgid "Catégorie parente"
+msgstr "Catégorie parente"
+
+#: .\templates\adminpanel\categories\form.html:25
+msgid "— Aucune (racine) —"
+msgstr "— Aucune (racine) —"
+
+#: .\templates\adminpanel\categories\form.html:32
+#: .\templates\adminpanel\products\pending.html:14
+#: .\templates\adminpanel\publications\form.html:19
+msgid "Image"
+msgstr "Image"
+
+#: .\templates\adminpanel\categories\form.html:37
+#: .\templates\adminpanel\publications\form.html:23
+msgid "Image actuelle. Choisissez un fichier pour la remplacer."
+msgstr "Image actuelle. Choisissez un fichier pour la remplacer."
+
+#: .\templates\adminpanel\categories\form.html:42
+#: .\templates\adminpanel\publications\form.html:27
+msgid "JPG, PNG ou WebP — 5 Mo maximum."
+msgstr "JPG, PNG ou WebP — 5 Mo maximum."
+
+#: .\templates\adminpanel\categories\form.html:44
+#: .\templates\adminpanel\orders\detail.html:60
+#: .\templates\adminpanel\products\form.html:141
+#: .\templates\adminpanel\publications\form.html:45
+msgid "Enregistrer"
+msgstr "Enregistrer"
+
+#: .\templates\adminpanel\categories\form.html:45
+#: .\templates\adminpanel\products\form.html:142
+#: .\templates\adminpanel\publications\form.html:46
+#: .\templates\adminpanel\users\form.html:33
+msgid "Annuler"
+msgstr "Annuler"
+
+#: .\templates\adminpanel\categories\list.html:7
+msgid "Supprimer cette catégorie ?"
+msgstr "Supprimer cette catégorie ?"
+
+#: .\templates\adminpanel\categories\list.html:8
+msgid "Ordre enregistré"
+msgstr "Ordre enregistré"
+
+#: .\templates\adminpanel\categories\list.html:10
+msgid "Déplacer"
+msgstr "Déplacer"
+
+#: .\templates\adminpanel\categories\list.html:17
+msgid ""
+"Glissez les catégories par la poignée pour changer leur ordre d'affichage "
+"sur le site."
+msgstr ""
+"Glissez les catégories par la poignée pour changer leur ordre d'affichage "
+"sur le site."
+
+#: .\templates\adminpanel\categories\list.html:41
+msgid "modifier"
+msgstr "modifier"
+
+#: .\templates\adminpanel\categories\list.html:42
+msgid "attributs"
+msgstr "attributs"
+
+#: .\templates\adminpanel\categories\list.html:60
+#: .\templates\catalog\categories.html:18
+msgid "Aucune catégorie."
+msgstr "Aucune catégorie."
+
+#: .\templates\adminpanel\dashboard.html:4
+#: .\templates\adminpanel\dashboard.html:7
+#: .\templates\includes\admin_nav.html:5
+msgid "Tableau de bord"
+msgstr "Tableau de bord"
+
+#: .\templates\adminpanel\dashboard.html:11
+msgid "Commandes en attente"
+msgstr "Commandes en attente"
+
+#: .\templates\adminpanel\dashboard.html:17
+msgid "Notifications non lues"
+msgstr "Notifications non lues"
+
+#: .\templates\adminpanel\dashboard.html:25
+msgid "Dernières commandes en attente"
+msgstr "Dernières commandes en attente"
+
+#: .\templates\adminpanel\dashboard.html:33
+msgid "Aucune commande en attente."
+msgstr "Aucune commande en attente."
+
+#: .\templates\adminpanel\dashboard.html:46
+msgid "Rien de nouveau."
+msgstr "Rien de nouveau."
+
+#: .\templates\adminpanel\negotiations\detail.html:4
+#, python-format
+msgid "Négociation #%(id)s"
+msgstr "Négociation #%(id)s"
+
+#: .\templates\adminpanel\negotiations\detail.html:7
+#: .\templates\adminpanel\negotiations\list.html:4
+#: .\templates\includes\admin_nav.html:28
+msgid "Négociations"
+msgstr "Négociations"
+
+#: .\templates\adminpanel\negotiations\detail.html:22
+#: .\templates\adminpanel\negotiations\list.html:29
+#: .\templates\negotiations\detail.html:13
+#: .\templates\negotiations\list.html:16
+#: .\templates\negotiations\start.html:16
+msgid "Prix catalogue"
+msgstr "Prix catalogue"
+
+#: .\templates\adminpanel\negotiations\detail.html:32
+msgid "Vous (admin)"
+msgstr "Vous (admin)"
+
+#: .\templates\adminpanel\negotiations\detail.html:46
+#: .\templates\negotiations\detail.html:46
+msgid "Votre message"
+msgstr "Votre message"
+
+#: .\templates\adminpanel\negotiations\detail.html:47
+#: .\templates\negotiations\detail.html:47
+msgid "Écrire un message…"
+msgstr "Écrire un message…"
+
+#: .\templates\adminpanel\negotiations\detail.html:50
+#: .\templates\negotiations\detail.html:50
+msgid "Envoyer"
+msgstr "Envoyer"
+
+#: .\templates\adminpanel\negotiations\detail.html:61
+msgid "Contre-proposer un prix (UM)"
+msgstr "Contre-proposer un prix (UM)"
+
+#: .\templates\adminpanel\negotiations\detail.html:74
+msgid "Valider ce prix"
+msgstr "Valider ce prix"
+
+#: .\templates\adminpanel\negotiations\detail.html:77
+msgid "En attente de la réponse de l'acheteur…"
+msgstr "En attente de la réponse de l'acheteur…"
+
+#: .\templates\adminpanel\negotiations\detail.html:82
+msgid "Refuser"
+msgstr "Refuser"
+
+#: .\templates\adminpanel\negotiations\detail.html:87
+#: .\templates\negotiations\detail.html:87
+msgid "Cette négociation est close."
+msgstr "Cette négociation est close."
+
+#: .\templates\adminpanel\negotiations\list.html:7
+msgid "Négociations de prix"
+msgstr "Négociations de prix"
+
+#: .\templates\adminpanel\negotiations\list.html:11
+#: .\templates\adminpanel\orders\list.html:11
+#: .\templates\adminpanel\products\list.html:25
+msgid "Tous les statuts"
+msgstr "Tous les statuts"
+
+#: .\templates\adminpanel\negotiations\list.html:18
+#: .\templates\adminpanel\notifications\list.html:17
+#: .\templates\adminpanel\orders\list.html:18
+#: .\templates\adminpanel\products\list.html:40
+#: .\templates\adminpanel\users\list.html:22
+#: .\templates\catalog\product_list.html:38
+msgid "Filtrer"
+msgstr "Filtrer"
+
+#: .\templates\adminpanel\negotiations\list.html:28
+msgid "Acheteur"
+msgstr "Acheteur"
+
+#: .\templates\adminpanel\negotiations\list.html:30
+msgid "Prix sur la table"
+msgstr "Prix sur la table"
+
+#: .\templates\adminpanel\negotiations\list.html:31
+#: .\templates\adminpanel\orders\list.html:30
+#: .\templates\adminpanel\products\form.html:46
+#: .\templates\adminpanel\products\list.html:51
+#: .\templates\adminpanel\publications\form.html:34
+#: .\templates\adminpanel\publications\list.html:15
+#: .\templates\adminpanel\users\list.html:33
+msgid "Statut"
+msgstr "Statut"
+
+#: .\templates\adminpanel\negotiations\list.html:44
+msgid "Ouvrir"
+msgstr "Ouvrir"
+
+#: .\templates\adminpanel\negotiations\list.html:47
+msgid "Aucune négociation."
+msgstr "Aucune négociation."
+
+#: .\templates\adminpanel\notifications\list.html:11
+msgid "Toutes"
+msgstr "Toutes"
+
+#: .\templates\adminpanel\notifications\list.html:12
+msgid "Non lues"
+msgstr "Non lues"
+
+#: .\templates\adminpanel\notifications\list.html:13
+msgid "Lues"
+msgstr "Lues"
+
+#: .\templates\adminpanel\notifications\list.html:30
+msgid "Voir les commandes"
+msgstr "Voir les commandes"
+
+#: .\templates\adminpanel\notifications\list.html:32
+msgid "Voir les produits à valider"
+msgstr "Voir les produits à valider"
+
+#: .\templates\adminpanel\notifications\list.html:39
+msgid "Marquer lue"
+msgstr "Marquer lue"
+
+#: .\templates\adminpanel\notifications\list.html:44
+msgid "Aucune notification."
+msgstr "Aucune notification."
+
+#: .\templates\adminpanel\orders\detail.html:7
+#: .\templates\adminpanel\orders\list.html:4
+#: .\templates\adminpanel\orders\list.html:7
+#: .\templates\includes\admin_nav.html:25
+msgid "Commandes"
+msgstr "Commandes"
+
+#: .\templates\adminpanel\orders\detail.html:29
+msgid "Qté"
+msgstr "Qté"
+
+#: .\templates\adminpanel\orders\detail.html:29
+msgid "Prix unit. (commande)"
+msgstr "Prix unit. (commande)"
+
+#: .\templates\adminpanel\orders\detail.html:29 .\templates\cart\cart.html:23
+msgid "Sous-total"
+msgstr "Sous-total"
+
+#: .\templates\adminpanel\orders\detail.html:39
+msgid "Prix actuel"
+msgstr "Prix actuel"
+
+#: .\templates\adminpanel\orders\detail.html:52
+msgid "Changer le statut"
+msgstr "Changer le statut"
+
+#: .\templates\adminpanel\orders\list.html:27
+msgid "Client"
+msgstr "Client"
+
+#: .\templates\adminpanel\orders\list.html:48
+msgid "Détail"
+msgstr "Détail"
+
+#: .\templates\adminpanel\orders\list.html:51
+msgid "Aucune commande."
+msgstr "Aucune commande."
+
+#: .\templates\adminpanel\products\form.html:4
+#: .\templates\adminpanel\products\list.html:14
+msgid "Nouveau"
+msgstr "Nouveau"
+
+#: .\templates\adminpanel\products\form.html:4
+msgid "produit"
+msgstr "produit"
+
+#: .\templates\adminpanel\products\form.html:7
+#: .\templates\adminpanel\products\import.html:11
+msgid "Nouveau produit"
+msgstr "Nouveau produit"
+
+#: .\templates\adminpanel\products\form.html:10
+msgid "Mode de création"
+msgstr "Mode de création"
+
+#: .\templates\adminpanel\products\form.html:11
+msgid "Ajouter manuellement"
+msgstr "Ajouter manuellement"
+
+#: .\templates\adminpanel\products\form.html:12
+msgid "Importer depuis un site externe"
+msgstr "Importer depuis un site externe"
+
+#: .\templates\adminpanel\products\form.html:17
+msgid "Extraction en cours…"
+msgstr "Extraction en cours…"
+
+#: .\templates\adminpanel\products\form.html:18
+msgid "Extraction impossible. Vérifiez l’URL et réessayez."
+msgstr "Extraction impossible. Vérifiez l’URL et réessayez."
+
+#: .\templates\adminpanel\products\form.html:19
+msgid "Collez une URL de page produit."
+msgstr "Collez une URL de page produit."
+
+#: .\templates\adminpanel\products\form.html:20
+msgid "Aucune image détectée sur cette page."
+msgstr "Aucune image détectée sur cette page."
+
+#: .\templates\adminpanel\products\form.html:21
+msgid "Importer depuis Alibaba, AliExpress, Amazon…"
+msgstr "Importer depuis Alibaba, AliExpress, Amazon…"
+
+#: .\templates\adminpanel\products\form.html:22
+msgid ""
+"Collez le lien de la page produit externe, extrayez ses informations, puis "
+"ajustez-les ci-dessous avant de publier."
+msgstr ""
+"Collez le lien de la page produit externe, extrayez ses informations, puis "
+"ajustez-les ci-dessous avant de publier."
+
+#: .\templates\adminpanel\products\form.html:25
+msgid "URL du produit"
+msgstr "URL du produit"
+
+#: .\templates\adminpanel\products\form.html:29
+msgid "Extraire / Pré-remplir"
+msgstr "Extraire / Pré-remplir"
+
+#: .\templates\adminpanel\products\form.html:98
+#: .\templates\includes\product_media_form.html:37
+msgid "Galerie d'images"
+msgstr "Galerie d'images"
+
+#: .\templates\adminpanel\products\form.html:99
+msgid "Enregistrez le produit pour ajouter des photos et des vidéos."
+msgstr "Enregistrez le produit pour ajouter des photos et des vidéos."
+
+#: .\templates\adminpanel\products\form.html:103
+msgid "Source"
+msgstr "Source"
+
+#: .\templates\adminpanel\products\form.html:106
+msgid "Origine"
+msgstr "Origine"
+
+#: .\templates\adminpanel\products\form.html:114
+msgid "URL source (optionnel)"
+msgstr "URL source (optionnel)"
+
+#: .\templates\adminpanel\products\form.html:116
+msgid "Lien d'origine (Facebook, Alibaba). Pas l'URL de l'image."
+msgstr "Lien d'origine (Facebook, Alibaba). Pas l'URL de l'image."
+
+#: .\templates\adminpanel\products\import.html:4
+msgid "Import produits"
+msgstr "Import produits"
+
+#: .\templates\adminpanel\products\import.html:7
+msgid "Importer des produits"
+msgstr "Importer des produits"
+
+#: .\templates\adminpanel\products\import.html:10
+msgid ""
+"Pour importer un seul produit depuis un site externe (Alibaba, AliExpress, "
+"Amazon…), utilisez l'onglet « Importer depuis un site externe » de la page"
+msgstr ""
+"Pour importer un seul produit depuis un site externe (Alibaba, AliExpress, "
+"Amazon…), utilisez l'onglet « Importer depuis un site externe » de la page"
+
+#: .\templates\adminpanel\products\import.html:18
+msgid "Fichier CSV"
+msgstr "Fichier CSV"
+
+#: .\templates\adminpanel\products\import.html:19
+msgid "Colonnes :"
+msgstr "Colonnes :"
+
+#: .\templates\adminpanel\products\import.html:21
+msgid "Fichier"
+msgstr "Fichier"
+
+#: .\templates\adminpanel\products\import.html:24
+msgid "Importer le CSV"
+msgstr "Importer le CSV"
+
+#: .\templates\adminpanel\products\import.html:31
+msgid "Importés :"
+msgstr "Importés :"
+
+#: .\templates\adminpanel\products\import.html:35
+msgid "Ligne"
+msgstr "Ligne"
+
+#: .\templates\adminpanel\products\list.html:4
+#: .\templates\adminpanel\products\list.html:12
+#: .\templates\catalog\product_list.html:4
+#: .\templates\includes\admin_nav.html:11
+msgid "Produits"
+msgstr "Produits"
+
+#: .\templates\adminpanel\products\list.html:7
+msgid "Supprimer ce produit ?"
+msgstr "Supprimer ce produit ?"
+
+#: .\templates\adminpanel\products\list.html:8
+msgid "Marquer ce produit comme vendu ?"
+msgstr "Marquer ce produit comme vendu ?"
+
+#: .\templates\adminpanel\products\list.html:9
+msgid "Archiver ce produit ? Il ne sera plus visible dans le catalogue."
+msgstr "Archiver ce produit ? Il ne sera plus visible dans le catalogue."
+
+#: .\templates\adminpanel\products\list.html:10
+msgid "Remettre ce produit en ligne ?"
+msgstr "Remettre ce produit en ligne ?"
+
+#: .\templates\adminpanel\products\list.html:15
+msgid "Importer"
+msgstr "Importer"
+
+#: .\templates\adminpanel\products\list.html:21 .\templates\base.html:65
+#: .\templates\base.html:147 .\templates\catalog\product_list.html:30
+msgid "Recherche"
+msgstr "Recherche"
+
+#: .\templates\adminpanel\products\list.html:33 .\templates\base.html:57
+#: .\templates\base.html:136 .\templates\catalog\product_list.html:19
+#: .\templates\includes\category_icon_card.html:5
+msgid "Toutes les catégories"
+msgstr "Toutes les catégories"
+
+#: .\templates\adminpanel\products\list.html:50
+#: .\templates\adminpanel\products\pending.html:17
+#: .\templates\cart\cart.html:21
+msgid "Prix"
+msgstr "Prix"
+
+#: .\templates\adminpanel\products\list.html:97
+msgid "Aucun produit."
+msgstr "Aucun produit."
+
+#: .\templates\adminpanel\products\pending.html:4
+#: .\templates\adminpanel\products\pending.html:8
+#: .\templates\includes\admin_nav.html:14
+msgid "Produits à valider"
+msgstr "Produits à valider"
+
+#: .\templates\adminpanel\products\pending.html:7
+msgid "Valider ce produit et le publier en ligne ?"
+msgstr "Valider ce produit et le publier en ligne ?"
+
+#: .\templates\adminpanel\products\pending.html:18
+msgid "Soumis par"
+msgstr "Soumis par"
+
+#: .\templates\adminpanel\products\pending.html:41
+msgid "Rejeter"
+msgstr "Rejeter"
+
+#: .\templates\adminpanel\products\pending.html:45
+msgid "Raison du rejet"
+msgstr "Raison du rejet"
+
+#: .\templates\adminpanel\products\pending.html:47
+msgid "Confirmer le rejet"
+msgstr "Confirmer le rejet"
+
+#: .\templates\adminpanel\products\pending.html:53
+msgid "Aucun produit en attente de validation."
+msgstr "Aucun produit en attente de validation."
+
+#: .\templates\adminpanel\publications\form.html:4
+msgid "publication"
+msgstr "publication"
+
+#: .\templates\adminpanel\publications\form.html:7
+msgid "Nouvelle publication"
+msgstr "Nouvelle publication"
+
+#: .\templates\adminpanel\publications\form.html:11
+#: .\templates\adminpanel\publications\list.html:15
+msgid "Titre"
+msgstr "Titre"
+
+#: .\templates\adminpanel\publications\form.html:15
+msgid "Contenu"
+msgstr "Contenu"
+
+#: .\templates\adminpanel\publications\form.html:30
+msgid "ID produit lié (optionnel)"
+msgstr "ID produit lié (optionnel)"
+
+#: .\templates\adminpanel\publications\form.html:43
+msgid "Afficher dans le bandeau du haut"
+msgstr "Afficher dans le bandeau du haut"
+
+#: .\templates\adminpanel\publications\list.html:4
+#: .\templates\adminpanel\publications\list.html:9
+#: .\templates\includes\admin_nav.html:34
+msgid "Publications"
+msgstr "Publications"
+
+#: .\templates\adminpanel\publications\list.html:7
+msgid "Supprimer ?"
+msgstr "Supprimer ?"
+
+#: .\templates\adminpanel\publications\list.html:32
+msgid "Aucune publication."
+msgstr "Aucune publication."
+
+#: .\templates\adminpanel\users\form.html:7
+#: .\templates\adminpanel\users\list.html:4
+#: .\templates\adminpanel\users\list.html:8
+#: .\templates\includes\admin_nav.html:40
+msgid "Comptes"
+msgstr "Comptes"
+
+#: .\templates\adminpanel\users\form.html:25
+#: .\templates\adminpanel\users\list.html:32
+#: .\templates\adminpanel\users\list.html:71
+msgid "Rôle"
+msgstr "Rôle"
+
+#: .\templates\adminpanel\users\form.html:32
+msgid "Créer"
+msgstr "Créer"
+
+#: .\templates\adminpanel\users\list.html:14
+msgid "Filtrer par rôle"
+msgstr "Filtrer par rôle"
+
+#: .\templates\adminpanel\users\list.html:15
+msgid "Tous les rôles"
+msgstr "Tous les rôles"
+
+#: .\templates\adminpanel\users\list.html:34
+msgid "Créé le"
+msgstr "Créé le"
+
+#: .\templates\adminpanel\users\list.html:54
+msgid "Vérifié"
+msgstr "Vérifié"
+
+#: .\templates\adminpanel\users\list.html:56
+msgid "Non vérifié"
+msgstr "Non vérifié"
+
+#: .\templates\adminpanel\users\list.html:59
+msgid "Actif"
+msgstr "Actif"
+
+#: .\templates\adminpanel\users\list.html:61
+msgid "Bloqué"
+msgstr "Bloqué"
+
+#: .\templates\adminpanel\users\list.html:67
+msgid "Changer le rôle ?"
+msgstr "Changer le rôle ?"
+
+#: .\templates\adminpanel\users\list.html:68
+msgid "Supprimer définitivement ce compte ?"
+msgstr "Supprimer définitivement ce compte ?"
+
+#: .\templates\adminpanel\users\list.html:76
+msgid "Changer"
+msgstr "Changer"
+
+#: .\templates\adminpanel\users\list.html:78
+#: .\templates\adminpanel\users\list.html:82
+msgid "Bloquer"
+msgstr "Bloquer"
+
+#: .\templates\adminpanel\users\list.html:78
+#: .\templates\adminpanel\users\list.html:82
+msgid "Débloquer"
+msgstr "Débloquer"
+
+#: .\templates\adminpanel\users\list.html:90
+msgid "Vous"
+msgstr "Vous"
+
+#: .\templates\adminpanel\users\list.html:95
+msgid "Aucun compte."
+msgstr "Aucun compte."
+
+#: .\templates\base.html:8
+msgid "Marketplace Mauritanie"
+msgstr "Marketplace Mauritanie"
+
+#: .\templates\base.html:28
+msgid "Fréquentation en direct"
+msgstr "Fréquentation en direct"
+
+#: .\templates\base.html:30
+msgid "Utilisateurs connectés en ligne"
+msgstr "Utilisateurs connectés en ligne"
+
+#: .\templates\base.html:33
+msgid "connectés"
+msgstr "connectés"
+
+#: .\templates\base.html:35
+msgid "Visiteurs anonymes en ligne"
+msgstr "Visiteurs anonymes en ligne"
+
+#: .\templates\base.html:38
+msgid "invités"
+msgstr "invités"
+
+#: .\templates\base.html:40
+msgid "Visiteurs uniques sur les dernières 24 heures"
+msgstr "Visiteurs uniques sur les dernières 24 heures"
+
+#: .\templates\base.html:43
+msgid "visites/24h"
+msgstr "visites/24h"
+
+#: .\templates\base.html:65 .\templates\base.html:147
+#: .\templates\catalog\product_list.html:30
+msgid "Rechercher un produit, une catégorie…"
+msgstr "Rechercher un produit, une catégorie…"
+
+#: .\templates\base.html:68 .\templates\base.html:148
+#: .\templates\catalog\product_list.html:14
+msgid "Rechercher"
+msgstr "Rechercher"
+
+#: .\templates\base.html:82 .\templates\cart\cart.html:4
+msgid "Panier"
+msgstr "Panier"
+
+#: .\templates\base.html:95 .\templates\base.html:163
+#: .\templates\negotiations\detail.html:8 .\templates\negotiations\list.html:4
+#: .\templates\negotiations\list.html:8
+msgid "Mes négociations"
+msgstr "Mes négociations"
+
+#: .\templates\base.html:98 .\templates\base.html:166
+#: .\templates\base_admin.html:7
+msgid "Espace admin"
+msgstr "Espace admin"
+
+#: .\templates\base.html:103 .\templates\base.html:169
+msgid "Déconnexion"
+msgstr "Déconnexion"
+
+#: .\templates\base.html:112 .\templates\base.html:114
+#: .\templates\base.html:171 .\templates\base.html:174
+#: .\templates\base.html:204 .\templates\base.html:239
+#: .\templates\base.html:260 .\templates\base.html:262
+#: .\templates\base.html:265 .\templates\base.html:267
+msgid "Ajouter une annonce"
+msgstr "Ajouter une annonce"
+
+#: .\templates\base.html:117 .\templates\base_admin.html:27
+#: .\templates\base_admin.html:52
+msgid "Menu"
+msgstr "Menu"
+
+#: .\templates\base.html:124
+msgid "Navigation principale"
+msgstr "Navigation principale"
+
+#: .\templates\base.html:126 .\templates\base.html:153
+#: .\templates\base.html:235 .\templates\core\home.html:4
+msgid "Accueil"
+msgstr "Accueil"
+
+#: .\templates\base.html:133
+msgid "Aucune catégorie"
+msgstr "Aucune catégorie"
+
+#: .\templates\base.html:139 .\templates\base.html:155
+#: .\templates\core\home.html:43
+msgid "Annonces vedettes"
+msgstr "Annonces vedettes"
+
+#: .\templates\base.html:140 .\templates\base.html:156
+#: .\templates\base.html:238
+msgid "Actualités de Nouadhibou"
+msgstr "Actualités de Nouadhibou"
+
+#: .\templates\base.html:141 .\templates\base.html:157
+#: .\templates\core\help.html:4
+msgid "Aide"
+msgstr "Aide"
+
+#: .\templates\base.html:152
+msgid "Navigation mobile"
+msgstr "Navigation mobile"
+
+#: .\templates\base.html:187 .\templates\base_admin.html:62
+msgid ""
+"Service temporairement indisponible. Veuillez réessayer dans un instant."
+msgstr ""
+"Service temporairement indisponible. Veuillez réessayer dans un instant."
+
+#: .\templates\base.html:200 .\templates\base.html:216
+msgid "Marketplace mauritanienne — Nouadhibou."
+msgstr "Marketplace mauritanienne — Nouadhibou."
+
+#: .\templates\base.html:203
+msgid "Vous vendez quelque chose ?"
+msgstr "Vous vendez quelque chose ?"
+
+#: .\templates\base.html:217
+msgid "Livraison uniquement à Nouadhibou."
+msgstr "Livraison uniquement à Nouadhibou."
+
+#: .\templates\base.html:219
+msgid "Bientôt disponible"
+msgstr "Bientôt disponible"
+
+#: .\templates\base.html:223
+msgid "Google Play"
+msgstr "Google Play"
+
+#: .\templates\base.html:227
+msgid "App Store"
+msgstr "App Store"
+
+#: .\templates\base.html:233
+msgid "Liens utiles"
+msgstr "Liens utiles"
+
+#: .\templates\base.html:237 .\templates\includes\promo_banner.html:3
+msgid "Annonces"
+msgstr "Annonces"
+
+#: .\templates\base.html:246
+msgid "Assistance"
+msgstr "Assistance"
+
+#: .\templates\base.html:248 .\templates\core\help.html:8
+msgid "Centre d'aide"
+msgstr "Centre d'aide"
+
+#: .\templates\base.html:250
+msgid "Email"
+msgstr "Email"
+
+#: .\templates\base.html:251 .\templates\core\help.html:80
+msgid "Nouadhibou, Mauritanie"
+msgstr "Nouadhibou, Mauritanie"
+
+#: .\templates\base.html:273
+msgid "Ajouté au panier"
+msgstr "Ajouté au panier"
+
+#: .\templates\base.html:274
+msgid "Impossible d'ajouter au panier"
+msgstr "Impossible d'ajouter au panier"
+
+#: .\templates\base_admin.html:40
+msgid "Boutique"
+msgstr "Boutique"
+
+#: .\templates\base_admin.html:77
+msgid "Nouvelle notification"
+msgstr "Nouvelle notification"
+
+#: .\templates\cart\cart.html:8
+msgid "Votre panier"
+msgstr "Votre panier"
+
+#: .\templates\cart\cart.html:12
+msgid "Le panier est vide."
+msgstr "Le panier est vide."
+
+#: .\templates\cart\cart.html:22 .\templates\catalog\product_detail.html:90
+msgid "Quantité"
+msgstr "Quantité"
+
+#: .\templates\cart\cart.html:33
+msgid "Prix négocié"
+msgstr "Prix négocié"
+
+#: .\templates\cart\cart.html:42
+msgid "OK"
+msgstr "OK"
+
+#: .\templates\cart\cart.html:50
+msgid "Retirer"
+msgstr "Retirer"
+
+#: .\templates\cart\cart.html:59
+msgid "Total :"
+msgstr "Total :"
+
+#: .\templates\cart\cart.html:60
+msgid "Commander"
+msgstr "Commander"
+
+#: .\templates\cart\cart.html:62
+msgid ""
+"Les prix sont recalculés à partir du catalogue (jamais depuis le panier "
+"local)."
+msgstr ""
+"Les prix sont recalculés à partir du catalogue (jamais depuis le panier "
+"local)."
+
+#: .\templates\catalog\categories.html:10
+msgid "Tous les univers du marketplace"
+msgstr "Tous les univers du marketplace"
+
+#: .\templates\catalog\product_detail.html:9
+msgid "Produit indisponible pour le moment."
+msgstr "Produit indisponible pour le moment."
+
+#: .\templates\catalog\product_detail.html:25
+msgid "Image précédente"
+msgstr "Image précédente"
+
+#: .\templates\catalog\product_detail.html:29
+msgid "Image suivante"
+msgstr "Image suivante"
+
+#: .\templates\catalog\product_detail.html:40
+#, python-format
+msgid "Image %(n)s"
+msgstr "Image %(n)s"
+
+#: .\templates\catalog\product_detail.html:67
+#: .\templates\catalog\product_detail.html:162
+msgid "avis"
+msgstr "avis"
+
+#: .\templates\catalog\product_detail.html:69
+msgid "Aucun avis pour l'instant"
+msgstr "Aucun avis pour l'instant"
+
+#: .\templates\catalog\product_detail.html:76
+msgid "Rupture de stock"
+msgstr "Rupture de stock"
+
+#: .\templates\catalog\product_detail.html:78
+#, python-format
+msgid "Stock : %(stock)s"
+msgstr "Stock : %(stock)s"
+
+#: .\templates\catalog\product_detail.html:94
+msgid "Ajouter au panier"
+msgstr "Ajouter au panier"
+
+#: .\templates\catalog\product_detail.html:104
+msgid "Prix négocié accepté"
+msgstr "Prix négocié accepté"
+
+#: .\templates\catalog\product_detail.html:108
+msgid "Voir ma négociation en cours"
+msgstr "Voir ma négociation en cours"
+
+#: .\templates\catalog\product_detail.html:113
+#: .\templates\negotiations\start.html:4
+msgid "Négocier le prix"
+msgstr "Négocier le prix"
+
+#: .\templates\catalog\product_detail.html:122
+msgid "Retirer des favoris"
+msgstr "Retirer des favoris"
+
+#: .\templates\catalog\product_detail.html:129
+#: .\templates\catalog\product_detail.html:135
+#: .\templates\includes\listing_card.html:15
+#: .\templates\includes\listing_card.html:20
+msgid "Ajouter aux favoris"
+msgstr "Ajouter aux favoris"
+
+#: .\templates\catalog\product_detail.html:143
+msgid "Caractéristiques"
+msgstr "Caractéristiques"
+
+#: .\templates\catalog\product_detail.html:159
+msgid "Avis"
+msgstr "Avis"
+
+#: .\templates\catalog\product_detail.html:171
+msgid "Votre note"
+msgstr "Votre note"
+
+#: .\templates\catalog\product_detail.html:173
+msgid "Excellent"
+msgstr "Excellent"
+
+#: .\templates\catalog\product_detail.html:174
+msgid "Très bien"
+msgstr "Très bien"
+
+#: .\templates\catalog\product_detail.html:175
+msgid "Correct"
+msgstr "Correct"
+
+#: .\templates\catalog\product_detail.html:176
+msgid "Décevant"
+msgstr "Décevant"
+
+#: .\templates\catalog\product_detail.html:177
+msgid "Mauvais"
+msgstr "Mauvais"
+
+#: .\templates\catalog\product_detail.html:181
+msgid "Commentaire (optionnel)"
+msgstr "Commentaire (optionnel)"
+
+#: .\templates\catalog\product_detail.html:185
+msgid "Publier mon avis"
+msgstr "Publier mon avis"
+
+#: .\templates\catalog\product_detail.html:191
+msgid "Connectez-vous"
+msgstr "Connectez-vous"
+
+#: .\templates\catalog\product_detail.html:192
+msgid "pour laisser un avis."
+msgstr "pour laisser un avis."
+
+#: .\templates\catalog\product_detail.html:215
+msgid "Aucun avis pour ce produit pour le moment."
+msgstr "Aucun avis pour ce produit pour le moment."
+
+#: .\templates\catalog\product_list.html:8
+msgid "Catalogue"
+msgstr "Catalogue"
+
+#: .\templates\catalog\product_list.html:27
+msgid "Prix min"
+msgstr "Prix min"
+
+#: .\templates\catalog\product_list.html:27
+msgid "Prix minimum"
+msgstr "Prix minimum"
+
+#: .\templates\catalog\product_list.html:28
+msgid "Prix max"
+msgstr "Prix max"
+
+#: .\templates\catalog\product_list.html:28
+msgid "Prix maximum"
+msgstr "Prix maximum"
+
+#: .\templates\catalog\product_list.html:42
+msgid "Toutes les villes"
+msgstr "Toutes les villes"
+
+#: .\templates\catalog\product_list.html:51
+msgid "Tous les états"
+msgstr "Tous les états"
+
+#: .\templates\catalog\product_list.html:60
+msgid "Réinitialiser les filtres"
+msgstr "Réinitialiser les filtres"
+
+#: .\templates\catalog\product_list.html:69
+#, python-format
+msgid "%(total)s produit"
+msgid_plural "%(total)s produits"
+msgstr[0] "%(total)s produit"
+msgstr[1] "%(total)s produits"
+
+#: .\templates\catalog\product_list.html:72
+msgid "Trier par"
+msgstr "Trier par"
+
+#: .\templates\catalog\product_list.html:87
+msgid "Aucun produit ne correspond à votre recherche."
+msgstr "Aucun produit ne correspond à votre recherche."
+
+#: .\templates\catalog\publication_detail.html:8
+#: .\templates\catalog\publication_list.html:4
+#: .\templates\catalog\publication_list.html:8
+msgid "Actualités"
+msgstr "Actualités"
+
+#: .\templates\catalog\publication_detail.html:17
+msgid "Produit associé :"
+msgstr "Produit associé :"
+
+#: .\templates\catalog\publication_detail.html:22
+msgid "Voir le produit associé"
+msgstr "Voir le produit associé"
+
+#: .\templates\catalog\publication_list.html:22
+msgid "Lire"
+msgstr "Lire"
+
+#: .\templates\catalog\publication_list.html:28
+msgid "Aucune actualité publiée."
+msgstr "Aucune actualité publiée."
+
+#: .\templates\core\help.html:9
+msgid ""
+"Une question ? Retrouvez ici les réponses les plus utiles, ou contactez-nous"
+" directement."
+msgstr ""
+"Une question ? Retrouvez ici les réponses les plus utiles, ou contactez-nous"
+" directement."
+
+#: .\templates\core\help.html:18
+msgid "Comment publier une annonce ?"
+msgstr "Comment publier une annonce ?"
+
+#: .\templates\core\help.html:23
+msgid ""
+"Connectez-vous, puis cliquez sur « Ajouter une annonce ». Votre annonce est "
+"vérifiée par notre équipe avant d'être publiée."
+msgstr ""
+"Connectez-vous, puis cliquez sur « Ajouter une annonce ». Votre annonce est "
+"vérifiée par notre équipe avant d'être publiée."
+
+#: .\templates\core\help.html:30
+msgid "Comment fonctionne la livraison ?"
+msgstr "Comment fonctionne la livraison ?"
+
+#: .\templates\core\help.html:35
+msgid ""
+"La livraison est assurée uniquement à Nouadhibou. Le paiement se fait à la "
+"réception de la commande."
+msgstr ""
+"La livraison est assurée uniquement à Nouadhibou. Le paiement se fait à la "
+"réception de la commande."
+
+#: .\templates\core\help.html:42
+msgid "Comment négocier un prix avec un vendeur ?"
+msgstr "Comment négocier un prix avec un vendeur ?"
+
+#: .\templates\core\help.html:47
+msgid ""
+"Depuis la fiche produit, proposez votre prix : notre équipe vous répond "
+"directement dans votre messagerie."
+msgstr ""
+"Depuis la fiche produit, proposez votre prix : notre équipe vous répond "
+"directement dans votre messagerie."
+
+#: .\templates\core\help.html:54
+msgid "Comment devenir vendeur vérifié ?"
+msgstr "Comment devenir vendeur vérifié ?"
+
+#: .\templates\core\help.html:59
+msgid ""
+"Chaque annonce est validée par notre équipe avant sa mise en ligne, ce qui "
+"garantit des vendeurs fiables sur toute la plateforme."
+msgstr ""
+"Chaque annonce est validée par notre équipe avant sa mise en ligne, ce qui "
+"garantit des vendeurs fiables sur toute la plateforme."
+
+#: .\templates\core\help.html:69
+msgid "Nous contacter"
+msgstr "Nous contacter"
+
+#: .\templates\core\home.html:12
+msgid "Plateforme d'annonces et de shopping à Nouadhibou"
+msgstr "Plateforme d'annonces et de shopping à Nouadhibou"
+
+#: .\templates\core\home.html:15
+msgid "Uniquement à Nouadhibou"
+msgstr "Uniquement à Nouadhibou"
+
+#: .\templates\core\home.html:16
+msgid "Annonces rapides"
+msgstr "Annonces rapides"
+
+#: .\templates\core\home.html:17
+msgid "Support local"
+msgstr "Support local"
+
+#: .\templates\core\home.html:18
+msgid "Vendeurs fiables"
+msgstr "Vendeurs fiables"
+
+#: .\templates\core\home.html:44
+msgid "Une sélection de nos dernières annonces"
+msgstr "Une sélection de nos dernières annonces"
+
+#: .\templates\core\home.html:52
+msgid "Aucune annonce publiée pour le moment."
+msgstr "Aucune annonce publiée pour le moment."
+
+#: .\templates\core\home.html:62
+msgid "Téléphones et électronique"
+msgstr "Téléphones et électronique"
+
+#: .\templates\core\home.html:63
+msgid "Immobilier à Nouadhibou"
+msgstr "Immobilier à Nouadhibou"
+
+#: .\templates\core\home.html:64
+msgid "Voitures à vendre"
+msgstr "Voitures à vendre"
+
+#: .\templates\core\home.html:84
+msgid "Dernières annonces"
+msgstr "Dernières annonces"
+
+#: .\templates\core\home.html:85
+msgid "Les nouveautés du catalogue"
+msgstr "Les nouveautés du catalogue"
+
+#: .\templates\core\home.html:93
+msgid "Aucune annonce publiée."
+msgstr "Aucune annonce publiée."
+
+#: .\templates\core\home.html:105
+msgid "Service local à Nouadhibou"
+msgstr "Service local à Nouadhibou"
+
+#: .\templates\core\home.html:111
+#, python-format
+msgid "100%% annonces sécurisées"
+msgstr "100%% annonces sécurisées"
+
+#: .\templates\core\home.html:117
+msgid "+ Milliers d'annonces publiées"
+msgstr "+ Milliers d'annonces publiées"
+
+#: .\templates\core\home.html:123
+msgid "+ Milliers d'utilisateurs"
+msgstr "+ Milliers d'utilisateurs"
+
+#: .\templates\includes\admin_nav.html:22
+msgid "Import"
+msgstr "Import"
+
+#: .\templates\includes\category_banner.html:13
+msgid "Parcourir maintenant"
+msgstr "Parcourir maintenant"
+
+#: .\templates\includes\category_card.html:19
+msgid "Voir les produits"
+msgstr "Voir les produits"
+
+#: .\templates\includes\language_switcher.html:6
+msgid "Langue"
+msgstr "Langue"
+
+#: .\templates\includes\listing_card.html:8
+msgid "Vedette"
+msgstr "Vedette"
+
+#: .\templates\includes\listing_card.html:26
+#: .\templates\includes\product_card.html:9
+msgid "Vidéo"
+msgstr "Vidéo"
+
+#: .\templates\includes\listing_card.html:29
+#: .\templates\includes\product_card.html:12
+msgid "photos"
+msgstr "photos"
+
+#: .\templates\includes\messages.html:15
+msgid "Fermer"
+msgstr "Fermer"
+
+#: .\templates\includes\pagination.html:3
+msgid "Pagination"
+msgstr "Pagination"
+
+#: .\templates\includes\pagination.html:7
+msgid "Précédent"
+msgstr "Précédent"
+
+#: .\templates\includes\pagination.html:11
+#, python-format
+msgid "Page %(current)s / %(total)s"
+msgstr "Page %(current)s / %(total)s"
+
+#: .\templates\includes\pagination.html:15
+msgid "Suivant"
+msgstr "Suivant"
+
+#: .\templates\includes\product_card.html:32
+msgid "Voir le produit"
+msgstr "Voir le produit"
+
+#: .\templates\includes\product_media_form.html:2
+msgid "Limite de 6 images atteinte."
+msgstr "Limite de 6 images atteinte."
+
+#: .\templates\includes\product_media_form.html:3
+msgid "Limite de 2 vidéos atteinte."
+msgstr "Limite de 2 vidéos atteinte."
+
+#: .\templates\includes\product_media_form.html:8
+msgid "Supprimer cette image ?"
+msgstr "Supprimer cette image ?"
+
+#: .\templates\includes\product_media_form.html:9
+msgid "Supprimer cette vidéo ?"
+msgstr "Supprimer cette vidéo ?"
+
+#: .\templates\includes\product_media_form.html:42
+msgid "Ajouter une image"
+msgstr "Ajouter une image"
+
+#: .\templates\includes\product_media_form.html:44
+msgid "JPG, PNG ou WebP — 5 Mo maximum, 6 images au total."
+msgstr "JPG, PNG ou WebP — 5 Mo maximum, 6 images au total."
+
+#: .\templates\includes\product_media_form.html:47
+msgid "Vidéo du produit (optionnel, max 20 Mo, 2 vidéos maximum)"
+msgstr "Vidéo du produit (optionnel, max 20 Mo, 2 vidéos maximum)"
+
+#: .\templates\includes\product_media_form.html:51
+msgid "Ajouter une vidéo"
+msgstr "Ajouter une vidéo"
+
+#: .\templates\includes\product_media_form.html:53
+msgid "MP4 ou WebM — 20 Mo maximum, 2 vidéos au total."
+msgstr "MP4 ou WebM — 20 Mo maximum, 2 vidéos au total."
+
+#: .\templates\includes\promo_banner.html:20
+msgid "Annonce précédente"
+msgstr "Annonce précédente"
+
+#: .\templates\includes\promo_banner.html:24
+msgid "Annonce suivante"
+msgstr "Annonce suivante"
+
+#: .\templates\includes\publication_card.html:13
+msgid "Lire la suite"
+msgstr "Lire la suite"
+
+#: .\templates\negotiations\detail.html:4
+msgid "Ma négociation"
+msgstr "Ma négociation"
+
+#: .\templates\negotiations\detail.html:22
+msgid "Ajouter au panier à ce prix"
+msgstr "Ajouter au panier à ce prix"
+
+#: .\templates\negotiations\detail.html:32
+msgid "NDB Shopping"
+msgstr "NDB Shopping"
+
+#: .\templates\negotiations\detail.html:61
+msgid "Proposer un autre prix (UM)"
+msgstr "Proposer un autre prix (UM)"
+
+#: .\templates\negotiations\detail.html:74
+msgid "Accepter ce prix"
+msgstr "Accepter ce prix"
+
+#: .\templates\negotiations\detail.html:77
+msgid "En attente de la réponse de l'équipe NDB Shopping…"
+msgstr "En attente de la réponse de l'équipe NDB Shopping…"
+
+#: .\templates\negotiations\detail.html:82
+msgid "Refuser / clôturer"
+msgstr "Refuser / clôturer"
+
+#: .\templates\negotiations\detail.html:88
+msgid "Proposer un nouveau prix"
+msgstr "Proposer un nouveau prix"
+
+#: .\templates\negotiations\list.html:23
+msgid "Vous n'avez pas encore négocié de prix."
+msgstr "Vous n'avez pas encore négocié de prix."
+
+#: .\templates\negotiations\start.html:9
+msgid "Proposer un prix"
+msgstr "Proposer un prix"
+
+#: .\templates\negotiations\start.html:23
+msgid "Votre prix proposé (UM)"
+msgstr "Votre prix proposé (UM)"
+
+#: .\templates\negotiations\start.html:27
+msgid "Message (optionnel)"
+msgstr "Message (optionnel)"
+
+#: .\templates\negotiations\start.html:28
+msgid "Expliquez votre offre…"
+msgstr "Expliquez votre offre…"
+
+#: .\templates\negotiations\start.html:30
+msgid "Envoyer ma proposition"
+msgstr "Envoyer ma proposition"

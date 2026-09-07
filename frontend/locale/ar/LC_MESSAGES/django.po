@@ -285,55 +285,49 @@ msgstr "الطلب غير موجود."
 
 #: .\adminpanel\views.py .\negotiations\views.py
 msgid "Message vide."
-msgstr ""
+msgstr "الرسالة فارغة."
 
 #: .\adminpanel\views.py .\negotiations\views.py
 msgid "Message non envoyé."
-msgstr ""
+msgstr "تعذر إرسال الرسالة."
 
 #: .\adminpanel\views.py .\negotiations\views.py
-#, fuzzy
 #| msgid "Indiquez une adresse."
 msgid "Indiquez un prix valide."
-msgstr "حدد عنوانًا."
+msgstr "أدخل سعرًا صالحًا."
 
 #: .\adminpanel\views.py
 msgid "Contre-offre envoyée."
-msgstr ""
+msgstr "تم إرسال العرض المضاد."
 
 #: .\adminpanel\views.py .\negotiations\views.py
-#, fuzzy
 #| msgid "Impossible d'envoyer le fichier."
 msgid "Impossible d'envoyer la contre-offre."
-msgstr "تعذر إرسال الملف."
+msgstr "تعذر إرسال العرض المضاد."
 
 #: .\adminpanel\views.py
-#, fuzzy
 #| msgid "Produit invalide."
 msgid "Prix validé."
-msgstr "منتج غير صالح."
+msgstr "تم اعتماد السعر."
 
 #: .\adminpanel\views.py
-#, fuzzy
 #| msgid "Impossible de charger les attributs."
 msgid "Impossible de valider ce prix."
-msgstr "تعذر تحميل الخصائص."
+msgstr "تعذر اعتماد هذا السعر."
 
 #: .\adminpanel\views.py .\negotiations\views.py
 msgid "Négociation refusée."
-msgstr ""
+msgstr "تم رفض المفاوضة."
 
 #: .\adminpanel\views.py .\negotiations\views.py
-#, fuzzy
 #| msgid "Impossible de remplacer l'image."
 msgid "Impossible de refuser."
-msgstr "تعذر استبدال الصورة."
+msgstr "تعذر الرفض."
 
 #: .\adminpanel\views.py .\cart\views.py .\negotiations\views.py
-#, fuzzy
 #| msgid "Publication introuvable."
 msgid "Négociation introuvable."
-msgstr "المنشور غير موجود."
+msgstr "المفاوضة غير موجودة."
 
 #: .\adminpanel\views.py
 msgid "Publication créée, mais l'image n'a pas pu être enregistrée : "
@@ -418,7 +412,7 @@ msgstr "تم حذف الحساب."
 #: .\cart\views.py
 msgid ""
 "Une offre négociée n'est plus valable, le prix catalogue a été réappliqué."
-msgstr ""
+msgstr "العرض المتفاوض عليه لم يعد صالحًا، وتمت إعادة تطبيق سعر الكتالوج."
 
 #: .\cart\views.py
 msgid "Produit invalide."
@@ -441,34 +435,31 @@ msgid "Article retiré du panier."
 msgstr "تمت إزالة المنتج من السلة."
 
 #: .\cart\views.py
-#, fuzzy
 #| msgid "Produit invalide."
 msgid "Négociation invalide."
-msgstr "منتج غير صالح."
+msgstr "مفاوضة غير صالحة."
 
 #: .\cart\views.py
 msgid "Cette négociation n'a pas encore été acceptée."
-msgstr ""
+msgstr "لم يتم قبول هذه المفاوضة بعد."
 
 #: .\cart\views.py
-#, fuzzy
 #| msgid "Produit ajouté au panier."
 msgid "Produit ajouté au panier au prix négocié."
-msgstr "تمت إضافة المنتج إلى السلة."
+msgstr "تمت إضافة المنتج إلى السلة بالسعر المتفاوض عليه."
 
 #: .\catalog\views.py
 msgid "Plus récents"
-msgstr ""
+msgstr "الأحدث"
 
 #: .\catalog\views.py
-#, fuzzy
 #| msgid "Prix min"
 msgid "Prix croissant"
-msgstr "أدنى سعر"
+msgstr "السعر تصاعديًا"
 
 #: .\catalog\views.py
 msgid "Prix décroissant"
-msgstr ""
+msgstr "السعر تنازليًا"
 
 #: .\core\decorators.py
 msgid "Veuillez vous connecter pour continuer."
@@ -516,11 +507,11 @@ msgstr "نواكشوط"
 
 #: .\core\templatetags\ndb_tags.py
 msgid "Neuf"
-msgstr ""
+msgstr "جديد"
 
 #: .\core\templatetags\ndb_tags.py
 msgid "Occasion"
-msgstr ""
+msgstr "مستعمل"
 
 #: .\core\templatetags\ndb_tags.py
 msgid "En attente"
@@ -610,17 +601,16 @@ msgstr "منتج بانتظار الموافقة"
 
 #: .\core\templatetags\ndb_tags.py
 msgid "Négociation de prix"
-msgstr ""
+msgstr "مفاوضة السعر"
 
 #: .\core\templatetags\ndb_tags.py
 msgid "Réponse à ma négociation"
-msgstr ""
+msgstr "الرد على مفاوضتي"
 
 #: .\core\templatetags\ndb_tags.py
-#, fuzzy
 #| msgid "Aucune commande."
 msgid "Statut de commande"
-msgstr "لا توجد طلبات."
+msgstr "حالة الطلب"
 
 #: .\core\templatetags\ndb_tags.py
 msgid "Solde SMS bas"
@@ -650,43 +640,40 @@ msgstr "نعم / لا"
 
 #: .\core\templatetags\ndb_tags.py
 msgid "Acceptée"
-msgstr ""
+msgstr "مقبولة"
 
 #: .\core\templatetags\ndb_tags.py
-#, fuzzy
 #| msgid "Refusé"
 msgid "Refusée"
-msgstr "مرفوض"
+msgstr "مرفوضة"
 
 #: .\core\templatetags\ndb_tags.py
 #: .\templates\adminpanel\negotiations\detail.html
 #: .\templates\negotiations\detail.html
 msgid "Contre-offre"
-msgstr ""
+msgstr "عرض مضاد"
 
 #: .\negotiations\views.py
 msgid "Votre proposition a été envoyée à l'équipe NDB Shopping."
-msgstr ""
+msgstr "تم إرسال عرضك إلى فريق NDB Shopping."
 
 #: .\negotiations\views.py
-#, fuzzy
 #| msgid "Impossible d'envoyer le fichier."
 msgid "Impossible d'envoyer la proposition."
-msgstr "تعذر إرسال الملف."
+msgstr "تعذر إرسال العرض."
 
 #: .\negotiations\views.py
 msgid "Votre contre-offre a été envoyée."
-msgstr ""
+msgstr "تم إرسال عرضك المضاد."
 
 #: .\negotiations\views.py
 msgid "Prix accepté ! Vous pouvez l'ajouter au panier."
-msgstr ""
+msgstr "تم قبول السعر! يمكنك إضافته إلى السلة."
 
 #: .\negotiations\views.py
-#, fuzzy
 #| msgid "Impossible d'enregistrer l'ordre."
 msgid "Impossible d'accepter cette offre."
-msgstr "تعذر حفظ الترتيب."
+msgstr "تعذر قبول هذا العرض."
 
 #: .\templates\404.html
 msgid "Page introuvable"
@@ -737,15 +724,14 @@ msgid "Confirmer la commande"
 msgstr "تأكيد الطلب"
 
 #: .\templates\accounts\favorites.html .\templates\base.html
-#, fuzzy
 #| msgid "Mes annonces"
 msgid "Mes favoris"
-msgstr "إعلاناتي"
+msgstr "مفضلاتي"
 
 #: .\templates\accounts\favorites.html
 msgid ""
 "Vous n'avez pas encore de favoris. Ajoutez des produits depuis leur fiche."
-msgstr ""
+msgstr "ليس لديك أي مفضلات بعد. أضف منتجات من صفحتها."
 
 #: .\templates\accounts\favorites.html .\templates\accounts\orders.html
 #: .\templates\cart\cart.html .\templates\negotiations\list.html
@@ -866,16 +852,14 @@ msgid "Notifications"
 msgstr "الإشعارات"
 
 #: .\templates\accounts\notifications.html
-#, fuzzy
 #| msgid "Voir le catalogue"
 msgid "Voir le détail"
-msgstr "عرض الكتالوج"
+msgstr "عرض التفاصيل"
 
 #: .\templates\accounts\notifications.html
-#, fuzzy
 #| msgid "Aucune catégorie pour le moment."
 msgid "Aucune notification pour le moment."
-msgstr "لا توجد تصنيفات حاليًا."
+msgstr "لا توجد إشعارات في الوقت الحالي."
 
 #: .\templates\accounts\orders.html .\templates\base.html
 msgid "Mes commandes"
@@ -984,30 +968,30 @@ msgstr "المدينة"
 
 #: .\templates\accounts\sell.html .\templates\adminpanel\products\form.html
 msgid "— Non précisé —"
-msgstr ""
+msgstr "— غير محدد —"
 
 #: .\templates\accounts\sell.html .\templates\adminpanel\products\form.html
 #: .\templates\catalog\product_list.html
 msgid "État"
-msgstr ""
+msgstr "الحالة"
 
 #: .\templates\accounts\sell.html
-#, fuzzy
 #| msgid "JPG, PNG ou WebP — 5 Mo maximum, 6 images au total."
 msgid ""
 "JPG, PNG ou WebP (5 Mo max, 6 images) et MP4/WebM (20 Mo max, 2 vidéos). "
 "Optionnel."
-msgstr "JPG أو PNG أو WebP — 5 ميغابايت كحد أقصى، 6 صور إجمالًا."
+msgstr ""
+"JPG أو PNG أو WebP (5 ميغابايت كحد أقصى، 6 صور) وMP4/WebM (20 ميغابايت كحد "
+"أقصى، فيديوهان). اختياري."
 
 #: .\templates\accounts\sell.html .\templates\adminpanel\products\list.html
 msgid "Images"
 msgstr "الصور"
 
 #: .\templates\accounts\sell.html
-#, fuzzy
 #| msgid "Vidéo"
 msgid "Vidéos"
-msgstr "فيديو"
+msgstr "الفيديوهات"
 
 #: .\templates\accounts\sell.html .\templates\adminpanel\products\form.html
 msgid "Attributs de la catégorie"
@@ -1243,77 +1227,72 @@ msgid "Rien de nouveau."
 msgstr "لا جديد."
 
 #: .\templates\adminpanel\negotiations\detail.html
-#, fuzzy, python-format
+#, python-format
 #| msgid "Commande #%(id)s"
 msgid "Négociation #%(id)s"
-msgstr "طلب #%(id)s"
+msgstr "المفاوضة رقم %(id)s"
 
 #: .\templates\adminpanel\negotiations\detail.html
 #: .\templates\adminpanel\negotiations\list.html
 #: .\templates\includes\admin_nav.html
-#, fuzzy
 #| msgid "Notifications"
 msgid "Négociations"
-msgstr "الإشعارات"
+msgstr "المفاوضات"
 
 #: .\templates\adminpanel\negotiations\detail.html
 #: .\templates\adminpanel\negotiations\list.html
 #: .\templates\negotiations\detail.html .\templates\negotiations\list.html
 #: .\templates\negotiations\start.html
-#, fuzzy
 #| msgid "Voir le catalogue"
 msgid "Prix catalogue"
-msgstr "عرض الكتالوج"
+msgstr "سعر الكتالوج"
 
 #: .\templates\adminpanel\negotiations\detail.html
 msgid "Vous (admin)"
-msgstr ""
+msgstr "أنت (المسؤول)"
 
 #: .\templates\adminpanel\negotiations\detail.html
 #: .\templates\negotiations\detail.html
-#, fuzzy
 #| msgid "Votre panier"
 msgid "Votre message"
-msgstr "سلتك"
+msgstr "رسالتك"
 
 #: .\templates\adminpanel\negotiations\detail.html
 #: .\templates\negotiations\detail.html
 msgid "Écrire un message…"
-msgstr ""
+msgstr "اكتب رسالة…"
 
 #: .\templates\adminpanel\negotiations\detail.html
 #: .\templates\negotiations\detail.html
 msgid "Envoyer"
-msgstr ""
+msgstr "إرسال"
 
 #: .\templates\adminpanel\negotiations\detail.html
 msgid "Contre-proposer un prix (UM)"
-msgstr ""
+msgstr "اقتراح سعر مضاد (أوقية)"
 
 #: .\templates\adminpanel\negotiations\detail.html
-#, fuzzy
 #| msgid "Valider"
 msgid "Valider ce prix"
-msgstr "تأكيد"
+msgstr "اعتماد هذا السعر"
 
 #: .\templates\adminpanel\negotiations\detail.html
 msgid "En attente de la réponse de l'acheteur…"
-msgstr ""
+msgstr "في انتظار رد المشتري…"
 
 #: .\templates\adminpanel\negotiations\detail.html
-#, fuzzy
 #| msgid "Refusé"
 msgid "Refuser"
-msgstr "مرفوض"
+msgstr "رفض"
 
 #: .\templates\adminpanel\negotiations\detail.html
 #: .\templates\negotiations\detail.html
 msgid "Cette négociation est close."
-msgstr ""
+msgstr "هذه المفاوضة مغلقة."
 
 #: .\templates\adminpanel\negotiations\list.html
 msgid "Négociations de prix"
-msgstr ""
+msgstr "مفاوضات الأسعار"
 
 #: .\templates\adminpanel\negotiations\list.html
 #: .\templates\adminpanel\orders\list.html
@@ -1332,11 +1311,11 @@ msgstr "تصفية"
 
 #: .\templates\adminpanel\negotiations\list.html
 msgid "Acheteur"
-msgstr ""
+msgstr "المشتري"
 
 #: .\templates\adminpanel\negotiations\list.html
 msgid "Prix sur la table"
-msgstr ""
+msgstr "السعر المطروح"
 
 #: .\templates\adminpanel\negotiations\list.html
 #: .\templates\adminpanel\orders\list.html
@@ -1350,13 +1329,12 @@ msgstr "الحالة"
 
 #: .\templates\adminpanel\negotiations\list.html
 msgid "Ouvrir"
-msgstr ""
+msgstr "فتح"
 
 #: .\templates\adminpanel\negotiations\list.html
-#, fuzzy
 #| msgid "Aucune notification."
 msgid "Aucune négociation."
-msgstr "لا توجد إشعارات."
+msgstr "لا توجد مفاوضات."
 
 #: .\templates\adminpanel\notifications\list.html
 msgid "Toutes"
@@ -1396,20 +1374,18 @@ msgid "Qté"
 msgstr "الكمية"
 
 #: .\templates\adminpanel\orders\detail.html
-#, fuzzy
 #| msgid "Prix unit."
 msgid "Prix unit. (commande)"
-msgstr "سعر الوحدة"
+msgstr "سعر الوحدة (الطلب)"
 
 #: .\templates\adminpanel\orders\detail.html .\templates\cart\cart.html
 msgid "Sous-total"
 msgstr "المجموع الفرعي"
 
 #: .\templates\adminpanel\orders\detail.html
-#, fuzzy
 #| msgid "Prix max"
 msgid "Prix actuel"
-msgstr "أعلى سعر"
+msgstr "السعر الحالي"
 
 #: .\templates\adminpanel\orders\detail.html
 msgid "Changer le statut"
@@ -1718,7 +1694,7 @@ msgstr "السلة"
 #: .\templates\base.html .\templates\negotiations\detail.html
 #: .\templates\negotiations\list.html
 msgid "Mes négociations"
-msgstr ""
+msgstr "مفاوضاتي"
 
 #: .\templates\base.html .\templates\base_admin.html
 msgid "Espace admin"
@@ -1764,10 +1740,9 @@ msgid "Aide"
 msgstr "مساعدة"
 
 #: .\templates\base.html
-#, fuzzy
 #| msgid "Rechercher un produit, une catégorie…"
 msgid "Rechercher un produit…"
-msgstr "ابحث عن منتج أو تصنيف…"
+msgstr "ابحث عن منتج…"
 
 #: .\templates\base.html
 msgid "Navigation mobile"
@@ -1815,10 +1790,9 @@ msgid "Centre d'aide"
 msgstr "مركز المساعدة"
 
 #: .\templates\base.html .\templates\core\help.html
-#, fuzzy
 #| msgid "Nouadhibou"
 msgid "Nouadhibou, Mauritanie"
-msgstr "نواذيبو"
+msgstr "نواذيبو، موريتانيا"
 
 #: .\templates\base.html
 msgid "Ajouté au panier"
@@ -1850,7 +1824,7 @@ msgstr "الكمية"
 
 #: .\templates\cart\cart.html
 msgid "Prix négocié"
-msgstr ""
+msgstr "السعر المتفاوض عليه"
 
 #: .\templates\cart\cart.html
 msgid "OK"
@@ -1897,11 +1871,11 @@ msgstr "الصورة %(n)s"
 
 #: .\templates\catalog\product_detail.html
 msgid "avis"
-msgstr ""
+msgstr "تقييم"
 
 #: .\templates\catalog\product_detail.html
 msgid "Aucun avis pour l'instant"
-msgstr ""
+msgstr "لا توجد تقييمات حتى الآن"
 
 #: .\templates\catalog\product_detail.html
 msgid "Rupture de stock"
@@ -1918,28 +1892,26 @@ msgstr "أضف إلى السلة"
 
 #: .\templates\catalog\product_detail.html
 msgid "Prix négocié accepté"
-msgstr ""
+msgstr "تم قبول السعر المتفاوض عليه"
 
 #: .\templates\catalog\product_detail.html
 msgid "Voir ma négociation en cours"
-msgstr ""
+msgstr "عرض مفاوضتي الجارية"
 
 #: .\templates\catalog\product_detail.html .\templates\negotiations\start.html
-#, fuzzy
 #| msgid "Voir le produit"
 msgid "Négocier le prix"
-msgstr "عرض المنتج"
+msgstr "التفاوض على السعر"
 
 #: .\templates\catalog\product_detail.html
 msgid "Retirer des favoris"
-msgstr ""
+msgstr "إزالة من المفضلة"
 
 #: .\templates\catalog\product_detail.html
 #: .\templates\includes\listing_card.html
-#, fuzzy
 #| msgid "Ajouter au panier"
 msgid "Ajouter aux favoris"
-msgstr "أضف إلى السلة"
+msgstr "إضافة إلى المفضلة"
 
 #: .\templates\catalog\product_detail.html
 msgid "Caractéristiques"
@@ -1947,59 +1919,55 @@ msgstr "المواصفات"
 
 #: .\templates\catalog\product_detail.html
 msgid "Avis"
-msgstr ""
+msgstr "التقييمات"
 
 #: .\templates\catalog\product_detail.html
-#, fuzzy
 #| msgid "Votre panier"
 msgid "Votre note"
-msgstr "سلتك"
+msgstr "تقييمك"
 
 #: .\templates\catalog\product_detail.html
 msgid "Excellent"
-msgstr ""
+msgstr "ممتاز"
 
 #: .\templates\catalog\product_detail.html
 msgid "Très bien"
-msgstr ""
+msgstr "جيد جدًا"
 
 #: .\templates\catalog\product_detail.html
-#, fuzzy
 #| msgid "Code incorrect."
 msgid "Correct"
-msgstr "الرمز غير صحيح."
+msgstr "صحيح"
 
 #: .\templates\catalog\product_detail.html
 msgid "Décevant"
-msgstr ""
+msgstr "مخيب للآمال"
 
 #: .\templates\catalog\product_detail.html
 msgid "Mauvais"
-msgstr ""
+msgstr "سيئ"
 
 #: .\templates\catalog\product_detail.html
-#, fuzzy
 #| msgid "Catégorie (optionnel)"
 msgid "Commentaire (optionnel)"
-msgstr "التصنيف (اختياري)"
+msgstr "تعليق (اختياري)"
 
 #: .\templates\catalog\product_detail.html
 msgid "Publier mon avis"
-msgstr ""
+msgstr "نشر تقييمي"
 
 #: .\templates\catalog\product_detail.html
 msgid "Connectez-vous"
-msgstr ""
+msgstr "سجّل الدخول"
 
 #: .\templates\catalog\product_detail.html
 msgid "pour laisser un avis."
-msgstr ""
+msgstr "لترك تقييم."
 
 #: .\templates\catalog\product_detail.html
-#, fuzzy
 #| msgid "Aucune catégorie pour le moment."
 msgid "Aucun avis pour ce produit pour le moment."
-msgstr "لا توجد تصنيفات حاليًا."
+msgstr "لا توجد تقييمات لهذا المنتج في الوقت الحالي."
 
 #: .\templates\catalog\product_list.html
 msgid "Catalogue"
@@ -2022,36 +1990,34 @@ msgid "Prix maximum"
 msgstr "السعر الأعلى"
 
 #: .\templates\catalog\product_list.html
-#, fuzzy
 #| msgid "Tous les rôles"
 msgid "Toutes les villes"
-msgstr "كل الأدوار"
+msgstr "كل المدن"
 
 #: .\templates\catalog\product_list.html
-#, fuzzy
 #| msgid "Tous les statuts"
 msgid "Tous les états"
 msgstr "كل الحالات"
 
 #: .\templates\catalog\product_list.html
 msgid "Réinitialiser les filtres"
-msgstr ""
+msgstr "إعادة تعيين عوامل التصفية"
 
 #: .\templates\catalog\product_list.html
-#, fuzzy, python-format
+#, python-format
 #| msgid "Voir les produits"
 msgid "%(total)s produit"
 msgid_plural "%(total)s produits"
-msgstr[0] "عرض المنتجات"
-msgstr[1] "عرض المنتجات"
-msgstr[2] "عرض المنتجات"
-msgstr[3] "عرض المنتجات"
-msgstr[4] "عرض المنتجات"
-msgstr[5] "عرض المنتجات"
+msgstr[0] "%(total)s منتج"
+msgstr[1] "منتج واحد"
+msgstr[2] "منتجان"
+msgstr[3] "%(total)s منتجات"
+msgstr[4] "%(total)s منتجًا"
+msgstr[5] "%(total)s منتج"
 
 #: .\templates\catalog\product_list.html
 msgid "Trier par"
-msgstr ""
+msgstr "الترتيب حسب"
 
 #: .\templates\catalog\product_list.html
 msgid "Aucun produit ne correspond à votre recherche."
@@ -2130,10 +2096,9 @@ msgstr ""
 "جميع أنحاء المنصة."
 
 #: .\templates\core\help.html
-#, fuzzy
 #| msgid "Se connecter"
 msgid "Nous contacter"
-msgstr "تسجيل الدخول"
+msgstr "اتصل بنا"
 
 #: .\templates\core\home.html
 msgid "Plateforme d'annonces et de shopping à Nouadhibou"
@@ -2318,68 +2283,64 @@ msgid "Lire la suite"
 msgstr "اقرأ المزيد"
 
 #: .\templates\negotiations\detail.html
-#, fuzzy
 #| msgid "Pagination"
 msgid "Ma négociation"
-msgstr "ترقيم الصفحات"
+msgstr "مفاوضتي"
 
 #: .\templates\negotiations\detail.html
-#, fuzzy
 #| msgid "Ajouter au panier"
 msgid "Ajouter au panier à ce prix"
-msgstr "أضف إلى السلة"
+msgstr "إضافة إلى السلة بهذا السعر"
 
 #: .\templates\negotiations\detail.html
 msgid "NDB Shopping"
-msgstr ""
+msgstr "NDB Shopping"
 
 #: .\templates\negotiations\detail.html
 msgid "Proposer un autre prix (UM)"
-msgstr ""
+msgstr "اقتراح سعر آخر (أوقية)"
 
 #: .\templates\negotiations\detail.html
 msgid "Accepter ce prix"
-msgstr ""
+msgstr "قبول هذا السعر"
 
 #: .\templates\negotiations\detail.html
 msgid "En attente de la réponse de l'équipe NDB Shopping…"
-msgstr ""
+msgstr "في انتظار رد فريق NDB Shopping…"
 
 #: .\templates\negotiations\detail.html
 msgid "Refuser / clôturer"
-msgstr ""
+msgstr "رفض / إغلاق"
 
 #: .\templates\negotiations\detail.html
 msgid "Proposer un nouveau prix"
-msgstr ""
+msgstr "اقتراح سعر جديد"
 
 #: .\templates\negotiations\list.html
-#, fuzzy
 #| msgid "Vous n'avez pas encore soumis d'annonce."
 msgid "Vous n'avez pas encore négocié de prix."
-msgstr "لم ترسل أي إعلان بعد."
+msgstr "لم تقم بالتفاوض على أي سعر بعد."
 
 #: .\templates\negotiations\start.html
 msgid "Proposer un prix"
-msgstr ""
+msgstr "اقتراح سعر"
 
 #: .\templates\negotiations\start.html
 msgid "Votre prix proposé (UM)"
-msgstr ""
+msgstr "السعر الذي تقترحه (أوقية)"
 
 #: .\templates\negotiations\start.html
-#, fuzzy
 #| msgid "Catégorie (optionnel)"
 msgid "Message (optionnel)"
-msgstr "التصنيف (اختياري)"
+msgstr "رسالة (اختياري)"
 
 #: .\templates\negotiations\start.html
 msgid "Expliquez votre offre…"
-msgstr ""
+msgstr "اشرح عرضك…"
 
 #: .\templates\negotiations\start.html
 msgid "Envoyer ma proposition"
-msgstr ""
+msgstr "إرسال اقتراحي"
 
 #: .\templates\base.html
 msgid "Fréquentation en direct"
