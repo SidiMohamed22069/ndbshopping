@@ -35,7 +35,7 @@
     <div class="row g-4">
       <aside class="col-lg-3">
         <div class="catalog-sidebar">
-          <h2 class="catalog-sidebar-title">{% trans "Filtrer" %}</h2>
+          <h2 class="catalog-sidebar-title"><i class="bi bi-sliders" aria-hidden="true"></i> {% trans "Filtrer" %}</h2>
           <div class="catalog-sidebar-group">
             <label class="form-label" for="filterVille">{% trans "Ville" %}</label>
             <select class="form-select" id="filterVille" name="ville" onchange="this.form.submit()">
@@ -55,7 +55,10 @@
             </select>
           </div>
           {% if ville or etat %}
-            <a class="catalog-sidebar-reset" href="?{% qs_replace ville='' etat='' page='' %}">{% trans "Réinitialiser les filtres" %}</a>
+            <a class="catalog-sidebar-reset" href="?{% qs_replace ville='' etat='' page='' %}">
+              <i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>
+              {% trans "Réinitialiser les filtres" %}
+            </a>
           {% endif %}
         </div>
       </aside>

@@ -331,35 +331,41 @@ textarea.form-control {
     top: 0;
     inset-inline: 0;
     z-index: 1030;
-    height: var(--header-height);
+    /* min-height, pas height : si une traduction plus longue, un repli de police ou
+       un zoom navigateur rend le contenu plus haut que prévu, le header grandit au
+       lieu de déborder sous sa propre boîte et de chevaucher le contenu de <main>. */
+    min-height: var(--header-height);
     box-shadow: var(--shadow-md);
 }
 
 .header-topbar {
-    height: var(--header-topbar-h);
+    min-height: var(--header-topbar-h);
     background: var(--color-dark);
 }
 
 .header-topbar-inner {
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    height: var(--header-topbar-h);
+    min-height: var(--header-topbar-h);
+    padding-block: 0.4rem;
 }
 
 .header-navbar {
-    height: var(--header-navbar-h);
+    min-height: var(--header-navbar-h);
     background: var(--color-primary);
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .header-navbar-inner {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 0.35rem;
-    height: var(--header-navbar-h);
+    min-height: var(--header-navbar-h);
 }
 
 .site-logo-link {
@@ -595,7 +601,7 @@ textarea.form-control {
 
     .header-collapse {
         position: absolute;
-        top: var(--header-height);
+        top: 100%;
         inset-inline: 0;
         background: var(--color-primary);
         padding: 1rem;
@@ -862,6 +868,7 @@ textarea.form-control {
 
 .search-bar {
     display: flex;
+    flex-wrap: nowrap;
     align-items: stretch;
     background: var(--color-text-white);
     border-radius: var(--radius-pill);
@@ -1021,7 +1028,7 @@ textarea.form-control {
     }
 }
 
-@media (min-width: 480px) and (max-width: 767.98px) {
+@media (min-width: 480px) and (max-width: 991.98px) {
     .search-bar--filters {
         flex-wrap: wrap;
         border-radius: var(--radius-md);
@@ -1689,6 +1696,7 @@ textarea.form-control {
    -------------------------------------------------------------------------- */
 
 .page-wrap {
+    padding-top: 2rem;
     padding-bottom: 3.5rem;
 }
 
@@ -1770,27 +1778,72 @@ textarea.form-control {
     background: var(--color-text-white);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    padding: 1.25rem;
+    box-shadow: var(--shadow-md);
+    padding: 1.5rem;
     position: sticky;
     top: calc(var(--header-height) + 1rem);
 }
 
 .catalog-sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 1rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    color: var(--color-primary);
+    margin: 0 0 1.25rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.catalog-sidebar-title i {
+    color: var(--color-secondary);
+    font-size: 0.95rem;
 }
 
 .catalog-sidebar-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.catalog-sidebar-group:last-of-type {
+    margin-bottom: 0;
+}
+
+.catalog-sidebar-group .form-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-text-grey);
+    margin-bottom: 0.5rem;
+}
+
+.catalog-sidebar-group .form-select {
+    border-color: var(--color-border);
+    box-shadow: none;
+}
+
+.catalog-sidebar-group .form-select:focus {
+    border-color: var(--color-primary);
 }
 
 .catalog-sidebar-reset {
-    display: inline-block;
-    font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-grey-light);
+    font-size: 0.8rem;
+    font-weight: 700;
     color: var(--color-text-grey);
-    text-decoration: underline;
+    text-decoration: none;
+}
+
+.catalog-sidebar-reset:hover {
+    background: var(--color-border);
+    color: var(--color-text-dark);
 }
 
 .catalog-toolbar {
