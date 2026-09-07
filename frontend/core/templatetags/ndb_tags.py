@@ -228,6 +228,15 @@ def statut_badge(code: str | None) -> str:
     return mapping.get(code or "", "secondary")
 
 
+@register.filter
+def has_external_item(items) -> bool:
+    """True si une commande contient au moins une ligne sourcée en externe
+    (Alibaba/AliExpress/Amazon...) — utilisé pour le badge de la liste des
+    commandes admin. `items` vient d'AdminOrderItemResponse : `sourceUrl`
+    n'existe que côté admin, jamais dans l'API cliente."""
+    return any((item.get("sourceUrl") if isinstance(item, dict) else None) for item in (items or []))
+
+
 @register.simple_tag(takes_context=True)
 def qs_replace(context, **kwargs):
     """Remplace des paramètres GET en conservant les autres (pagination + filtres)."""

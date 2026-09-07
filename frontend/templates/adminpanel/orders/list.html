@@ -36,7 +36,12 @@
       {% for o in orders %}
         <tr>
           <td>{{ o.id }}</td>
-          <td class="fw-semibold">{{ o.clientNom }}</td>
+          <td class="fw-semibold">
+            {{ o.clientNom }}
+            {% if o.items|has_external_item %}
+              <span class="badge text-bg-warning" title="{% trans 'Contient un produit à commander chez un fournisseur externe' %}">🛒 {% trans "Produit Externe" %}</span>
+            {% endif %}
+          </td>
           <td>
             <a class="order-phone-link" href="tel:{{ o.clientTelephone }}">
               <i class="bi bi-telephone-fill" aria-hidden="true"></i> {{ o.clientTelephone }}

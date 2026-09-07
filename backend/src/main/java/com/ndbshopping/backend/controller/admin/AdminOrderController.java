@@ -1,7 +1,7 @@
 package com.ndbshopping.backend.controller.admin;
 
 import com.ndbshopping.backend.dto.common.PageResponse;
-import com.ndbshopping.backend.dto.order.OrderResponse;
+import com.ndbshopping.backend.dto.order.AdminOrderResponse;
 import com.ndbshopping.backend.dto.order.UpdateOrderStatusRequest;
 import com.ndbshopping.backend.entity.enums.OrderStatus;
 import com.ndbshopping.backend.service.OrderService;
@@ -31,7 +31,7 @@ public class AdminOrderController {
 
     @GetMapping
     @Operation(summary = "Liste des commandes, filtrable par statut et ville")
-    public PageResponse<OrderResponse> list(
+    public PageResponse<AdminOrderResponse> list(
             @RequestParam(required = false) OrderStatus statut,
             @RequestParam(required = false) String ville,
             @PageableDefault(size = 20) Pageable pageable
@@ -41,7 +41,7 @@ public class AdminOrderController {
 
     @PatchMapping("/{id}/statut")
     @Operation(summary = "Change le statut d'une commande")
-    public OrderResponse updateStatus(
+    public AdminOrderResponse updateStatus(
             @PathVariable Long id,
             @Valid @RequestBody UpdateOrderStatusRequest request
     ) {

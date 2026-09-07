@@ -1,6 +1,7 @@
 package com.ndbshopping.backend.service;
 
 import com.ndbshopping.backend.dto.common.PageResponse;
+import com.ndbshopping.backend.dto.product.AdminProductResponse;
 import com.ndbshopping.backend.dto.product.CsvImportResponse;
 import com.ndbshopping.backend.dto.product.ProductAttributeInput;
 import com.ndbshopping.backend.dto.product.ProductImageResponse;
@@ -97,11 +98,12 @@ public class ProductService {
             ProductEtat etat,
             Pageable pageable
     ) {
-        return search(ProductStatus.PUBLIE, categoryId, minPrix, maxPrix, q, ville, etat, pageable);
+        return PageResponse.from(search(ProductStatus.PUBLIE, categoryId, minPrix, maxPrix, q, ville, etat, pageable)
+                .map(ProductResponse::from));
     }
 
     @Transactional(readOnly = true)
-    public PageResponse<ProductResponse> searchAdmin(
+    public PageResponse<AdminProductResponse> searchAdmin(
             ProductStatus statut,
             Long categoryId,
             BigDecimal minPrix,
@@ -111,10 +113,11 @@ public class ProductService {
             ProductEtat etat,
             Pageable pageable
     ) {
-        return search(statut, categoryId, minPrix, maxPrix, q, ville, etat, pageable);
+        return PageResponse.from(search(statut, categoryId, minPrix, maxPrix, q, ville, etat, pageable)
+                .map(AdminProductResponse::from));
     }
 
-    private PageResponse<ProductResponse> search(
+    private Page<Product> search(
             ProductStatus statut,
             Long categoryId,
             BigDecimal minPrix,
@@ -137,7 +140,7 @@ public class ProductService {
                 sorted
         );
         page.forEach(this::touchAssociations);
-        return PageResponse.from(page.map(ProductResponse::from));
+        return page;
     }
 
     @Transactional(readOnly = true)
@@ -156,14 +159,14 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public ProductResponse getAdmin(Long id) {
+    public AdminProductResponse getAdmin(Long id) {
         Product product = get(id);
         touchAssociations(product);
-        return ProductResponse.from(product);
+        return AdminProductResponse.from(product);
     }
 
     @Transactional
-    public ProductResponse create(ProductRequest request) {
+    public AdminProductResponse create(ProductRequest request) {
         Category category = categoryService.get(request.categoryId());
         Product product = Product.builder()
                 .nom(request.nom().trim())
@@ -180,7 +183,7 @@ public class ProductService {
         applyAttributes(product, category.getId(), request.attributs());
         Product saved = productRepository.save(product);
         touchAssociations(saved);
-        return ProductResponse.from(saved);
+        return AdminProductResponse.from(saved);
     }
 
     @Transactional
@@ -225,7 +228,7 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductResponse validate(Long id) {
+    public AdminProductResponse validate(Long id) {
         Product product = get(id);
         if (product.getStatut() != ProductStatus.EN_ATTENTE) {
             throw ApiException.badRequest("Le produit n'est pas en attente de validation");
@@ -233,11 +236,11 @@ public class ProductService {
         product.setStatut(ProductStatus.PUBLIE);
         product.setRaisonRejet(null);
         touchAssociations(product);
-        return ProductResponse.from(product);
+        return AdminProductResponse.from(product);
     }
 
     @Transactional
-    public ProductResponse reject(Long id, String raison) {
+    public AdminProductResponse reject(Long id, String raison) {
         Product product = get(id);
         if (product.getStatut() != ProductStatus.EN_ATTENTE) {
             throw ApiException.badRequest("Le produit n'est pas en attente de validation");
@@ -245,7 +248,7 @@ public class ProductService {
         product.setStatut(ProductStatus.REJETE);
         product.setRaisonRejet(raison.trim());
         touchAssociations(product);
-        return ProductResponse.from(product);
+        return AdminProductResponse.from(product);
     }
 
     @Transactional
@@ -291,7 +294,7 @@ public class ProductService {
     }
 
     @Transactional
-    public ProductResponse update(Long id, ProductRequest request) {
+    public AdminProductResponse update(Long id, ProductRequest request) {
         Product product = get(id);
         Category category = categoryService.get(request.categoryId());
         product.setNom(request.nom().trim());
@@ -311,7 +314,7 @@ public class ProductService {
         product.getAttributes().clear();
         applyAttributes(product, category.getId(), request.attributs());
         touchAssociations(product);
-        return ProductResponse.from(product);
+        return AdminProductResponse.from(product);
     }
 
     @Transactional

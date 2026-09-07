@@ -13,6 +13,12 @@ import java.time.Instant;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Vue publique / catalogue d'un produit. Ne contient volontairement PAS
+ * {@code sourceUrl} : ce lien fournisseur (Alibaba, AliExpress...) est réservé
+ * à l'admin — voir {@link AdminProductResponse}, utilisé uniquement par les
+ * endpoints sous {@code /api/admin/**}.
+ */
 public record ProductResponse(
         Long id,
         String nom,
@@ -22,7 +28,6 @@ public record ProductResponse(
         Long categoryId,
         String categoryNom,
         ProductSource sourceOrigine,
-        String sourceUrl,
         ProductStatus statut,
         String ville,
         ProductEtat etat,
@@ -36,24 +41,9 @@ public record ProductResponse(
         List<ProductAttributeResponse> attributs
 ) {
     public static ProductResponse from(Product product) {
-        List<ProductImageResponse> images = product.getImages() == null ? List.of()
-                : product.getImages().stream()
-                .sorted(Comparator.comparingInt(ProductImage::getOrdre).thenComparing(ProductImage::getId))
-                .map(img -> new ProductImageResponse(img.getId(), toMediaUrl(img.getRelativePath()), img.getOrdre()))
-                .toList();
-        List<ProductVideoResponse> videos = product.getVideos() == null ? List.of()
-                : product.getVideos().stream()
-                .sorted(Comparator.comparingInt(ProductVideo::getOrdre).thenComparing(ProductVideo::getId))
-                .map(vid -> new ProductVideoResponse(
-                        vid.getId(),
-                        toMediaUrl(vid.getRelativePath()),
-                        vid.getRelativePath(),
-                        vid.getOrdre()))
-                .toList();
-        List<ProductAttributeResponse> attributs = product.getAttributes() == null ? List.of()
-                : product.getAttributes().stream()
-                .map(ProductResponse::toAttr)
-                .toList();
+        List<ProductImageResponse> images = images(product);
+        List<ProductVideoResponse> videos = videos(product);
+        List<ProductAttributeResponse> attributs = attributs(product);
         return new ProductResponse(
                 product.getId(),
                 product.getNom(),
@@ -63,7 +53,6 @@ public record ProductResponse(
                 product.getCategory().getId(),
                 product.getCategory().getNom(),
                 product.getSourceOrigine(),
-                product.getSourceUrl(),
                 product.getStatut(),
                 product.getVille(),
                 product.getEtat(),
@@ -78,6 +67,33 @@ public record ProductResponse(
         );
     }
 
+    static List<ProductImageResponse> images(Product product) {
+        return product.getImages() == null ? List.of()
+                : product.getImages().stream()
+                .sorted(Comparator.comparingInt(ProductImage::getOrdre).thenComparing(ProductImage::getId))
+                .map(img -> new ProductImageResponse(img.getId(), toMediaUrl(img.getRelativePath()), img.getOrdre()))
+                .toList();
+    }
+
+    static List<ProductVideoResponse> videos(Product product) {
+        return product.getVideos() == null ? List.of()
+                : product.getVideos().stream()
+                .sorted(Comparator.comparingInt(ProductVideo::getOrdre).thenComparing(ProductVideo::getId))
+                .map(vid -> new ProductVideoResponse(
+                        vid.getId(),
+                        toMediaUrl(vid.getRelativePath()),
+                        vid.getRelativePath(),
+                        vid.getOrdre()))
+                .toList();
+    }
+
+    static List<ProductAttributeResponse> attributs(Product product) {
+        return product.getAttributes() == null ? List.of()
+                : product.getAttributes().stream()
+                .map(ProductResponse::toAttr)
+                .toList();
+    }
+
     private static ProductAttributeResponse toAttr(ProductAttributeValue value) {
         return new ProductAttributeResponse(
                 value.getAttributeDefinition().getId(),
@@ -87,7 +103,7 @@ public record ProductResponse(
         );
     }
 
-    private static String toMediaUrl(String relativePath) {
+    static String toMediaUrl(String relativePath) {
         String path = relativePath.replace("\\", "/");
         return path.startsWith("/") ? "/media" + path : "/media/" + path;
     }

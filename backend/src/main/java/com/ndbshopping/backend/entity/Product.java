@@ -77,6 +77,14 @@ public class Product {
     @Column(name = "source_url")
     private String sourceUrl;
 
+    /**
+     * Calculé, jamais persisté : évite qu'un booléen dédié se désynchronise de
+     * {@link #sourceUrl} (ex. URL effacée sans mettre à jour un flag séparé).
+     */
+    public boolean isExternalSourced() {
+        return sourceUrl != null && !sourceUrl.isBlank();
+    }
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     @Builder.Default

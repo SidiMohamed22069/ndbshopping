@@ -180,4 +180,44 @@ class ProductControllerTest {
                 .statut(ProductStatus.PUBLIE)
                 .build();
     }
+
+    @Test
+    void get_publicDetail_neverExposesSupplierSourceUrl() throws Exception {
+        Product external = productRepository.save(Product.builder()
+                .nom("Sourced Product Detail")
+                .description("desc")
+                .prix(new BigDecimal("250.00"))
+                .stock(5)
+                .category(categoryA)
+                .sourceOrigine(ProductSource.ALIBABA)
+                .sourceUrl("https://www.alibaba.com/product-detail/example.html")
+                .statut(ProductStatus.PUBLIE)
+                .build());
+
+        mockMvc.perform(get("/api/products/" + external.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.sourceUrl").doesNotExist())
+                .andExpect(jsonPath("$.externalSourced").doesNotExist())
+                .andExpect(jsonPath("$.sourceOrigine").value("ALIBABA"));
+    }
+
+    @Test
+    void list_public_neverExposesSupplierSourceUrl() throws Exception {
+        productRepository.save(Product.builder()
+                .nom("Sourced Product List")
+                .description("desc")
+                .prix(new BigDecimal("250.00"))
+                .stock(5)
+                .category(categoryA)
+                .sourceOrigine(ProductSource.ALIBABA)
+                .sourceUrl("https://www.alibaba.com/product-detail/example.html")
+                .statut(ProductStatus.PUBLIE)
+                .build());
+
+        mockMvc.perform(get("/api/products").param("q", "Sourced Product List"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content", hasSize(1)))
+                .andExpect(jsonPath("$.content[0].sourceUrl").doesNotExist())
+                .andExpect(jsonPath("$.content[0].externalSourced").doesNotExist());
+    }
 }

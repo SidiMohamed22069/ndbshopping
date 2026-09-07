@@ -1,6 +1,7 @@
 package com.ndbshopping.backend.service;
 
 import com.ndbshopping.backend.dto.common.PageResponse;
+import com.ndbshopping.backend.dto.order.AdminOrderResponse;
 import com.ndbshopping.backend.dto.order.CreateOrderRequest;
 import com.ndbshopping.backend.dto.order.OrderResponse;
 import com.ndbshopping.backend.entity.CartItem;
@@ -100,14 +101,14 @@ public class OrderService {
     }
 
     @Transactional(readOnly = true)
-    public PageResponse<OrderResponse> adminSearch(OrderStatus statut, String ville, Pageable pageable) {
+    public PageResponse<AdminOrderResponse> adminSearch(OrderStatus statut, String ville, Pageable pageable) {
         Page<Order> page = orderRepository.search(statut, ville, pageable);
         page.forEach(this::touch);
-        return PageResponse.from(page.map(OrderResponse::from));
+        return PageResponse.from(page.map(AdminOrderResponse::from));
     }
 
     @Transactional
-    public OrderResponse updateStatus(Long id, OrderStatus statut) {
+    public AdminOrderResponse updateStatus(Long id, OrderStatus statut) {
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> ApiException.notFound("Commande introuvable"));
         order.setStatut(statut);
@@ -118,7 +119,7 @@ public class OrderService {
                 "Votre commande #" + order.getId() + " est maintenant : " + statusLabel(statut),
                 "/orders/" + order.getId()
         );
-        return OrderResponse.from(order);
+        return AdminOrderResponse.from(order);
     }
 
     private static String statusLabel(OrderStatus statut) {

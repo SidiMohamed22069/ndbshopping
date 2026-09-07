@@ -2378,6 +2378,71 @@ msgstr "قريباً"
 msgid "Email"
 msgstr "البريد الإلكتروني"
 
+#: .\templates\adminpanel\products\form.html
+msgid "Lien source externe (Alibaba, AliExpress, etc.)"
+msgstr "رابط المصدر الخارجي (Alibaba، AliExpress، إلخ.)"
+
+#: .\templates\adminpanel\products\form.html
+msgid "Masqué aux clients"
+msgstr "مخفي عن الزبائن"
+
+#: .\templates\adminpanel\products\form.html
+msgid "Sert uniquement au sourcing interne (recommander l'article chez le fournisseur). Jamais visible ni transmis au client."
+msgstr "يُستخدم فقط للتزويد الداخلي (إعادة طلب المنتج من المورّد). لا يظهر أبدًا للزبون ولا يُرسل إليه."
+
+#: .\templates\adminpanel\orders\list.html
+msgid "Contient un produit à commander chez un fournisseur externe"
+msgstr "تحتوي على منتج يجب طلبه من مورّد خارجي"
+
+#: .\templates\adminpanel\orders\list.html
+#: .\templates\adminpanel\orders\detail.html
+msgid "Produit Externe"
+msgstr "منتج خارجي"
+
+#: .\templates\adminpanel\orders\detail.html
+msgid "À commander chez un fournisseur externe"
+msgstr "يُطلب من مورّد خارجي"
+
+#: .\templates\adminpanel\orders\detail.html
+msgid "Commander sur la source (Alibaba/External)"
+msgstr "الطلب من المصدر (Alibaba/خارجي)"
+
+#: .\templates\core\home.html
+msgid "100% annonces sécurisées"
+msgstr "إعلانات آمنة 100%"
+
+#: .\templates\adminpanel\products\form.html
+msgid "Ajouter manuellement"
+msgstr "إضافة يدوية"
+
+#: .\templates\adminpanel\products\form.html
+msgid "Importer depuis un site externe"
+msgstr "استيراد من موقع خارجي"
+
+#: .\templates\adminpanel\products\form.html
+msgid "Importer depuis Alibaba, AliExpress, Amazon…"
+msgstr "استيراد من Alibaba أو AliExpress أو Amazon…"
+
+#: .\templates\adminpanel\products\form.html
+msgid "Collez le lien de la page produit externe, extrayez ses informations, puis ajustez-les ci-dessous avant de publier."
+msgstr "الصق رابط صفحة المنتج الخارجية، استخرج معلوماتها، ثم عدّلها أدناه قبل النشر."
+
+#: .\templates\adminpanel\products\form.html
+msgid "URL du produit"
+msgstr "رابط المنتج"
+
+#: .\templates\adminpanel\products\form.html
+msgid "Extraire / Pré-remplir"
+msgstr "استخراج / تعبئة تلقائية"
+
+#: .\adminpanel\views.py
+msgid "Extraction impossible."
+msgstr "تعذر الاستخراج."
+
+#: .\adminpanel\views.py
+msgid "Produit créé, mais certaines images importées n'ont pas pu être enregistrées : "
+msgstr "تم إنشاء المنتج، لكن تعذر حفظ بعض الصور المستوردة: "
+
 #~ msgid "Produit soumis, mais l'image n'a pas pu être enregistrée : "
 #~ msgstr "تم إرسال المنتج، لكن تعذر حفظ الصورة: "
 

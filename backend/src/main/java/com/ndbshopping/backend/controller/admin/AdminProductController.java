@@ -1,13 +1,13 @@
 package com.ndbshopping.backend.controller.admin;
 
 import com.ndbshopping.backend.dto.common.PageResponse;
+import com.ndbshopping.backend.dto.product.AdminProductResponse;
 import com.ndbshopping.backend.dto.product.CsvImportResponse;
 import com.ndbshopping.backend.dto.product.ImportImageRequest;
 import com.ndbshopping.backend.dto.product.ProductImageResponse;
 import com.ndbshopping.backend.dto.product.ProductImportPreviewRequest;
 import com.ndbshopping.backend.dto.product.ProductImportPreviewResponse;
 import com.ndbshopping.backend.dto.product.ProductRequest;
-import com.ndbshopping.backend.dto.product.ProductResponse;
 import com.ndbshopping.backend.dto.product.RejectProductRequest;
 import com.ndbshopping.backend.entity.enums.ProductEtat;
 import com.ndbshopping.backend.entity.enums.ProductStatus;
@@ -50,7 +50,7 @@ public class AdminProductController {
 
     @GetMapping
     @Operation(summary = "Liste admin (y compris brouillons)")
-    public PageResponse<ProductResponse> list(
+    public PageResponse<AdminProductResponse> list(
             @RequestParam(required = false) ProductStatus statut,
             @RequestParam(required = false) Long categoryId,
             @RequestParam(required = false) BigDecimal minPrix,
@@ -64,18 +64,18 @@ public class AdminProductController {
     }
 
     @GetMapping("/{id}")
-    public ProductResponse get(@PathVariable Long id) {
+    public AdminProductResponse get(@PathVariable Long id) {
         return productService.getAdmin(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductResponse create(@Valid @RequestBody ProductRequest request) {
+    public AdminProductResponse create(@Valid @RequestBody ProductRequest request) {
         return productService.create(request);
     }
 
     @PutMapping("/{id}")
-    public ProductResponse update(@PathVariable Long id, @Valid @RequestBody ProductRequest request) {
+    public AdminProductResponse update(@PathVariable Long id, @Valid @RequestBody ProductRequest request) {
         return productService.update(id, request);
     }
 
@@ -87,13 +87,13 @@ public class AdminProductController {
 
     @PatchMapping("/{id}/valider")
     @Operation(summary = "Valide un produit soumis (EN_ATTENTE → PUBLIE)")
-    public ProductResponse validate(@PathVariable Long id) {
+    public AdminProductResponse validate(@PathVariable Long id) {
         return productService.validate(id);
     }
 
     @PatchMapping("/{id}/rejeter")
     @Operation(summary = "Rejette un produit soumis (EN_ATTENTE → REJETE)")
-    public ProductResponse reject(@PathVariable Long id, @Valid @RequestBody RejectProductRequest request) {
+    public AdminProductResponse reject(@PathVariable Long id, @Valid @RequestBody RejectProductRequest request) {
         return productService.reject(id, request.raison());
     }
 

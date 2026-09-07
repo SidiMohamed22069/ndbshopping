@@ -111,9 +111,12 @@
       </select>
     </div>
     <div class="col-md-6">
-      <label class="form-label" for="sourceUrl">{% trans "URL source (optionnel)" %}</label>
+      <label class="form-label" for="sourceUrl">
+        {% trans "Lien source externe (Alibaba, AliExpress, etc.)" %}
+        <span class="badge text-bg-secondary">{% trans "Masqué aux clients" %}</span>
+      </label>
       <input class="form-control" id="sourceUrl" name="sourceUrl" type="text" inputmode="url" autocomplete="off" placeholder="https://" value="{{ source_url }}">
-      <div class="form-text">{% trans "Lien d'origine (Facebook, Alibaba). Pas l'URL de l'image." %}</div>
+      <div class="form-text">{% trans "Sert uniquement au sourcing interne (recommander l'article chez le fournisseur). Jamais visible ni transmis au client." %}</div>
     </div>
   </div>
 

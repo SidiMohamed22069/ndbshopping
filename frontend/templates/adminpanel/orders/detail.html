@@ -31,7 +31,17 @@
   <tbody>
     {% for item in order.items %}
       <tr>
-        <td>{{ item.productNom }}</td>
+        <td>
+          {{ item.productNom }}
+          {% if item.sourceUrl %}
+            <br>
+            <span class="badge text-bg-warning" title="{% trans 'À commander chez un fournisseur externe' %}">🛒 {% trans "Produit Externe" %}</span>
+            <br>
+            <a class="btn btn-sm btn-outline-primary mt-1" href="{{ item.sourceUrl }}" target="_blank" rel="noopener noreferrer">
+              🔗 {% trans "Commander sur la source (Alibaba/External)" %}
+            </a>
+          {% endif %}
+        </td>
         <td>{{ item.quantite }}</td>
         <td>
           {{ item.prixUnitaire|mru }}
