@@ -234,6 +234,18 @@
     </div>
   </footer>
 
+  {% if is_authenticated_api %}
+    <a class="fab-add-listing" href="{% url 'accounts:sell' %}" aria-label="{% trans 'Ajouter une annonce' %}">
+      <i class="bi bi-plus-lg" aria-hidden="true"></i>
+      <span>{% trans "Ajouter une annonce" %}</span>
+    </a>
+  {% else %}
+    <a class="fab-add-listing" href="{% url 'accounts:login' %}?next={% url 'accounts:sell' %}" aria-label="{% trans 'Ajouter une annonce' %}">
+      <i class="bi bi-plus-lg" aria-hidden="true"></i>
+      <span>{% trans "Ajouter une annonce" %}</span>
+    </a>
+  {% endif %}
+
   <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
   <script>
     {% trans "Ajouté au panier" as ndb_added %}
