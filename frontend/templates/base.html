@@ -216,14 +216,17 @@
           <p>{% trans "Marketplace mauritanienne — Nouadhibou." %}</p>
           <p class="footer-zone">{% trans "Livraison uniquement à Nouadhibou." %}</p>
           <div class="footer-store-badges">
-            <a class="footer-store-badge" href="#" aria-label="Google Play">
-              <i class="bi bi-google-play" aria-hidden="true"></i>
-              <span>{% trans "Google Play" %}</span>
-            </a>
-            <a class="footer-store-badge" href="#" aria-label="App Store">
-              <i class="bi bi-apple" aria-hidden="true"></i>
-              <span>{% trans "App Store" %}</span>
-            </a>
+            <span class="footer-store-soon-badge">{% trans "Bientôt disponible" %}</span>
+            <div class="footer-store-buttons">
+              <a class="footer-store-badge" href="#" aria-label="Google Play" aria-disabled="true" tabindex="-1">
+                <i class="bi bi-google-play" aria-hidden="true"></i>
+                <span>{% trans "Google Play" %}</span>
+              </a>
+              <a class="footer-store-badge" href="#" aria-label="App Store" aria-disabled="true" tabindex="-1">
+                <i class="bi bi-apple" aria-hidden="true"></i>
+                <span>{% trans "App Store" %}</span>
+              </a>
+            </div>
           </div>
         </div>
         <div class="footer-col">
@@ -243,8 +246,8 @@
           <h2 class="footer-heading">{% trans "Assistance" %}</h2>
           <ul class="footer-links">
             <li><a href="{% url 'core:help' %}">{% trans "Centre d'aide" %}</a></li>
-            <li><a href="tel:+22200000000" class="footer-contact-item"><i class="bi bi-telephone" aria-hidden="true"></i> +222 00 00 00 00</a></li>
-            <li><a href="mailto:contact@ndbshopping.mr" class="footer-contact-item"><i class="bi bi-envelope" aria-hidden="true"></i> contact@ndbshopping.mr</a></li>
+            <li><span class="footer-contact-item"><i class="bi bi-telephone" aria-hidden="true"></i> {% trans "Téléphone" %} : --</span></li>
+            <li><span class="footer-contact-item"><i class="bi bi-envelope" aria-hidden="true"></i> {% trans "Email" %} : --</span></li>
             <li><span class="footer-contact-item"><i class="bi bi-geo-alt" aria-hidden="true"></i> {% trans "Nouadhibou, Mauritanie" %}</span></li>
           </ul>
         </div>

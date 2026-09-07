@@ -1726,12 +1726,28 @@ textarea.form-control {
 }
 
 .footer-store-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
     margin-top: 1rem;
 }
 
+.footer-store-soon-badge {
+    display: inline-flex;
+    align-items: center;
+    background: var(--color-secondary);
+    color: var(--color-on-secondary);
+    border-radius: var(--radius-pill);
+    padding: 0.2rem 0.7rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.footer-store-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+/* Applications mobiles pas encore publiées : boutons visibles mais non cliquables. */
 .footer-store-badge {
     display: inline-flex;
     align-items: center;
@@ -1741,10 +1757,9 @@ textarea.form-control {
     padding: 0.4rem 0.85rem;
     font-size: 0.8rem;
     font-weight: 700;
-}
-
-.footer-store-badge:hover {
-    border-color: var(--color-secondary);
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 .footer-contact-item {

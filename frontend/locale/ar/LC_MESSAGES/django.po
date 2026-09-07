@@ -2409,6 +2409,14 @@ msgstr "الزوار الفريدون خلال آخر 24 ساعة"
 msgid "visites/24h"
 msgstr "زيارات/24 س"
 
+#: .\templates\base.html
+msgid "Bientôt disponible"
+msgstr "قريباً"
+
+#: .\templates\base.html
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
 #~ msgid "Produit soumis, mais l'image n'a pas pu être enregistrée : "
 #~ msgstr "تم إرسال المنتج، لكن تعذر حفظ الصورة: "
 
