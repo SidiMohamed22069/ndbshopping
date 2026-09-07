@@ -75,6 +75,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -83,6 +84,10 @@ body {
     color: var(--color-text-dark);
     background: var(--color-text-white);
     padding-top: var(--header-height);
+    /* Filet de sécurité : empêche tout débordement horizontal résiduel (élément mal
+       dimensionné, texte trop long) de créer un scroll latéral sur mobile. */
+    overflow-x: hidden;
+    max-width: 100vw;
 }
 
 body.admin-body {
@@ -545,8 +550,15 @@ textarea.form-control {
 
 .header-searchbar--mobile {
     display: flex;
+    /* .header-collapse est en colonne (flex-direction: column) : le `flex: 1 1 32rem`
+       hérité de .header-searchbar y dimensionne la HAUTEUR (axe principal), pas la
+       largeur, ce qui gonflait démesurément la barre de recherche dans le menu
+       burger. On neutralise ce flex-basis et on repasse en dimensionnement explicite. */
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     margin-bottom: 0.75rem;
-    max-width: none;
 }
 
 .header-icon-link {
