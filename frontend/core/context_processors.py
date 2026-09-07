@@ -1,12 +1,21 @@
 import logging
 
 from django.conf import settings
+from django.core.cache import cache
 
 from cart.utils import cart_quantity
 from core.utils import flatten_categories, normalize_category_image
 from services import api_client
 
 logger = logging.getLogger(__name__)
+
+VISITOR_STATS_CACHE_KEY = "ndb:visitor_stats"
+# Ce processor tourne sur CHAQUE page vue par CHAQUE visiteur : on met les
+# compteurs en cache quelques secondes pour éviter d'interroger le backend à
+# chaque requête. "Temps réel" au sens de quasi temps réel (rafraîchi toutes
+# les ~10s), pas au sens strict.
+VISITOR_STATS_CACHE_TTL = 10
+VISITOR_STATS_EMPTY = {"users_online_auth": 0, "users_online_guest": 0, "visits_24h": 0}
 
 
 def storefront(request):
@@ -99,3 +108,32 @@ def admin_badges(request):
         "pending_products_count": pending,
         "pending_negotiations_count": pending_negotiations,
     }
+
+
+def visitor_stats(request):
+    """Fréquentation en direct (barre de stats du header) : connectés en ligne,
+    invités en ligne, visites uniques sur 24h. Voir VisitorTrackingMiddleware
+    pour l'envoi des battements et VisitorAnalyticsService côté backend pour
+    le calcul des compteurs."""
+    stats = cache.get(VISITOR_STATS_CACHE_KEY)
+    if stats is not None:
+        return {"visitor_stats": stats}
+
+    stats = VISITOR_STATS_EMPTY
+    try:
+        result = api_client.get_visitor_stats()
+    except Exception:
+        logger.exception("Échec GET /analytics/stats (contexte visitor_stats)")
+    else:
+        if result.ok and isinstance(result.data, dict):
+            stats = {
+                "users_online_auth": result.data.get("usersOnlineAuth") or 0,
+                "users_online_guest": result.data.get("usersOnlineGuest") or 0,
+                "visits_24h": result.data.get("visits24h") or 0,
+            }
+        else:
+            logger.error(
+                "GET /analytics/stats a échoué (status=%s): %s", result.status, result.error
+            )
+    cache.set(VISITOR_STATS_CACHE_KEY, stats, VISITOR_STATS_CACHE_TTL)
+    return {"visitor_stats": stats}

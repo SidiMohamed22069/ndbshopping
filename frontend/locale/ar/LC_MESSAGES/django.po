@@ -2381,6 +2381,34 @@ msgstr ""
 msgid "Envoyer ma proposition"
 msgstr ""
 
+#: .\templates\base.html
+msgid "Fréquentation en direct"
+msgstr "زيارات مباشرة"
+
+#: .\templates\base.html
+msgid "Utilisateurs connectés en ligne"
+msgstr "المستخدمون المتصلون الآن"
+
+#: .\templates\base.html
+msgid "connectés"
+msgstr "متصلون"
+
+#: .\templates\base.html
+msgid "Visiteurs anonymes en ligne"
+msgstr "زوار غير مسجلين متصلون الآن"
+
+#: .\templates\base.html
+msgid "invités"
+msgstr "زوار"
+
+#: .\templates\base.html
+msgid "Visiteurs uniques sur les dernières 24 heures"
+msgstr "الزوار الفريدون خلال آخر 24 ساعة"
+
+#: .\templates\base.html
+msgid "visites/24h"
+msgstr "زيارات/24 س"
+
 #~ msgid "Produit soumis, mais l'image n'a pas pu être enregistrée : "
 #~ msgstr "تم إرسال المنتج، لكن تعذر حفظ الصورة: "
 

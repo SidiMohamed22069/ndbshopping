@@ -40,9 +40,10 @@
     --badge-5: #F97316;
     --badge-6: #06B6D4;
 
+    --header-statsbar-h: 1.85rem;
     --header-topbar-h: 4.5rem;
     --header-navbar-h: 2.75rem;
-    --header-height: calc(var(--header-topbar-h) + var(--header-navbar-h));
+    --header-height: calc(var(--header-statsbar-h) + var(--header-topbar-h) + var(--header-navbar-h));
     --radius-pill: 999px;
     --radius-md: 0.75rem;
     --font: "Almarai", sans-serif;
@@ -58,6 +59,7 @@
 
 @media (max-width: 991.98px) {
     :root {
+        --header-statsbar-h: 1.6rem;
         --header-topbar-h: 3.75rem;
         --header-navbar-h: 0rem;
     }
@@ -341,6 +343,61 @@ textarea.form-control {
        lieu de déborder sous sa propre boîte et de chevaucher le contenu de <main>. */
     min-height: var(--header-height);
     box-shadow: var(--shadow-md);
+}
+
+/* --------------------------------------------------------------------------
+   Barre de fréquentation (connectés / invités / visites 24h) — tout en haut
+   du header, au-dessus de la barre de recherche.
+   -------------------------------------------------------------------------- */
+
+.header-statsbar {
+    min-height: var(--header-statsbar-h);
+    background: var(--color-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header-statsbar-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.1rem;
+    min-height: var(--header-statsbar-h);
+    padding-block: 0.2rem;
+}
+
+.header-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.72rem;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.header-stat i {
+    color: var(--color-secondary);
+    font-size: 0.78rem;
+}
+
+.header-stat strong {
+    color: var(--color-text-white);
+    font-weight: 700;
+}
+
+.header-stat-label {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 575.98px) {
+    .header-statsbar-inner {
+        gap: 0.65rem;
+    }
+
+    .header-stat-label {
+        display: none;
+    }
 }
 
 .header-topbar {

@@ -651,3 +651,24 @@ def admin_update_user_status(token: str, user_id: int | str, actif: bool) -> Api
 
 def admin_delete_user(token: str, user_id: int | str) -> ApiResult:
     return call("DELETE", f"/admin/users/{user_id}", token=token)
+
+
+# ---------------------------------------------------------------------------
+# Fréquentation (barre de stats du header) — public, pas de JWT requis
+# ---------------------------------------------------------------------------
+
+def send_visitor_heartbeat(visitor_key: str, authenticated: bool) -> ApiResult:
+    """Signale qu'un visiteur est actif. Timeout court : appelé depuis un middleware,
+    ne doit jamais ralentir sensiblement une page si le backend est lent."""
+    return call(
+        "POST",
+        "/analytics/heartbeat",
+        json={"visitorKey": visitor_key, "authenticated": authenticated},
+        timeout=3,
+    )
+
+
+def get_visitor_stats() -> ApiResult:
+    """Compteurs de fréquentation courants. Appelé par le context processor
+    (mis en cache quelques secondes côté Django) : timeout court également."""
+    return call("GET", "/analytics/stats", timeout=4)

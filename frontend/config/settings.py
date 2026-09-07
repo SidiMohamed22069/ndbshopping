@@ -58,6 +58,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "core.middleware.ApiAuthMiddleware",
+    "core.middleware.VisitorTrackingMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -75,6 +76,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "core.context_processors.storefront",
                 "core.context_processors.admin_badges",
+                "core.context_processors.visitor_stats",
             ],
         },
     },

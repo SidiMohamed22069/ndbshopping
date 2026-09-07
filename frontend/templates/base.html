@@ -25,6 +25,25 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
   <header class="site-header">
+    <div class="header-statsbar" aria-label="{% trans 'Fréquentation en direct' %}">
+      <div class="container header-statsbar-inner">
+        <span class="header-stat" title="{% trans 'Utilisateurs connectés en ligne' %}">
+          <i class="bi bi-person-check-fill" aria-hidden="true"></i>
+          <strong>{{ visitor_stats.users_online_auth }}</strong>
+          <span class="header-stat-label">{% trans "connectés" %}</span>
+        </span>
+        <span class="header-stat" title="{% trans 'Visiteurs anonymes en ligne' %}">
+          <i class="bi bi-eye-fill" aria-hidden="true"></i>
+          <strong>{{ visitor_stats.users_online_guest }}</strong>
+          <span class="header-stat-label">{% trans "invités" %}</span>
+        </span>
+        <span class="header-stat" title="{% trans 'Visiteurs uniques sur les dernières 24 heures' %}">
+          <i class="bi bi-graph-up-arrow" aria-hidden="true"></i>
+          <strong>{{ visitor_stats.visits_24h }}</strong>
+          <span class="header-stat-label">{% trans "visites/24h" %}</span>
+        </span>
+      </div>
+    </div>
     <div class="header-topbar">
       <div class="container header-topbar-inner">
         <a class="site-logo-link" href="{% url 'core:home' %}">
