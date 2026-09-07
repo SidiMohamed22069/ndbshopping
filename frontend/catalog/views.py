@@ -12,6 +12,7 @@ from core.utils import (
     normalize_category_image,
     normalize_product_images,
     page_from_request,
+    safe_next_url,
 )
 from services import api_client
 
@@ -176,6 +177,9 @@ def favorite_add(request, product_id):
         messages.success(request, _now("Ajouté à vos favoris."))
     else:
         messages.error(request, result.error or _now("Impossible d'ajouter aux favoris."))
+    next_url = safe_next_url(request.POST.get("next"))
+    if next_url != "/":
+        return redirect(next_url)
     return redirect("catalog:product_detail", product_id=product_id)
 
 
@@ -187,6 +191,9 @@ def favorite_remove(request, product_id):
         messages.success(request, _now("Retiré de vos favoris."))
     else:
         messages.error(request, result.error or _now("Suppression impossible."))
+    next_url = safe_next_url(request.POST.get("next"))
+    if next_url != "/":
+        return redirect(next_url)
     return redirect("catalog:product_detail", product_id=product_id)
 
 

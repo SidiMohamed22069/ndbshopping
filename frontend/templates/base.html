@@ -25,12 +25,85 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="site-logo-link" href="{% url 'core:home' %}">
-        <img src="{% static 'img/logo.png' %}" alt="NDB Shopping" class="site-logo">
-      </a>
+    <div class="header-topbar">
+      <div class="container header-topbar-inner">
+        <a class="site-logo-link" href="{% url 'core:home' %}">
+          <img src="{% static 'img/logo.png' %}" alt="NDB Shopping" class="site-logo">
+        </a>
 
-      <nav class="header-nav d-none d-lg-flex" aria-label="{% trans 'Navigation principale' %}">
+        <form class="header-searchbar d-none d-lg-flex" method="get" action="{% url 'catalog:product_list' %}" role="search">
+          <div class="header-searchbar-category">
+            <i class="bi bi-grid header-searchbar-icon" aria-hidden="true"></i>
+            <select class="form-select" name="category" aria-label="{% trans 'Catégorie' %}">
+              <option value="">{% trans "Toutes les catégories" %}</option>
+              {% for cat in nav_categories_flat %}
+                <option value="{{ cat.id }}">{{ cat.nom }}</option>
+              {% endfor %}
+            </select>
+            <i class="bi bi-chevron-down header-searchbar-caret" aria-hidden="true"></i>
+          </div>
+          <span class="header-searchbar-divider" aria-hidden="true"></span>
+          <input class="form-control header-searchbar-input" type="search" name="q" value="{{ request.GET.q }}" placeholder="{% trans 'Rechercher un produit, une catégorie…' %}" aria-label="{% trans 'Recherche' %}">
+          <button class="header-searchbar-submit" type="submit">
+            <i class="bi bi-search" aria-hidden="true"></i>
+            <span>{% trans "Rechercher" %}</span>
+          </button>
+        </form>
+
+        <div class="header-actions">
+          {% include "includes/language_switcher.html" %}
+          {% if is_authenticated_api %}
+            <a class="header-icon-link" href="{% url 'accounts:notifications' %}" aria-label="{% trans 'Notifications' %}">
+              <i class="bi bi-bell"></i>
+              {% if unread_notifications_client %}
+                <span class="badge rounded-pill cart-badge">{{ unread_notifications_client }}</span>
+              {% endif %}
+            </a>
+          {% endif %}
+          <a class="header-icon-link" href="{% url 'cart:detail' %}" aria-label="{% trans 'Panier' %}">
+            <i class="bi bi-bag"></i>
+            <span class="badge rounded-pill cart-badge" id="cartBadge">{{ cart_count }}</span>
+          </a>
+          <div class="d-none d-lg-flex align-items-center gap-2">
+            {% if is_authenticated_api %}
+              <div class="dropdown">
+                <a class="header-login dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                  <i class="bi bi-person-circle"></i> {{ user_nom }}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="{% url 'accounts:orders' %}">{% trans "Mes commandes" %}</a></li>
+                  <li><a class="dropdown-item" href="{% url 'accounts:my_listings' %}">{% trans "Mes annonces" %}</a></li>
+                  <li><a class="dropdown-item" href="{% url 'negotiations:list' %}">{% trans "Mes négociations" %}</a></li>
+                  <li><a class="dropdown-item" href="{% url 'accounts:favorites' %}">{% trans "Mes favoris" %}</a></li>
+                  {% if is_admin_api %}
+                    <li><a class="dropdown-item" href="{% url 'adminpanel:dashboard' %}">{% trans "Espace admin" %}</a></li>
+                  {% endif %}
+                  <li><hr class="dropdown-divider"></li>
+                  <li>
+                    <form action="{% url 'accounts:logout' %}" method="post">{% csrf_token %}
+                      <button class="dropdown-item" type="submit">{% trans "Déconnexion" %}</button>
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            {% else %}
+              <a class="header-login" href="{% url 'accounts:login' %}">{% trans "Connexion" %}</a>
+            {% endif %}
+            {% if is_authenticated_api %}
+              <a class="btn-cta header-add-btn" href="{% url 'accounts:sell' %}">{% trans "Ajouter une annonce" %}</a>
+            {% else %}
+              <a class="btn-cta header-add-btn" href="{% url 'accounts:login' %}?next={% url 'accounts:sell' %}">{% trans "Ajouter une annonce" %}</a>
+            {% endif %}
+          </div>
+          <button class="header-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#headerMenu" aria-controls="headerMenu" aria-expanded="false" aria-label="{% trans 'Menu' %}">
+            <i class="bi bi-list fs-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="header-navbar d-none d-lg-flex" aria-label="{% trans 'Navigation principale' %}">
+      <div class="container header-navbar-inner">
         <a class="nav-link" href="{% url 'core:home' %}">{% trans "Accueil" %}</a>
         <div class="dropdown">
           <a class="nav-link dropdown-toggle" href="{% url 'catalog:categories' %}" data-bs-toggle="dropdown">{% trans "Catégories" %}</a>
@@ -44,81 +117,25 @@
             <li><a class="dropdown-item" href="{% url 'catalog:categories' %}">{% trans "Toutes les catégories" %}</a></li>
           </ul>
         </div>
-        <a class="nav-link" href="{% url 'catalog:product_list' %}">{% trans "Produits" %}</a>
-        <a class="nav-link" href="{% url 'catalog:publication_list' %}">{% trans "Actualités" %}</a>
-      </nav>
-
-      <form class="header-search d-none d-lg-flex" method="get" action="{% url 'catalog:product_list' %}" role="search">
-        <input class="form-control" type="search" name="q" value="{{ request.GET.q }}" placeholder="{% trans 'Rechercher un produit…' %}" aria-label="{% trans 'Recherche' %}">
-        <button class="header-search-submit" type="submit" aria-label="{% trans 'Rechercher' %}">
-          <i class="bi bi-search" aria-hidden="true"></i>
-        </button>
-      </form>
-
-      <div class="header-actions">
-        {% include "includes/language_switcher.html" %}
-        {% if is_authenticated_api %}
-          <a class="header-icon-link" href="{% url 'accounts:notifications' %}" aria-label="{% trans 'Notifications' %}">
-            <i class="bi bi-bell"></i>
-            {% if unread_notifications_client %}
-              <span class="badge rounded-pill cart-badge">{{ unread_notifications_client }}</span>
-            {% endif %}
-          </a>
-        {% endif %}
-        <a class="header-icon-link" href="{% url 'cart:detail' %}" aria-label="{% trans 'Panier' %}">
-          <i class="bi bi-bag"></i>
-          <span class="badge rounded-pill cart-badge" id="cartBadge">{{ cart_count }}</span>
-        </a>
-        <div class="d-none d-lg-flex align-items-center gap-2">
-          {% if is_authenticated_api %}
-            <div class="dropdown">
-              <a class="header-login dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                <i class="bi bi-person-circle"></i> {{ user_nom }}
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="{% url 'accounts:orders' %}">{% trans "Mes commandes" %}</a></li>
-                <li><a class="dropdown-item" href="{% url 'accounts:my_listings' %}">{% trans "Mes annonces" %}</a></li>
-                <li><a class="dropdown-item" href="{% url 'negotiations:list' %}">{% trans "Mes négociations" %}</a></li>
-                <li><a class="dropdown-item" href="{% url 'accounts:favorites' %}">{% trans "Mes favoris" %}</a></li>
-                {% if is_admin_api %}
-                  <li><a class="dropdown-item" href="{% url 'adminpanel:dashboard' %}">{% trans "Espace admin" %}</a></li>
-                {% endif %}
-                <li><hr class="dropdown-divider"></li>
-                <li>
-                  <form action="{% url 'accounts:logout' %}" method="post">{% csrf_token %}
-                    <button class="dropdown-item" type="submit">{% trans "Déconnexion" %}</button>
-                  </form>
-                </li>
-              </ul>
-            </div>
-          {% else %}
-            <a class="header-login" href="{% url 'accounts:login' %}">{% trans "Connexion" %}</a>
-          {% endif %}
-          {% if is_authenticated_api %}
-            <a class="header-sell" href="{% url 'accounts:sell' %}">{% trans "Vendre un produit" %}</a>
-          {% else %}
-            <a class="header-sell" href="{% url 'accounts:login' %}?next={% url 'accounts:sell' %}">{% trans "Vendre un produit" %}</a>
-          {% endif %}
-          <a class="btn-cta" href="{% url 'cart:detail' %}">{% trans "Commander" %}</a>
-        </div>
-        <button class="header-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#headerMenu" aria-controls="headerMenu" aria-expanded="false" aria-label="{% trans 'Menu' %}">
-          <i class="bi bi-list fs-4"></i>
-        </button>
+        <a class="nav-link" href="{% url 'core:home' %}#vedettes">{% trans "Annonces vedettes" %}</a>
+        <a class="nav-link" href="{% url 'catalog:publication_list' %}">{% trans "Actualités de Nouadhibou" %}</a>
+        <a class="nav-link" href="{% url 'core:help' %}">{% trans "Aide" %}</a>
       </div>
-    </div>
+    </nav>
 
     <div class="collapse header-collapse d-lg-none" id="headerMenu">
-      <form class="header-search header-search--mobile" method="get" action="{% url 'catalog:product_list' %}" role="search">
-        <input class="form-control" type="search" name="q" value="{{ request.GET.q }}" placeholder="{% trans 'Rechercher un produit…' %}" aria-label="{% trans 'Recherche' %}">
-        <button class="header-search-submit" type="submit" aria-label="{% trans 'Rechercher' %}">
+      <form class="header-searchbar header-searchbar--mobile" method="get" action="{% url 'catalog:product_list' %}" role="search">
+        <input class="form-control header-searchbar-input" type="search" name="q" value="{{ request.GET.q }}" placeholder="{% trans 'Rechercher un produit, une catégorie…' %}" aria-label="{% trans 'Recherche' %}">
+        <button class="header-searchbar-submit" type="submit" aria-label="{% trans 'Rechercher' %}">
           <i class="bi bi-search" aria-hidden="true"></i>
         </button>
       </form>
       <nav class="header-nav" aria-label="{% trans 'Navigation mobile' %}">
         <a class="nav-link" href="{% url 'core:home' %}">{% trans "Accueil" %}</a>
         <a class="nav-link" href="{% url 'catalog:categories' %}">{% trans "Catégories" %}</a>
-        <a class="nav-link" href="{% url 'catalog:product_list' %}">{% trans "Produits" %}</a>
-        <a class="nav-link" href="{% url 'catalog:publication_list' %}">{% trans "Actualités" %}</a>
+        <a class="nav-link" href="{% url 'core:home' %}#vedettes">{% trans "Annonces vedettes" %}</a>
+        <a class="nav-link" href="{% url 'catalog:publication_list' %}">{% trans "Actualités de Nouadhibou" %}</a>
+        <a class="nav-link" href="{% url 'core:help' %}">{% trans "Aide" %}</a>
       </nav>
       <div class="header-actions-mobile">
         {% if is_authenticated_api %}
@@ -132,12 +149,11 @@
           <form action="{% url 'accounts:logout' %}" method="post">{% csrf_token %}
             <button class="header-login btn btn-link p-0" type="submit">{% trans "Déconnexion" %}</button>
           </form>
-          <a class="header-sell" href="{% url 'accounts:sell' %}">{% trans "Vendre un produit" %}</a>
+          <a class="btn-cta header-add-btn" href="{% url 'accounts:sell' %}">{% trans "Ajouter une annonce" %}</a>
         {% else %}
           <a class="header-login" href="{% url 'accounts:login' %}">{% trans "Connexion" %}</a>
-          <a class="header-sell" href="{% url 'accounts:login' %}?next={% url 'accounts:sell' %}">{% trans "Vendre un produit" %}</a>
+          <a class="btn-cta header-add-btn" href="{% url 'accounts:login' %}?next={% url 'accounts:sell' %}">{% trans "Ajouter une annonce" %}</a>
         {% endif %}
-        <a class="btn-cta" href="{% url 'cart:detail' %}">{% trans "Commander" %}</a>
       </div>
     </div>
   </header>
@@ -166,36 +182,55 @@
       </div>
       <div class="cta-band-action">
         <p class="cta-band-title">{% trans "Vous vendez quelque chose ?" %}</p>
-        <a class="btn-cta" href="{% url 'accounts:sell' %}">{% trans "Vendre un produit" %}</a>
+        <a class="btn-cta" href="{% url 'accounts:sell' %}">{% trans "Ajouter une annonce" %}</a>
       </div>
     </div>
   </aside>
 
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
+      <div class="footer-grid footer-grid--v2">
+        <div class="footer-col footer-col-brand">
           <a class="site-logo-link site-logo-link--footer" href="{% url 'core:home' %}">
             <img src="{% static 'img/logo.png' %}" alt="NDB Shopping" class="site-logo">
           </a>
           <p>{% trans "Marketplace mauritanienne — Nouadhibou." %}</p>
           <p class="footer-zone">{% trans "Livraison uniquement à Nouadhibou." %}</p>
+          <div class="footer-store-badges">
+            <a class="footer-store-badge" href="#" aria-label="Google Play">
+              <i class="bi bi-google-play" aria-hidden="true"></i>
+              <span>{% trans "Google Play" %}</span>
+            </a>
+            <a class="footer-store-badge" href="#" aria-label="App Store">
+              <i class="bi bi-apple" aria-hidden="true"></i>
+              <span>{% trans "App Store" %}</span>
+            </a>
+          </div>
         </div>
         <div class="footer-col">
           <h2 class="footer-heading">{% trans "Liens utiles" %}</h2>
           <ul class="footer-links">
             <li><a href="{% url 'core:home' %}">{% trans "Accueil" %}</a></li>
             <li><a href="{% url 'catalog:categories' %}">{% trans "Catégories" %}</a></li>
-            <li><a href="{% url 'catalog:product_list' %}">{% trans "Produits" %}</a></li>
-            <li><a href="{% url 'catalog:publication_list' %}">{% trans "Actualités" %}</a></li>
-            <li><a href="{% url 'accounts:sell' %}">{% trans "Vendre un produit" %}</a></li>
+            <li><a href="{% url 'catalog:product_list' %}">{% trans "Annonces" %}</a></li>
+            <li><a href="{% url 'catalog:publication_list' %}">{% trans "Actualités de Nouadhibou" %}</a></li>
+            <li><a href="{% url 'accounts:sell' %}">{% trans "Ajouter une annonce" %}</a></li>
             {% if is_authenticated_api %}
               <li><a href="{% url 'accounts:my_listings' %}">{% trans "Mes annonces" %}</a></li>
             {% endif %}
           </ul>
         </div>
+        <div class="footer-col">
+          <h2 class="footer-heading">{% trans "Assistance" %}</h2>
+          <ul class="footer-links">
+            <li><a href="{% url 'core:help' %}">{% trans "Centre d'aide" %}</a></li>
+            <li><a href="tel:+22200000000" class="footer-contact-item"><i class="bi bi-telephone" aria-hidden="true"></i> +222 00 00 00 00</a></li>
+            <li><a href="mailto:contact@ndbshopping.mr" class="footer-contact-item"><i class="bi bi-envelope" aria-hidden="true"></i> contact@ndbshopping.mr</a></li>
+            <li><span class="footer-contact-item"><i class="bi bi-geo-alt" aria-hidden="true"></i> {% trans "Nouadhibou, Mauritanie" %}</span></li>
+          </ul>
+        </div>
       </div>
-      <p class="footer-copy">© {% now "Y" %} NDB SHOPPING</p>
+      <p class="footer-copy">© {% now "Y" %} Ndbshopping</p>
     </div>
   </footer>
 

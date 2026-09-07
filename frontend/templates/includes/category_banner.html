@@ -1,0 +1,17 @@
+{% load i18n ndb_tags %}
+<a class="cat-banner {{ color_class }} reveal" href="{% if cat %}{% url 'catalog:category_products' cat.id %}{% else %}{{ fallback_url }}{% endif %}">
+  <span class="cat-banner-media">
+    {% if cat.imageUrl %}
+      <img src="{{ cat.imageUrl|media_url }}" alt="">
+    {% else %}
+      <i class="bi {{ icon }}" aria-hidden="true"></i>
+    {% endif %}
+  </span>
+  <span class="cat-banner-body">
+    <span class="cat-banner-title">{{ title }}</span>
+    <span class="cat-banner-cta">
+      {% trans "Parcourir maintenant" %}
+      <i class="bi {% if LANGUAGE_BIDI %}bi-arrow-left{% else %}bi-arrow-right{% endif %}" aria-hidden="true"></i>
+    </span>
+  </span>
+</a>

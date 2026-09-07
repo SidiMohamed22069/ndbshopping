@@ -1,0 +1,40 @@
+{% load i18n ndb_tags %}
+<article class="listing-card listing-card--v2{% if featured %} listing-card--featured{% endif %}">
+  <div class="listing-card-media">
+    {% with img=product.images.0 %}
+      {% include "includes/media_img.html" with src_path=img|image_path version=img.id alt=product.nom placeholder="img/placeholder-produit.png" %}
+    {% endwith %}
+    {% if featured %}
+      <span class="listing-badge-featured">{% trans "Vedette" %}</span>
+    {% endif %}
+    <span class="listing-favorite">
+      {% if is_authenticated_api %}
+        <form method="post" action="{% url 'catalog:favorite_add' product.id %}">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.get_full_path }}">
+          <button type="submit" class="favorite-toggle-btn" aria-label="{% trans 'Ajouter aux favoris' %}">
+            <i class="bi bi-heart" aria-hidden="true"></i>
+          </button>
+        </form>
+      {% else %}
+        <a class="favorite-toggle-btn" href="{% url 'accounts:login' %}?next={{ request.get_full_path|urlencode }}" aria-label="{% trans 'Ajouter aux favoris' %}">
+          <i class="bi bi-heart" aria-hidden="true"></i>
+        </a>
+      {% endif %}
+    </span>
+    {% if product.aVideo %}
+      <span class="media-pill media-pill-video"><i class="bi bi-play-circle-fill" aria-hidden="true"></i> {% trans "Vidéo" %}</span>
+    {% endif %}
+    {% if product.images|length > 1 %}
+      <span class="media-pill media-pill-photos">+{{ product.images|length|add:"-1" }} {% trans "photos" %}</span>
+    {% endif %}
+  </div>
+  <div class="listing-card-body">
+    <p class="listing-price">{{ product.prix|mru }}</p>
+    <h3><a href="{% url 'catalog:product_detail' product.id %}">{{ product.nom }}</a></h3>
+    {% if product.categoryNom %}<p class="listing-card-category">{{ product.categoryNom }}</p>{% endif %}
+    {% if product.ville %}
+      <p class="listing-location"><i class="bi bi-geo-alt" aria-hidden="true"></i> {{ product.ville|ville_label }}</p>
+    {% endif %}
+  </div>
+</article>

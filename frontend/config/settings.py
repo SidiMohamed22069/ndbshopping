@@ -103,10 +103,10 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 14  # 14 jours
 # messages). Le contenu métier saisi par l'admin (noms de produits, descriptions,
 # titres de publications, noms de catégories) n'est PAS traduit — il s'affiche
 # tel quel, dans la langue où il a été écrit. Ce n'est pas un bug.
-LANGUAGE_CODE = "fr"
+LANGUAGE_CODE = "ar"
 LANGUAGES = [
-    ("fr", "Français"),
     ("ar", "العربية"),
+    ("fr", "Français"),
 ]
 LOCALE_PATHS = [BASE_DIR / "locale"]
 TIME_ZONE = "Africa/Nouakchott"

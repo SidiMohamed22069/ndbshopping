@@ -96,6 +96,26 @@ def flatten_categories(categories: list | None, prefix: str = "") -> list[dict]:
     return result
 
 
+def match_category(categories: list[dict] | None, cat_type: str | None = None, keywords: str | None = None) -> dict | None:
+    """Première catégorie correspondant à des mots-clés (nom) ou, à défaut, à un type.
+
+    Utilisé pour les bannières de catégories de la page d'accueil : les catégories
+    sont du contenu admin (nom libre), donc on cherche d'abord par mot-clé avant de
+    retomber sur le type métier (HOTEL / VOITURE / SERVICE / ...).
+    """
+    words = [w.strip().lower() for w in (keywords or "").split(",") if w.strip()]
+    if words:
+        for cat in categories or []:
+            nom = (cat.get("nom") or "").lower()
+            if any(w in nom for w in words):
+                return cat
+    if cat_type:
+        for cat in categories or []:
+            if cat.get("type") == cat_type:
+                return cat
+    return None
+
+
 def safe_next_url(next_url: str | None, fallback: str = "/") -> str:
     if next_url and next_url.startswith("/") and not next_url.startswith("//"):
         return next_url

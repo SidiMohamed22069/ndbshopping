@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Aide" %}{% endblock %}
+
+{% block content %}
+<section class="container page-wrap">
+  <h1 class="page-title">{% trans "Centre d'aide" %}</h1>
+  <p class="muted mb-4">{% trans "Une question ? Retrouvez ici les réponses les plus utiles, ou contactez-nous directement." %}</p>
+
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <div class="surface-card p-4">
+        <div class="accordion" id="helpFaq">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                {% trans "Comment publier une annonce ?" %}
+              </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#helpFaq">
+              <div class="accordion-body">
+                {% trans "Connectez-vous, puis cliquez sur « Ajouter une annonce ». Votre annonce est vérifiée par notre équipe avant d'être publiée." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                {% trans "Comment fonctionne la livraison ?" %}
+              </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#helpFaq">
+              <div class="accordion-body">
+                {% trans "La livraison est assurée uniquement à Nouadhibou. Le paiement se fait à la réception de la commande." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                {% trans "Comment négocier un prix avec un vendeur ?" %}
+              </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#helpFaq">
+              <div class="accordion-body">
+                {% trans "Depuis la fiche produit, proposez votre prix : notre équipe vous répond directement dans votre messagerie." %}
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                {% trans "Comment devenir vendeur vérifié ?" %}
+              </button>
+            </h2>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#helpFaq">
+              <div class="accordion-body">
+                {% trans "Chaque annonce est validée par notre équipe avant sa mise en ligne, ce qui garantit des vendeurs fiables sur toute la plateforme." %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-5">
+      <div class="surface-card p-4">
+        <h2 class="h5 mb-3">{% trans "Nous contacter" %}</h2>
+        <p class="d-flex align-items-center gap-2 mb-3">
+          <i class="bi bi-telephone text-primary" aria-hidden="true"></i>
+          <a class="order-phone-link" href="tel:+22200000000">+222 00 00 00 00</a>
+        </p>
+        <p class="d-flex align-items-center gap-2 mb-3">
+          <i class="bi bi-envelope text-primary" aria-hidden="true"></i>
+          <a href="mailto:contact@ndbshopping.mr">contact@ndbshopping.mr</a>
+        </p>
+        <p class="d-flex align-items-center gap-2 mb-0">
+          <i class="bi bi-geo-alt text-primary" aria-hidden="true"></i>
+          <span>{% trans "Nouadhibou, Mauritanie" %}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -7,9 +7,20 @@ from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as _
 
-from core.utils import extract_image_path
+from core.utils import extract_image_path, match_category
 
 register = template.Library()
+
+_CATEGORY_ICON_RULES = [
+    (("immobil", "maison", "villa", "appartement", "terrain", "عقار"), "bi-house-door"),
+    (("voiture", "auto", "car", "سيارة", "سيارات"), "bi-car-front"),
+    (("moto", "vélo", "velo", "bike", "cycle", "دراجة"), "bi-bicycle"),
+    (("téléphone", "telephone", "electron", "ordinateur", "phone", "هاتف", "الكترون"), "bi-phone"),
+    (("vêtement", "vetement", "mode", "habill", "ملابس"), "bi-bag"),
+    (("meuble", "mobilier", "أثاث"), "bi-lamp"),
+    (("service", "خدم"), "bi-tools"),
+]
+_CATEGORY_TYPE_ICONS = {"HOTEL": "bi-building", "VOITURE": "bi-car-front", "SERVICE": "bi-tools"}
 
 
 def _storage_relative(raw: str) -> str:
@@ -95,6 +106,23 @@ def mru(value) -> str:
     formatted = f"{number:,.0f}".replace(",", " ")
     unit = _("UM")
     return format_html('<span class="mru-amount">{} {}</span>', formatted, unit)
+
+
+@register.filter
+def category_icon(cat) -> str:
+    """Classe d'icône Bootstrap Icons déduite du nom (mot-clé) puis du type de la catégorie."""
+    nom = (cat.get("nom") or "").lower() if isinstance(cat, dict) else ""
+    for keywords, icon in _CATEGORY_ICON_RULES:
+        if any(k in nom for k in keywords):
+            return icon
+    cat_type = cat.get("type") if isinstance(cat, dict) else None
+    return _CATEGORY_TYPE_ICONS.get(cat_type, "bi-box-seam")
+
+
+@register.simple_tag
+def category_match(categories, cat_type: str | None = None, keywords: str | None = None):
+    """Première catégorie correspondant à des mots-clés (nom) ou à un type — bannières de l'accueil."""
+    return match_category(categories, cat_type=cat_type, keywords=keywords)
 
 
 @register.filter

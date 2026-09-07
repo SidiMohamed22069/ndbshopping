@@ -1,0 +1,12 @@
+{% load i18n ndb_tags %}
+{% if all_categories %}
+  <a class="icon-card icon-card--all reveal" href="{% url 'catalog:categories' %}">
+    <span class="icon-card-badge"><i class="bi bi-grid-3x3-gap-fill"></i></span>
+    <span class="icon-card-label">{% trans "Toutes les catégories" %}</span>
+  </a>
+{% else %}
+  <a class="icon-card reveal" href="{% url 'catalog:category_products' cat.id %}">
+    <span class="icon-card-badge"><i class="bi {{ cat|category_icon }}"></i></span>
+    <span class="icon-card-label">{{ cat.nom }}</span>
+  </a>
+{% endif %}
