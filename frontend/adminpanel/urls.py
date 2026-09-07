@@ -21,6 +21,7 @@ urlpatterns = [
     # Produits
     path("produits/", views.product_list, name="product_list"),
     path("produits/nouveau/", views.product_create, name="product_create"),
+    path("produits/nouveau/extraire/", views.product_import_extract, name="product_import_extract"),
     path("produits/import/", views.product_import, name="product_import"),
     path("produits/a-valider/", views.product_pending, name="product_pending"),
     path("produits/<int:product_id>/valider/", views.product_validate, name="product_validate"),

@@ -46,6 +46,8 @@ PRODUCT_SOURCES = [
     ("MANUEL", _lazy("Manuel")),
     ("FACEBOOK", "Facebook"),
     ("ALIBABA", "Alibaba"),
+    ("ALIEXPRESS", "AliExpress"),
+    ("AMAZON", "Amazon"),
     ("AUTRE", _lazy("Autre")),
 ]
 ORDER_STATUSES = [
@@ -470,6 +472,33 @@ def product_list(request):
     )
 
 
+def _attach_import_images(request, product_id) -> list[str]:
+    """Rapatrie côté backend les images sélectionnées lors de l'aperçu d'import.
+
+    `import_image_urls` est un JSON (liste d'URLs) rempli par le JS de l'onglet
+    "Importer" après extraction. Retourne les messages d'erreur des images qui
+    n'ont pas pu être téléchargées (le produit reste créé malgré tout).
+    """
+    raw = request.POST.get("import_image_urls") or ""
+    if not raw.strip() or not product_id:
+        return []
+    try:
+        urls = json.loads(raw)
+    except json.JSONDecodeError:
+        return []
+    if not isinstance(urls, list):
+        return []
+    token = _token(request)
+    errors = []
+    for url in urls[:6]:
+        if not isinstance(url, str) or not url.strip():
+            continue
+        result = api_client.admin_import_product_image(token, product_id, url.strip())
+        if not result.ok:
+            errors.append(result.error or url)
+    return errors
+
+
 @admin_required_api
 @require_http_methods(["GET", "POST"])
 def product_create(request):
@@ -480,7 +509,14 @@ def product_create(request):
         result = api_client.admin_create_product(_token(request), payload)
         if result.ok and isinstance(result.data, dict):
             entity_id = result.data.get("id")
+            image_errors = _attach_import_images(request, entity_id)
             messages.success(request, _("Produit créé."))
+            if image_errors:
+                messages.warning(
+                    request,
+                    _("Produit créé, mais certaines images importées n'ont pas pu être enregistrées : ")
+                    + "; ".join(image_errors),
+                )
             if entity_id:
                 return redirect("adminpanel:product_edit", product_id=entity_id)
         messages.error(request, result.error or _("Création impossible."))
@@ -489,6 +525,19 @@ def product_create(request):
         "adminpanel/products/form.html",
         _product_form_context(None, flat),
     )
+
+
+@admin_required_api
+@require_POST
+def product_import_extract(request):
+    """Proxy AJAX vers POST /admin/products/import/preview (utilisé par l'onglet "Importer" du formulaire d'ajout)."""
+    url = (request.POST.get("url") or "").strip()
+    if not url:
+        return json_error(_("Collez une URL."))
+    result = api_client.admin_import_preview(_token(request), url)
+    if not result.ok:
+        return json_error(result.error or _("Extraction impossible."), result.status or 400)
+    return json_ok(result.data)
 
 
 @admin_required_api
@@ -711,41 +760,25 @@ def product_reject(request, product_id):
 @admin_required_api
 @require_http_methods(["GET", "POST"])
 def product_import(request):
-    cats = api_client.get_categories()
-    flat = flatten_categories(cats.data if cats.ok else [])
+    """Import CSV en masse. L'import unitaire par URL (scraping) se fait depuis
+    l'onglet "Importer" du formulaire d'ajout de produit (voir `product_create`)."""
     csv_result = None
     if request.method == "POST":
-        action = request.POST.get("action")
-        token = _token(request)
-        if action == "url":
-            url = (request.POST.get("url") or "").strip()
-            category_id = request.POST.get("categoryId") or None
-            if not url:
-                messages.error(request, _("Collez une URL."))
+        upload = request.FILES.get("file")
+        if not upload:
+            messages.error(request, _("Choisissez un fichier CSV."))
+        else:
+            result = api_client.admin_import_csv(_token(request), upload)
+            if result.ok:
+                csv_result = result.data
+                imported = csv_result.get("imported", 0) if isinstance(csv_result, dict) else 0
+                messages.success(request, _("Import CSV terminé : %(n)s produit(s).") % {"n": imported})
             else:
-                result = api_client.admin_import_url(token, url, category_id)
-                if result.ok:
-                    messages.success(request, _("Import URL : brouillon créé (stub)."))
-                    if isinstance(result.data, dict) and result.data.get("id"):
-                        return redirect("adminpanel:product_edit", product_id=result.data["id"])
-                else:
-                    messages.error(request, result.error or _("Import URL impossible."))
-        elif action == "csv":
-            upload = request.FILES.get("file")
-            if not upload:
-                messages.error(request, _("Choisissez un fichier CSV."))
-            else:
-                result = api_client.admin_import_csv(token, upload)
-                if result.ok:
-                    csv_result = result.data
-                    imported = csv_result.get("imported", 0) if isinstance(csv_result, dict) else 0
-                    messages.success(request, _("Import CSV terminé : %(n)s produit(s).") % {"n": imported})
-                else:
-                    messages.error(request, result.error or _("Import CSV impossible."))
+                messages.error(request, result.error or _("Import CSV impossible."))
     return render(
         request,
         "adminpanel/products/import.html",
-        {"categories_flat": flat, "csv_result": csv_result},
+        {"csv_result": csv_result},
     )
 
 

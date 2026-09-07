@@ -22,6 +22,7 @@
         <jjwt.version>0.12.6</jjwt.version>
         <springdoc.version>2.8.8</springdoc.version>
         <commons-csv.version>1.14.0</commons-csv.version>
+        <jsoup.version>1.18.3</jsoup.version>
     </properties>
 
     <dependencies>
@@ -89,6 +90,11 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-csv</artifactId>
             <version>${commons-csv.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

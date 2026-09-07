@@ -488,11 +488,18 @@ def admin_reject_product(token: str, product_id: int | str, raison: str) -> ApiR
     )
 
 
-def admin_import_url(token: str, url: str, category_id: int | str | None = None) -> ApiResult:
-    payload: dict[str, Any] = {"url": url}
-    if category_id not in (None, ""):
-        payload["categoryId"] = int(category_id)
-    return call("POST", "/admin/products/import/url", token=token, json=payload)
+def admin_import_preview(token: str, url: str) -> ApiResult:
+    """Extraction (scraping) d'une page produit externe : titre/description/images/prix/catégorie suggérée.
+
+    Ne crée rien en base ; l'admin relit et complète l'aperçu avant de publier via le
+    formulaire d'ajout classique.
+    """
+    return call("POST", "/admin/products/import/preview", token=token, json={"url": url})
+
+
+def admin_import_product_image(token: str, product_id: int | str, image_url: str) -> ApiResult:
+    """Télécharge côté serveur une image référencée par une URL externe et l'attache au produit."""
+    return call("POST", f"/admin/products/{product_id}/images/import", token=token, json={"url": image_url})
 
 
 def admin_import_csv(token: str, django_file) -> ApiResult:

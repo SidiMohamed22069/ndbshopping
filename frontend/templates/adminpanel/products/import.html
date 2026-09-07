@@ -6,33 +6,15 @@
 {% block content %}
 <h1 class="h4 mb-4">{% trans "Importer des produits" %}</h1>
 
+<p class="text-muted">
+  {% blocktrans %}Pour importer un seul produit depuis un site externe (Alibaba, AliExpress, Amazon…), utilisez l'onglet « Importer depuis un site externe » de la page{% endblocktrans %}
+  <a href="{% url 'adminpanel:product_create' %}">{% trans "Nouveau produit" %}</a>.
+</p>
+
 <div class="row g-4">
-  <div class="col-lg-6">
-    <form method="post" class="form-panel h-100">
-      {% csrf_token %}
-      <input type="hidden" name="action" value="url">
-      <h2 class="h6">{% trans "Depuis une URL (stub)" %}</h2>
-      <p class="small text-muted">{% trans "Crée un brouillon via" %} <code>POST /admin/products/import/url</code>.</p>
-      <div class="mb-3">
-        <label class="form-label" for="url">{% trans "URL" %}</label>
-        <input class="form-control" id="url" name="url" type="url" required placeholder="https://…">
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="categoryId">{% trans "Catégorie (optionnel)" %}</label>
-        <select class="form-select" id="categoryId" name="categoryId">
-          <option value="">—</option>
-          {% for cat in categories_flat %}
-            <option value="{{ cat.id }}">{{ cat.nom }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <button class="btn-cta" type="submit">{% trans "Importer l'URL" %}</button>
-    </form>
-  </div>
   <div class="col-lg-6">
     <form method="post" enctype="multipart/form-data" class="form-panel h-100">
       {% csrf_token %}
-      <input type="hidden" name="action" value="csv">
       <h2 class="h6">{% trans "Fichier CSV" %}</h2>
       <p class="small text-muted">{% trans "Colonnes :" %} <code>nom, description, prix, stock, categoryId</code></p>
       <div class="mb-3">

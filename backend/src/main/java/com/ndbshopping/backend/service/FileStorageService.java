@@ -47,6 +47,31 @@ public class FileStorageService {
         return storeImage("products", productId, file);
     }
 
+    /** Stocke une image déjà téléchargée depuis une URL externe (import produit). */
+    public String storeProductImageFromBytes(Long productId, byte[] bytes, String contentType) {
+        if (bytes == null || bytes.length == 0) {
+            throw ApiException.badRequest("Image manquante");
+        }
+        if (bytes.length > MAX_BYTES) {
+            throw ApiException.badRequest("Fichier trop volumineux (max 5 Mo)");
+        }
+        String ct = contentType == null ? "" : contentType.toLowerCase(Locale.ROOT);
+        if (!ALLOWED_CONTENT_TYPES.contains(ct)) {
+            throw ApiException.badRequest("Format d'image non autorisé (jpg, png, webp uniquement)");
+        }
+        String ext = EXT_BY_TYPE.getOrDefault(ct, ".jpg");
+        String filename = UUID.randomUUID() + ext;
+        Path dir = root.resolve("products").resolve(String.valueOf(productId));
+        try {
+            Files.createDirectories(dir);
+            Files.write(dir.resolve(filename), bytes);
+            return "products/" + productId + "/" + filename;
+        } catch (IOException e) {
+            log.error("Échec de sauvegarde de l'image importée du produit {}", productId, e);
+            throw ApiException.serviceUnavailable("Impossible d'enregistrer l'image");
+        }
+    }
+
     /**
      * Stocke une vidéo produit. Le type réel est déterminé par les octets magiques
      * (ftyp → mp4, EBML → webm), pas par l'extension déclarée.

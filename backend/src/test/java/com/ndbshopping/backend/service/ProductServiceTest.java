@@ -10,17 +10,27 @@ class ProductServiceTest {
 
     @Test
     void detectSource_facebook() {
-        assertEquals(ProductSource.FACEBOOK, ProductService.detectSource("https://www.facebook.com/marketplace/item/1"));
+        assertEquals(ProductSource.FACEBOOK, ProductSource.fromUrl("https://www.facebook.com/marketplace/item/1"));
     }
 
     @Test
     void detectSource_alibaba() {
-        assertEquals(ProductSource.ALIBABA, ProductService.detectSource("https://www.alibaba.com/product-detail/foo.html"));
+        assertEquals(ProductSource.ALIBABA, ProductSource.fromUrl("https://www.alibaba.com/product-detail/foo.html"));
+    }
+
+    @Test
+    void detectSource_aliexpress() {
+        assertEquals(ProductSource.ALIEXPRESS, ProductSource.fromUrl("https://www.aliexpress.com/item/123.html"));
+    }
+
+    @Test
+    void detectSource_amazon() {
+        assertEquals(ProductSource.AMAZON, ProductSource.fromUrl("https://www.amazon.com/dp/B000123"));
     }
 
     @Test
     void detectSource_other() {
-        assertEquals(ProductSource.AUTRE, ProductService.detectSource("https://example.com/item/1"));
+        assertEquals(ProductSource.AUTRE, ProductSource.fromUrl("https://example.com/item/1"));
     }
 
     @Test

@@ -5,8 +5,38 @@
 
 {% block content %}
 <h1 class="h4 mb-3">{% if product %}{% trans "Modifier" %} {{ product.nom }}{% else %}{% trans "Nouveau produit" %}{% endif %}</h1>
-<form method="post" class="form-panel">
+
+{% if not product %}
+<div class="btn-group mb-3" role="group" id="productCreationMode" aria-label="{% trans 'Mode de création' %}">
+  <button type="button" class="btn btn-outline-secondary active" data-mode="manual">{% trans "Ajouter manuellement" %}</button>
+  <button type="button" class="btn btn-outline-secondary" data-mode="import">{% trans "Importer depuis un site externe" %}</button>
+</div>
+
+<div id="importPanel" class="form-panel mb-4" hidden
+     data-extract-url="{% url 'adminpanel:product_import_extract' %}"
+     data-msg-loading="{% trans 'Extraction en cours…' %}"
+     data-msg-fail="{% trans 'Extraction impossible. Vérifiez l’URL et réessayez.' %}"
+     data-msg-empty="{% trans 'Collez une URL de page produit.' %}"
+     data-msg-no-image="{% trans 'Aucune image détectée sur cette page.' %}">
+  <h2 class="h6">{% trans "Importer depuis Alibaba, AliExpress, Amazon…" %}</h2>
+  <p class="form-text">{% trans "Collez le lien de la page produit externe, extrayez ses informations, puis ajustez-les ci-dessous avant de publier." %}</p>
+  <div class="row g-2 align-items-end">
+    <div class="col-md-9">
+      <label class="form-label" for="importUrl">{% trans "URL du produit" %}</label>
+      <input class="form-control" id="importUrl" type="url" placeholder="https://www.alibaba.com/product-detail/…">
+    </div>
+    <div class="col-md-3">
+      <button type="button" class="btn-cta w-100" id="importExtractBtn">{% trans "Extraire / Pré-remplir" %}</button>
+    </div>
+  </div>
+  <div id="importStatus" class="form-text mt-2"></div>
+  <div id="importImages" class="d-flex flex-wrap gap-2 mt-3"></div>
+</div>
+{% endif %}
+
+<form method="post" class="form-panel" id="productForm">
   {% csrf_token %}
+  <input type="hidden" name="import_image_urls" id="importImageUrls" value="[]">
   <div class="row g-3">
     <div class="col-md-8">
       <label class="form-label" for="nom">{% trans "Nom" %}</label>
@@ -120,5 +150,7 @@
 <script src="{% static 'js/admin-product-form.js' %}"></script>
 {% if product.id %}
 <script src="{% static 'js/product-media.js' %}"></script>
+{% else %}
+<script src="{% static 'js/admin-product-import.js' %}"></script>
 {% endif %}
 {% endblock %}

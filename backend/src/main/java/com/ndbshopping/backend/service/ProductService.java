@@ -2,7 +2,6 @@ package com.ndbshopping.backend.service;
 
 import com.ndbshopping.backend.dto.common.PageResponse;
 import com.ndbshopping.backend.dto.product.CsvImportResponse;
-import com.ndbshopping.backend.dto.product.ImportUrlRequest;
 import com.ndbshopping.backend.dto.product.ProductAttributeInput;
 import com.ndbshopping.backend.dto.product.ProductImageResponse;
 import com.ndbshopping.backend.dto.product.ProductRequest;
@@ -62,6 +61,7 @@ public class ProductService {
     private final CartItemRepository cartItemRepository;
     private final FileStorageService fileStorageService;
     private final NotificationService notificationService;
+    private final ProductImportService productImportService;
 
     public ProductService(
             ProductRepository productRepository,
@@ -72,7 +72,8 @@ public class ProductService {
             OrderItemRepository orderItemRepository,
             CartItemRepository cartItemRepository,
             FileStorageService fileStorageService,
-            NotificationService notificationService
+            NotificationService notificationService,
+            ProductImportService productImportService
     ) {
         this.productRepository = productRepository;
         this.categoryService = categoryService;
@@ -83,6 +84,7 @@ public class ProductService {
         this.cartItemRepository = cartItemRepository;
         this.fileStorageService = fileStorageService;
         this.notificationService = notificationService;
+        this.productImportService = productImportService;
     }
 
     @Transactional(readOnly = true)
@@ -429,28 +431,31 @@ public class ProductService {
     }
 
     /**
-     * Import assisté par URL — stub MVP.
-     * Pas de scraping automatique : le scraping de pages Facebook tierces viole les CGU Meta.
-     * Une intégration Graph API n'est possible que pour une page que l'on administre.
-     * On crée un brouillon pré-rempli (sourceUrl + sourceOrigine) à compléter par l'admin.
+     * Télécharge une image depuis une URL externe et l'attache au produit — utilisé
+     * une fois le produit créé, pour rapatrier les images choisies lors de l'aperçu
+     * d'import (voir {@link ProductImportService#preview}).
      */
     @Transactional
-    public ProductResponse importFromUrl(ImportUrlRequest request) {
-        Category category = categoryService.get(request.categoryId());
-        String url = request.url().trim();
-        Product product = Product.builder()
-                .nom("Produit importé — à compléter")
-                .description("Import depuis " + url + ". Renseignez le titre, le prix et les images avant publication.")
-                .prix(BigDecimal.ZERO)
-                .stock(null)
-                .category(category)
-                .sourceOrigine(detectSource(url))
-                .sourceUrl(url)
-                .statut(ProductStatus.BROUILLON)
-                .build();
-        Product saved = productRepository.save(product);
-        touchAssociations(saved);
-        return ProductResponse.from(saved);
+    public ProductImageResponse addImageFromUrl(Long productId, String imageUrl) {
+        Product product = get(productId);
+        if (product.getImages().size() >= MAX_IMAGES_PAR_PRODUIT) {
+            throw ApiException.conflict(
+                    "Limite de 6 images atteinte. Supprimez-en une pour en ajouter une autre.");
+        }
+        ProductImportService.DownloadedImage downloaded = productImportService.downloadImage(imageUrl);
+        int nextOrdre = product.getImages().stream()
+                .mapToInt(ProductImage::getOrdre)
+                .max()
+                .orElse(-1) + 1;
+        String relativePath = fileStorageService.storeProductImageFromBytes(
+                product.getId(), downloaded.bytes(), downloaded.contentType());
+        ProductImage image = productImageRepository.save(ProductImage.builder()
+                .product(product)
+                .relativePath(relativePath)
+                .ordre(nextOrdre)
+                .build());
+        product.getImages().add(image);
+        return new ProductImageResponse(image.getId(), "/media/" + relativePath, image.getOrdre());
     }
 
     @Transactional
@@ -549,17 +554,6 @@ public class ProductService {
         if (product.getSoumisPar() != null) {
             product.getSoumisPar().getId();
         }
-    }
-
-    static ProductSource detectSource(String url) {
-        String lower = url.toLowerCase(Locale.ROOT);
-        if (lower.contains("facebook.com") || lower.contains("fb.com") || lower.contains("fb.watch")) {
-            return ProductSource.FACEBOOK;
-        }
-        if (lower.contains("alibaba.com") || lower.contains("aliexpress.com")) {
-            return ProductSource.ALIBABA;
-        }
-        return ProductSource.AUTRE;
     }
 
     private static String required(CSVRecord record, String header) {
