@@ -12,4 +12,5 @@ urlpatterns = [
         views.category_attributes_json,
         name="category_attributes",
     ),
+    path("avis/envoyer/", views.feedback_submit, name="feedback_submit"),
 ]

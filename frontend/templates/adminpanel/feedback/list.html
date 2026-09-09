@@ -1,0 +1,73 @@
+{% extends "base_admin.html" %}
+{% load i18n ndb_tags %}
+
+{% block title %}{% trans "Boîte à idées" %}{% endblock %}
+
+{% block content %}
+<h1 class="h4 mb-3">{% trans "Boîte à idées / Feedbacks" %}</h1>
+<form class="row g-2 mb-3" method="get">
+  <div class="col-md-4">
+    <select class="form-select" name="category">
+      <option value="">{% trans "Toutes les catégories" %}</option>
+      {% for code, label in categories %}
+        <option value="{{ code }}" {% if category == code %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-4">
+    <select class="form-select" name="statut">
+      <option value="">{% trans "Tous les statuts" %}</option>
+      {% for code, label in statuses %}
+        <option value="{{ code }}" {% if statut == code %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-2 d-grid">
+    <button class="btn btn-outline-success" type="submit">{% trans "Filtrer" %}</button>
+  </div>
+</form>
+
+<ul class="list-group">
+  {% for f in feedbacks %}
+    <li class="list-group-item">
+      <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
+        <div>
+          <span class="badge text-bg-secondary">{{ f.category|statut_label }}</span>
+          <span class="badge text-bg-{% if f.anonymous %}light text-dark border{% else %}info{% endif %}">
+            {% if f.anonymous %}{% trans "Visiteur anonyme" %}{% else %}{% trans "Membre" %} — {{ f.userNom }}{% endif %}
+          </span>
+          <span class="badge text-bg-{{ f.statut|statut_badge }}">{{ f.statut|statut_label }}</span>
+          <p class="mb-1 mt-2">{{ f.message }}</p>
+          {% if f.contactInfo %}
+            <p class="small text-muted mb-0">
+              <i class="bi bi-telephone" aria-hidden="true"></i> {% trans "Contact" %} : {{ f.contactInfo }}
+            </p>
+          {% endif %}
+          <p class="small text-muted mb-0">{{ f.createdAt }}</p>
+        </div>
+        <div class="d-flex flex-column gap-1">
+          {% if f.statut != "LU" %}
+            <form method="post" action="{% url 'adminpanel:feedback_mark' f.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="statut" value="LU">
+              <input type="hidden" name="next" value="{{ request.get_full_path }}">
+              <button class="btn btn-sm btn-outline-info w-100" type="submit">{% trans "Marquer lu" %}</button>
+            </form>
+          {% endif %}
+          {% if f.statut != "TRAITE" %}
+            <form method="post" action="{% url 'adminpanel:feedback_mark' f.id %}">
+              {% csrf_token %}
+              <input type="hidden" name="statut" value="TRAITE">
+              <input type="hidden" name="next" value="{{ request.get_full_path }}">
+              <button class="btn btn-sm btn-outline-success w-100" type="submit">{% trans "Marquer traité" %}</button>
+            </form>
+          {% endif %}
+        </div>
+      </div>
+    </li>
+  {% empty %}
+    <li class="list-group-item text-muted">{% trans "Aucun avis pour le moment." %}</li>
+  {% endfor %}
+</ul>
+{% include "includes/pagination.html" %}
+{% endblock %}

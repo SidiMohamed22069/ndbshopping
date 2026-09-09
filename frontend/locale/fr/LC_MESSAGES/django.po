@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-09 23:00+0200\n"
+"POT-Creation-Date: 2026-09-09 23:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,7 +39,7 @@ msgstr "Téléphone et mot de passe sont obligatoires."
 msgid "Connexion impossible."
 msgstr "Connexion impossible."
 
-#: .\accounts\views.py:96 .\adminpanel\views.py:1178
+#: .\accounts\views.py:96 .\adminpanel\views.py:1248
 msgid "Nom, téléphone et mot de passe sont obligatoires."
 msgstr "Nom, téléphone et mot de passe sont obligatoires."
 
@@ -92,16 +92,16 @@ msgid "Soumission impossible."
 msgstr "Soumission impossible."
 
 #: .\accounts\views.py:362 .\accounts\views.py:384 .\accounts\views.py:393
-#: .\accounts\views.py:405 .\accounts\views.py:414 .\adminpanel\views.py:549
-#: .\adminpanel\views.py:601 .\cart\views.py:114 .\negotiations\views.py:30
+#: .\accounts\views.py:405 .\accounts\views.py:414 .\adminpanel\views.py:566
+#: .\adminpanel\views.py:618 .\cart\views.py:114 .\negotiations\views.py:30
 msgid "Produit introuvable."
 msgstr "Produit introuvable."
 
-#: .\accounts\views.py:397 .\accounts\views.py:418 .\adminpanel\views.py:330
-#: .\adminpanel\views.py:370 .\adminpanel\views.py:574
-#: .\adminpanel\views.py:621 .\adminpanel\views.py:638
-#: .\adminpanel\views.py:648 .\adminpanel\views.py:1066
-#: .\adminpanel\views.py:1243 .\templates\includes\product_media_form.html:11
+#: .\accounts\views.py:397 .\accounts\views.py:418 .\adminpanel\views.py:347
+#: .\adminpanel\views.py:387 .\adminpanel\views.py:591
+#: .\adminpanel\views.py:638 .\adminpanel\views.py:655
+#: .\adminpanel\views.py:665 .\adminpanel\views.py:1083
+#: .\adminpanel\views.py:1313 .\templates\includes\product_media_form.html:11
 msgid "Suppression impossible."
 msgstr "Suppression impossible."
 
@@ -110,8 +110,9 @@ msgid "Annonce marquée comme vendue."
 msgstr "Annonce marquée comme vendue."
 
 #: .\accounts\views.py:456 .\accounts\views.py:467 .\accounts\views.py:478
-#: .\adminpanel\views.py:708 .\adminpanel\views.py:719
-#: .\adminpanel\views.py:730 .\adminpanel\views.py:1110
+#: .\adminpanel\views.py:725 .\adminpanel\views.py:736
+#: .\adminpanel\views.py:747 .\adminpanel\views.py:1127
+#: .\adminpanel\views.py:1180
 msgid "Action impossible."
 msgstr "Action impossible."
 
@@ -123,91 +124,91 @@ msgstr "Annonce archivée."
 msgid "Annonce remise en ligne."
 msgstr "Annonce remise en ligne."
 
-#: .\adminpanel\views.py:121 .\core\media_upload.py:29
+#: .\adminpanel\views.py:132 .\core\media_upload.py:29
 #: .\templates\includes\product_media_form.html:4
 msgid "Image trop volumineuse (5 Mo maximum)."
 msgstr "Image trop volumineuse (5 Mo maximum)."
 
-#: .\adminpanel\views.py:125 .\core\media_upload.py:33
+#: .\adminpanel\views.py:136 .\core\media_upload.py:33
 #: .\templates\includes\product_media_form.html:6
 msgid "Format non accepté. Utilisez JPG, PNG ou WebP."
 msgstr "Format non accepté. Utilisez JPG, PNG ou WebP."
 
-#: .\adminpanel\views.py:149
+#: .\adminpanel\views.py:160
 msgid "Impossible d'enregistrer l'image."
 msgstr "Impossible d'enregistrer l'image."
 
-#: .\adminpanel\views.py:228 .\adminpanel\views.py:237
+#: .\adminpanel\views.py:245 .\adminpanel\views.py:254
 msgid "Données invalides."
 msgstr "Données invalides."
 
-#: .\adminpanel\views.py:231
+#: .\adminpanel\views.py:248
 msgid "La liste des catégories est vide."
 msgstr "La liste des catégories est vide."
 
-#: .\adminpanel\views.py:241 .\templates\adminpanel\categories\list.html:9
+#: .\adminpanel\views.py:258 .\templates\adminpanel\categories\list.html:9
 msgid "Impossible d'enregistrer l'ordre."
 msgstr "Impossible d'enregistrer l'ordre."
 
-#: .\adminpanel\views.py:269
+#: .\adminpanel\views.py:286
 msgid "Catégorie créée, mais l'image n'a pas pu être enregistrée : "
 msgstr "Catégorie créée, mais l'image n'a pas pu être enregistrée : "
 
-#: .\adminpanel\views.py:274
+#: .\adminpanel\views.py:291
 msgid "Catégorie créée. Image enregistrée."
 msgstr "Catégorie créée. Image enregistrée."
 
-#: .\adminpanel\views.py:277
+#: .\adminpanel\views.py:294
 msgid "Catégorie créée."
 msgstr "Catégorie créée."
 
-#: .\adminpanel\views.py:279 .\adminpanel\views.py:522
-#: .\adminpanel\views.py:1000 .\adminpanel\views.py:1192
+#: .\adminpanel\views.py:296 .\adminpanel\views.py:539
+#: .\adminpanel\views.py:1017 .\adminpanel\views.py:1262
 msgid "Création impossible."
 msgstr "Création impossible."
 
-#: .\adminpanel\views.py:294
+#: .\adminpanel\views.py:311
 msgid "Catégorie introuvable."
 msgstr "Catégorie introuvable."
 
-#: .\adminpanel\views.py:307
+#: .\adminpanel\views.py:324
 msgid "Catégorie mise à jour, mais l'image n'a pas pu être enregistrée : "
 msgstr "Catégorie mise à jour, mais l'image n'a pas pu être enregistrée : "
 
-#: .\adminpanel\views.py:311
+#: .\adminpanel\views.py:328
 msgid "Catégorie mise à jour. Image enregistrée."
 msgstr "Catégorie mise à jour. Image enregistrée."
 
-#: .\adminpanel\views.py:313
+#: .\adminpanel\views.py:330
 msgid "Catégorie mise à jour."
 msgstr "Catégorie mise à jour."
 
-#: .\adminpanel\views.py:315 .\adminpanel\views.py:559
-#: .\adminpanel\views.py:845 .\adminpanel\views.py:1051
+#: .\adminpanel\views.py:332 .\adminpanel\views.py:576
+#: .\adminpanel\views.py:862 .\adminpanel\views.py:1068
 msgid "Mise à jour impossible."
 msgstr "Mise à jour impossible."
 
-#: .\adminpanel\views.py:328
+#: .\adminpanel\views.py:345
 msgid "Catégorie supprimée."
 msgstr "Catégorie supprimée."
 
-#: .\adminpanel\views.py:348
+#: .\adminpanel\views.py:365
 msgid "Attribut ajouté."
 msgstr "Attribut ajouté."
 
-#: .\adminpanel\views.py:350
+#: .\adminpanel\views.py:367
 msgid "Ajout impossible."
 msgstr "Ajout impossible."
 
-#: .\adminpanel\views.py:368
+#: .\adminpanel\views.py:385
 msgid "Attribut supprimé."
 msgstr "Attribut supprimé."
 
-#: .\adminpanel\views.py:513
+#: .\adminpanel\views.py:530
 msgid "Produit créé."
 msgstr "Produit créé."
 
-#: .\adminpanel\views.py:517
+#: .\adminpanel\views.py:534
 msgid ""
 "Produit créé, mais certaines images importées n'ont pas pu être "
 "enregistrées : "
@@ -215,209 +216,213 @@ msgstr ""
 "Produit créé, mais certaines images importées n'ont pas pu être "
 "enregistrées : "
 
-#: .\adminpanel\views.py:536
+#: .\adminpanel\views.py:553
 msgid "Collez une URL."
 msgstr "Collez une URL."
 
-#: .\adminpanel\views.py:539
+#: .\adminpanel\views.py:556
 msgid "Extraction impossible."
 msgstr "Extraction impossible."
 
-#: .\adminpanel\views.py:557
+#: .\adminpanel\views.py:574
 msgid "Produit mis à jour."
 msgstr "Produit mis à jour."
 
-#: .\adminpanel\views.py:572
+#: .\adminpanel\views.py:589
 msgid "Produit supprimé."
 msgstr "Produit supprimé."
 
-#: .\adminpanel\views.py:585
+#: .\adminpanel\views.py:602
 msgid "Choisissez une image (jpg, png, webp — 5 Mo max)."
 msgstr "Choisissez une image (jpg, png, webp — 5 Mo max)."
 
-#: .\adminpanel\views.py:594
+#: .\adminpanel\views.py:611
 msgid "Image ajoutée."
 msgstr "Image ajoutée."
 
-#: .\adminpanel\views.py:596
+#: .\adminpanel\views.py:613
 msgid "Upload impossible."
 msgstr "Upload impossible."
 
-#: .\adminpanel\views.py:646
+#: .\adminpanel\views.py:663
 msgid "Image supprimée."
 msgstr "Image supprimée."
 
-#: .\adminpanel\views.py:706
+#: .\adminpanel\views.py:723
 msgid "Produit marqué comme vendu."
 msgstr "Produit marqué comme vendu."
 
-#: .\adminpanel\views.py:717
+#: .\adminpanel\views.py:734
 msgid "Produit archivé."
 msgstr "Produit archivé."
 
-#: .\adminpanel\views.py:728
+#: .\adminpanel\views.py:745
 msgid "Produit remis en ligne."
 msgstr "Produit remis en ligne."
 
-#: .\adminpanel\views.py:739
+#: .\adminpanel\views.py:756
 msgid "Produit validé. Il est maintenant en ligne."
 msgstr "Produit validé. Il est maintenant en ligne."
 
-#: .\adminpanel\views.py:741
+#: .\adminpanel\views.py:758
 msgid "Validation impossible."
 msgstr "Validation impossible."
 
-#: .\adminpanel\views.py:750
+#: .\adminpanel\views.py:767
 msgid "Indiquez une raison de rejet."
 msgstr "Indiquez une raison de rejet."
 
-#: .\adminpanel\views.py:754
+#: .\adminpanel\views.py:771
 msgid "Produit rejeté."
 msgstr "Produit rejeté."
 
-#: .\adminpanel\views.py:756
+#: .\adminpanel\views.py:773
 msgid "Rejet impossible."
 msgstr "Rejet impossible."
 
-#: .\adminpanel\views.py:769
+#: .\adminpanel\views.py:786
 msgid "Choisissez un fichier CSV."
 msgstr "Choisissez un fichier CSV."
 
-#: .\adminpanel\views.py:775
+#: .\adminpanel\views.py:792
 #, python-format
 msgid "Import CSV terminé : %(n)s produit(s)."
 msgstr "Import CSV terminé : %(n)s produit(s)."
 
-#: .\adminpanel\views.py:777
+#: .\adminpanel\views.py:794
 msgid "Import CSV impossible."
 msgstr "Import CSV impossible."
 
-#: .\adminpanel\views.py:843
+#: .\adminpanel\views.py:860
 msgid "Statut mis à jour."
 msgstr "Statut mis à jour."
 
-#: .\adminpanel\views.py:852
+#: .\adminpanel\views.py:869
 msgid "Commande introuvable."
 msgstr "Commande introuvable."
 
-#: .\adminpanel\views.py:899 .\negotiations\views.py:75
+#: .\adminpanel\views.py:916 .\negotiations\views.py:75
 msgid "Message vide."
 msgstr "Message vide."
 
-#: .\adminpanel\views.py:903 .\negotiations\views.py:79
+#: .\adminpanel\views.py:920 .\negotiations\views.py:79
 msgid "Message non envoyé."
 msgstr "Message non envoyé."
 
-#: .\adminpanel\views.py:910 .\negotiations\views.py:38
+#: .\adminpanel\views.py:927 .\negotiations\views.py:38
 #: .\negotiations\views.py:84
 msgid "Indiquez un prix valide."
 msgstr "Indiquez un prix valide."
 
-#: .\adminpanel\views.py:914
+#: .\adminpanel\views.py:931
 msgid "Contre-offre envoyée."
 msgstr "Contre-offre envoyée."
 
-#: .\adminpanel\views.py:916 .\negotiations\views.py:90
+#: .\adminpanel\views.py:933 .\negotiations\views.py:90
 msgid "Impossible d'envoyer la contre-offre."
 msgstr "Impossible d'envoyer la contre-offre."
 
-#: .\adminpanel\views.py:920
+#: .\adminpanel\views.py:937
 msgid "Prix validé."
 msgstr "Prix validé."
 
-#: .\adminpanel\views.py:922
+#: .\adminpanel\views.py:939
 msgid "Impossible de valider ce prix."
 msgstr "Impossible de valider ce prix."
 
-#: .\adminpanel\views.py:927 .\negotiations\views.py:101
+#: .\adminpanel\views.py:944 .\negotiations\views.py:101
 msgid "Négociation refusée."
 msgstr "Négociation refusée."
 
-#: .\adminpanel\views.py:929 .\negotiations\views.py:103
+#: .\adminpanel\views.py:946 .\negotiations\views.py:103
 msgid "Impossible de refuser."
 msgstr "Impossible de refuser."
 
-#: .\adminpanel\views.py:934 .\cart\views.py:170 .\negotiations\views.py:108
+#: .\adminpanel\views.py:951 .\cart\views.py:170 .\negotiations\views.py:108
 msgid "Négociation introuvable."
 msgstr "Négociation introuvable."
 
-#: .\adminpanel\views.py:991
+#: .\adminpanel\views.py:1008
 msgid "Publication créée, mais l'image n'a pas pu être enregistrée : "
 msgstr "Publication créée, mais l'image n'a pas pu être enregistrée : "
 
-#: .\adminpanel\views.py:996
+#: .\adminpanel\views.py:1013
 msgid "Publication créée. Image enregistrée."
 msgstr "Publication créée. Image enregistrée."
 
-#: .\adminpanel\views.py:998
+#: .\adminpanel\views.py:1015
 msgid "Publication créée."
 msgstr "Publication créée."
 
-#: .\adminpanel\views.py:1029
+#: .\adminpanel\views.py:1046
 msgid "Publication introuvable."
 msgstr "Publication introuvable."
 
-#: .\adminpanel\views.py:1043
+#: .\adminpanel\views.py:1060
 msgid "Publication mise à jour, mais l'image n'a pas pu être enregistrée : "
 msgstr "Publication mise à jour, mais l'image n'a pas pu être enregistrée : "
 
-#: .\adminpanel\views.py:1047
+#: .\adminpanel\views.py:1064
 msgid "Publication mise à jour. Image enregistrée."
 msgstr "Publication mise à jour. Image enregistrée."
 
-#: .\adminpanel\views.py:1049
+#: .\adminpanel\views.py:1066
 msgid "Publication mise à jour."
 msgstr "Publication mise à jour."
 
-#: .\adminpanel\views.py:1064
+#: .\adminpanel\views.py:1081
 msgid "Publication supprimée."
 msgstr "Publication supprimée."
 
-#: .\adminpanel\views.py:1108
+#: .\adminpanel\views.py:1125
 msgid "Notification marquée comme lue."
 msgstr "Notification marquée comme lue."
 
-#: .\adminpanel\views.py:1176 .\adminpanel\views.py:1208
+#: .\adminpanel\views.py:1178
+msgid "Avis mis à jour."
+msgstr "Avis mis à jour."
+
+#: .\adminpanel\views.py:1246 .\adminpanel\views.py:1278
 msgid "Rôle invalide."
 msgstr "Rôle invalide."
 
-#: .\adminpanel\views.py:1190
+#: .\adminpanel\views.py:1260
 msgid "Compte créé."
 msgstr "Compte créé."
 
-#: .\adminpanel\views.py:1204
+#: .\adminpanel\views.py:1274
 msgid "Vous ne pouvez pas modifier votre propre rôle."
 msgstr "Vous ne pouvez pas modifier votre propre rôle."
 
-#: .\adminpanel\views.py:1212
+#: .\adminpanel\views.py:1282
 msgid "Rôle mis à jour."
 msgstr "Rôle mis à jour."
 
-#: .\adminpanel\views.py:1214
+#: .\adminpanel\views.py:1284
 msgid "Mise à jour du rôle impossible."
 msgstr "Mise à jour du rôle impossible."
 
-#: .\adminpanel\views.py:1222
+#: .\adminpanel\views.py:1292
 msgid "Vous ne pouvez pas modifier le statut de votre propre compte."
 msgstr "Vous ne pouvez pas modifier le statut de votre propre compte."
 
-#: .\adminpanel\views.py:1227
+#: .\adminpanel\views.py:1297
 msgid "Compte bloqué."
 msgstr "Compte bloqué."
 
-#: .\adminpanel\views.py:1227
+#: .\adminpanel\views.py:1297
 msgid "Compte débloqué."
 msgstr "Compte débloqué."
 
-#: .\adminpanel\views.py:1229
+#: .\adminpanel\views.py:1299
 msgid "Mise à jour du statut impossible."
 msgstr "Mise à jour du statut impossible."
 
-#: .\adminpanel\views.py:1237
+#: .\adminpanel\views.py:1307
 msgid "Vous ne pouvez pas supprimer votre propre compte."
 msgstr "Vous ne pouvez pas supprimer votre propre compte."
 
-#: .\adminpanel\views.py:1241
+#: .\adminpanel\views.py:1311
 msgid "Compte supprimé."
 msgstr "Compte supprimé."
 
@@ -633,7 +638,8 @@ msgstr "Voiture"
 msgid "Service"
 msgstr "Service"
 
-#: .\core\templatetags\ndb_tags.py:194
+#: .\core\templatetags\ndb_tags.py:194 .\core\templatetags\ndb_tags.py:221
+#: .\templates\includes\feedback_widget.html:38
 msgid "Autre"
 msgstr "Autre"
 
@@ -712,6 +718,43 @@ msgstr "Refusée"
 msgid "Contre-offre"
 msgstr "Contre-offre"
 
+#: .\core\templatetags\ndb_tags.py:215
+#: .\templates\adminpanel\products\form.html:4
+#: .\templates\adminpanel\products\list.html:14
+msgid "Nouveau"
+msgstr "Nouveau"
+
+#: .\core\templatetags\ndb_tags.py:216
+msgid "Lu"
+msgstr "Lu"
+
+#: .\core\templatetags\ndb_tags.py:217
+msgid "Traité"
+msgstr "Traité"
+
+#: .\core\templatetags\ndb_tags.py:218
+#: .\templates\includes\feedback_widget.html:35
+msgid "Suggestion"
+msgstr "Suggestion"
+
+#: .\core\templatetags\ndb_tags.py:219
+#: .\templates\includes\feedback_widget.html:36
+msgid "Bug"
+msgstr "Bug"
+
+#: .\core\templatetags\ndb_tags.py:220
+#: .\templates\includes\feedback_widget.html:37
+msgid "Nouvelle fonctionnalité"
+msgstr "Nouvelle fonctionnalité"
+
+#: .\core\views.py:97 .\templates\base.html:278
+msgid "Choisissez une catégorie."
+msgstr "Choisissez une catégorie."
+
+#: .\core\views.py:99 .\templates\base.html:279
+msgid "Le message est obligatoire."
+msgstr "Le message est obligatoire."
+
 #: .\negotiations\views.py:42
 msgid "Votre proposition a été envoyée à l'équipe NDB Shopping."
 msgstr "Votre proposition a été envoyée à l'équipe NDB Shopping."
@@ -748,7 +791,7 @@ msgstr "Retour à l'accueil"
 msgid "Erreur"
 msgstr "Erreur"
 
-#: .\templates\500.html:12 .\templates\base.html:275
+#: .\templates\500.html:12 .\templates\base.html:277
 msgid "Service temporairement indisponible"
 msgstr "Service temporairement indisponible"
 
@@ -918,7 +961,7 @@ msgstr "Vous n'avez pas encore soumis d'annonce."
 
 #: .\templates\accounts\notifications.html:4
 #: .\templates\accounts\notifications.html:8
-#: .\templates\adminpanel\dashboard.html:38
+#: .\templates\adminpanel\dashboard.html:44
 #: .\templates\adminpanel\notifications\list.html:4
 #: .\templates\adminpanel\notifications\list.html:7 .\templates\base.html:75
 #: .\templates\base_admin.html:35 .\templates\includes\admin_nav.html:37
@@ -1021,6 +1064,7 @@ msgstr ""
 #: .\templates\adminpanel\products\list.html:49
 #: .\templates\adminpanel\products\pending.html:16 .\templates\base.html:56
 #: .\templates\catalog\product_list.html:18
+#: .\templates\includes\feedback_widget.html:33
 msgid "Catégorie"
 msgstr "Catégorie"
 
@@ -1274,6 +1318,7 @@ msgstr "Enregistrer"
 #: .\templates\adminpanel\products\form.html:145
 #: .\templates\adminpanel\publications\form.html:46
 #: .\templates\adminpanel\users\form.html:33
+#: .\templates\includes\feedback_widget.html:52
 msgid "Annuler"
 msgstr "Annuler"
 
@@ -1324,17 +1369,89 @@ msgstr "Commandes en attente"
 msgid "Notifications non lues"
 msgstr "Notifications non lues"
 
-#: .\templates\adminpanel\dashboard.html:25
+#: .\templates\adminpanel\dashboard.html:23
+msgid "Nouveaux avis (boîte à idées)"
+msgstr "Nouveaux avis (boîte à idées)"
+
+#: .\templates\adminpanel\dashboard.html:31
 msgid "Dernières commandes en attente"
 msgstr "Dernières commandes en attente"
 
-#: .\templates\adminpanel\dashboard.html:33
+#: .\templates\adminpanel\dashboard.html:39
 msgid "Aucune commande en attente."
 msgstr "Aucune commande en attente."
 
-#: .\templates\adminpanel\dashboard.html:46
+#: .\templates\adminpanel\dashboard.html:52
 msgid "Rien de nouveau."
 msgstr "Rien de nouveau."
+
+#: .\templates\adminpanel\dashboard.html:61
+msgid "Boîte à idées — derniers avis"
+msgstr "Boîte à idées — derniers avis"
+
+#: .\templates\adminpanel\dashboard.html:62
+msgid "Voir tous les avis"
+msgstr "Voir tous les avis"
+
+#: .\templates\adminpanel\dashboard.html:71
+#: .\templates\adminpanel\feedback\list.html:37
+msgid "Visiteur anonyme"
+msgstr "Visiteur anonyme"
+
+#: .\templates\adminpanel\dashboard.html:71
+#: .\templates\adminpanel\feedback\list.html:37
+msgid "Membre"
+msgstr "Membre"
+
+#: .\templates\adminpanel\dashboard.html:80
+#: .\templates\adminpanel\feedback\list.html:69
+msgid "Aucun avis pour le moment."
+msgstr "Aucun avis pour le moment."
+
+#: .\templates\adminpanel\feedback\list.html:4
+#: .\templates\includes\admin_nav.html:40
+msgid "Boîte à idées"
+msgstr "Boîte à idées"
+
+#: .\templates\adminpanel\feedback\list.html:7
+msgid "Boîte à idées / Feedbacks"
+msgstr "Boîte à idées / Feedbacks"
+
+#: .\templates\adminpanel\feedback\list.html:11
+#: .\templates\adminpanel\products\list.html:33 .\templates\base.html:57
+#: .\templates\base.html:136 .\templates\catalog\product_list.html:19
+#: .\templates\includes\category_icon_card.html:5
+msgid "Toutes les catégories"
+msgstr "Toutes les catégories"
+
+#: .\templates\adminpanel\feedback\list.html:19
+#: .\templates\adminpanel\negotiations\list.html:11
+#: .\templates\adminpanel\orders\list.html:11
+#: .\templates\adminpanel\products\list.html:25
+msgid "Tous les statuts"
+msgstr "Tous les statuts"
+
+#: .\templates\adminpanel\feedback\list.html:26
+#: .\templates\adminpanel\negotiations\list.html:18
+#: .\templates\adminpanel\notifications\list.html:17
+#: .\templates\adminpanel\orders\list.html:18
+#: .\templates\adminpanel\products\list.html:40
+#: .\templates\adminpanel\users\list.html:22
+#: .\templates\catalog\product_list.html:38
+msgid "Filtrer"
+msgstr "Filtrer"
+
+#: .\templates\adminpanel\feedback\list.html:43
+msgid "Contact"
+msgstr "Contact"
+
+#: .\templates\adminpanel\feedback\list.html:54
+msgid "Marquer lu"
+msgstr "Marquer lu"
+
+#: .\templates\adminpanel\feedback\list.html:62
+msgid "Marquer traité"
+msgstr "Marquer traité"
 
 #: .\templates\adminpanel\negotiations\detail.html:4
 #, python-format
@@ -1370,6 +1487,7 @@ msgid "Écrire un message…"
 msgstr "Écrire un message…"
 
 #: .\templates\adminpanel\negotiations\detail.html:50
+#: .\templates\includes\feedback_widget.html:53
 #: .\templates\negotiations\detail.html:50
 msgid "Envoyer"
 msgstr "Envoyer"
@@ -1398,21 +1516,6 @@ msgstr "Cette négociation est close."
 #: .\templates\adminpanel\negotiations\list.html:7
 msgid "Négociations de prix"
 msgstr "Négociations de prix"
-
-#: .\templates\adminpanel\negotiations\list.html:11
-#: .\templates\adminpanel\orders\list.html:11
-#: .\templates\adminpanel\products\list.html:25
-msgid "Tous les statuts"
-msgstr "Tous les statuts"
-
-#: .\templates\adminpanel\negotiations\list.html:18
-#: .\templates\adminpanel\notifications\list.html:17
-#: .\templates\adminpanel\orders\list.html:18
-#: .\templates\adminpanel\products\list.html:40
-#: .\templates\adminpanel\users\list.html:22
-#: .\templates\catalog\product_list.html:38
-msgid "Filtrer"
-msgstr "Filtrer"
 
 #: .\templates\adminpanel\negotiations\list.html:28
 msgid "Acheteur"
@@ -1523,11 +1626,6 @@ msgstr "Détail"
 #: .\templates\adminpanel\orders\list.html:56
 msgid "Aucune commande."
 msgstr "Aucune commande."
-
-#: .\templates\adminpanel\products\form.html:4
-#: .\templates\adminpanel\products\list.html:14
-msgid "Nouveau"
-msgstr "Nouveau"
 
 #: .\templates\adminpanel\products\form.html:4
 msgid "produit"
@@ -1691,12 +1789,6 @@ msgstr "Importer"
 msgid "Recherche"
 msgstr "Recherche"
 
-#: .\templates\adminpanel\products\list.html:33 .\templates\base.html:57
-#: .\templates\base.html:136 .\templates\catalog\product_list.html:19
-#: .\templates\includes\category_icon_card.html:5
-msgid "Toutes les catégories"
-msgstr "Toutes les catégories"
-
 #: .\templates\adminpanel\products\list.html:50
 #: .\templates\adminpanel\products\pending.html:17
 #: .\templates\cart\cart.html:21
@@ -1779,7 +1871,7 @@ msgstr "Aucune publication."
 #: .\templates\adminpanel\users\form.html:7
 #: .\templates\adminpanel\users\list.html:4
 #: .\templates\adminpanel\users\list.html:8
-#: .\templates\includes\admin_nav.html:40
+#: .\templates\includes\admin_nav.html:46
 msgid "Comptes"
 msgstr "Comptes"
 
@@ -2013,11 +2105,11 @@ msgstr "Email"
 msgid "Nouadhibou, Mauritanie"
 msgstr "Nouadhibou, Mauritanie"
 
-#: .\templates\base.html:273
+#: .\templates\base.html:275
 msgid "Ajouté au panier"
 msgstr "Ajouté au panier"
 
-#: .\templates\base.html:274
+#: .\templates\base.html:276
 msgid "Impossible d'ajouter au panier"
 msgstr "Impossible d'ajouter au panier"
 
@@ -2392,6 +2484,32 @@ msgstr "Parcourir maintenant"
 msgid "Voir les produits"
 msgstr "Voir les produits"
 
+#: .\templates\includes\feedback_widget.html:10
+#: .\templates\includes\feedback_widget.html:13
+msgid "Votre avis"
+msgstr "Votre avis"
+
+#: .\templates\includes\feedback_widget.html:20
+msgid "Votre avis nous intéresse"
+msgstr "Votre avis nous intéresse"
+
+#: .\templates\includes\feedback_widget.html:21
+#: .\templates\includes\messages.html:15
+msgid "Fermer"
+msgstr "Fermer"
+
+#: .\templates\includes\feedback_widget.html:29
+msgid "Merci ! Votre avis a bien été envoyé."
+msgstr "Merci ! Votre avis a bien été envoyé."
+
+#: .\templates\includes\feedback_widget.html:42
+msgid "Qu'aimeriez-vous ajouter ou améliorer sur le site ?"
+msgstr "Qu'aimeriez-vous ajouter ou améliorer sur le site ?"
+
+#: .\templates\includes\feedback_widget.html:46
+msgid "Téléphone ou email (facultatif, si vous souhaitez être recontacté)"
+msgstr "Téléphone ou email (facultatif, si vous souhaitez être recontacté)"
+
 #: .\templates\includes\language_switcher.html:6
 msgid "Langue"
 msgstr "Langue"
@@ -2409,10 +2527,6 @@ msgstr "Vidéo"
 #: .\templates\includes\product_card.html:12
 msgid "photos"
 msgstr "photos"
-
-#: .\templates\includes\messages.html:15
-msgid "Fermer"
-msgstr "Fermer"
 
 #: .\templates\includes\pagination.html:3
 msgid "Pagination"

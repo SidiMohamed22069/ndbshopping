@@ -1,0 +1,58 @@
+{% load i18n %}
+{# Boîte à idées / avis — accessible à 100% des visiteurs, avec ou sans compte.
+   Bouton flottant discret sur le côté + modale globale (voir static/js/feedback.js
+   et core.views.feedback_submit, qui relaie vers POST /api/feedbacks — public). #}
+<button
+    type="button"
+    class="feedback-fab"
+    data-bs-toggle="modal"
+    data-bs-target="#feedbackModal"
+    aria-label="{% trans 'Votre avis' %}"
+>
+  <i class="bi bi-lightbulb" aria-hidden="true"></i>
+  <span>{% trans "Votre avis" %}</span>
+</button>
+
+<div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title h5" id="feedbackModalLabel">{% trans "Votre avis nous intéresse" %}</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans 'Fermer' %}"></button>
+      </div>
+      <form class="js-feedback-form" method="post" action="{% url 'core:feedback_submit' %}">
+        {% csrf_token %}
+        <div class="modal-body">
+          <div class="feedback-form-alert alert alert-danger d-none" role="alert"></div>
+          <div class="feedback-form-success text-center py-3 d-none">
+            <i class="bi bi-check-circle-fill text-success" style="font-size: 2rem;" aria-hidden="true"></i>
+            <p class="mb-0 mt-2">{% trans "Merci ! Votre avis a bien été envoyé." %}</p>
+          </div>
+          <div class="feedback-form-fields">
+            <div class="mb-3">
+              <label class="form-label" for="feedbackCategory">{% trans "Catégorie" %}</label>
+              <select class="form-select" id="feedbackCategory" name="category" required>
+                <option value="SUGGESTION">{% trans "Suggestion" %}</option>
+                <option value="BUG">{% trans "Bug" %}</option>
+                <option value="FEATURE_REQUEST">{% trans "Nouvelle fonctionnalité" %}</option>
+                <option value="OTHER">{% trans "Autre" %}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="feedbackMessage">{% trans "Qu'aimeriez-vous ajouter ou améliorer sur le site ?" %}</label>
+              <textarea class="form-control" id="feedbackMessage" name="message" rows="4" maxlength="4000" required></textarea>
+            </div>
+            <div class="mb-1">
+              <label class="form-label" for="feedbackContact">{% trans "Téléphone ou email (facultatif, si vous souhaitez être recontacté)" %}</label>
+              <input class="form-control" type="text" id="feedbackContact" name="contact_info" maxlength="190">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">{% trans "Annuler" %}</button>
+          <button type="submit" class="btn-cta">{% trans "Envoyer" %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

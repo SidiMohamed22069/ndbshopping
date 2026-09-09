@@ -36,6 +36,12 @@
   <a class="admin-nav-link {% if 'notification' in url_name %}active{% endif %}" href="{% url 'adminpanel:notification_list' %}">
     <i class="bi bi-bell"></i> {% trans "Notifications" %}
   </a>
+  <a class="admin-nav-link {% if 'feedback' in url_name %}active{% endif %}" href="{% url 'adminpanel:feedback_list' %}">
+    <i class="bi bi-lightbulb"></i> {% trans "Boîte à idées" %}
+    {% if pending_feedback_count %}
+      <span class="badge rounded-pill admin-nav-count">{{ pending_feedback_count }}</span>
+    {% endif %}
+  </a>
   <a class="admin-nav-link {% if 'user' in url_name %}active{% endif %}" href="{% url 'adminpanel:user_list' %}">
     <i class="bi bi-people"></i> {% trans "Comptes" %}
   </a>

@@ -212,6 +212,13 @@ def statut_label(code: str | None) -> str:
         "ACCEPTED": _("Acceptée"),
         "REJECTED": _("Refusée"),
         "COUNTER_OFFER": _("Contre-offre"),
+        "NOUVEAU": _("Nouveau"),
+        "LU": _("Lu"),
+        "TRAITE": _("Traité"),
+        "SUGGESTION": _("Suggestion"),
+        "BUG": _("Bug"),
+        "FEATURE_REQUEST": _("Nouvelle fonctionnalité"),
+        "OTHER": _("Autre"),
     }
     return labels.get(code or "", code or "—")
 
@@ -235,6 +242,9 @@ def statut_badge(code: str | None) -> str:
         "ACCEPTED": "success",
         "REJECTED": "danger",
         "COUNTER_OFFER": "info",
+        "NOUVEAU": "warning",
+        "LU": "info",
+        "TRAITE": "success",
     }
     return mapping.get(code or "", "secondary")
 

@@ -2,9 +2,11 @@ import logging
 
 from django.contrib import messages
 from django.shortcuts import render
-from django.views.decorators.http import require_GET
+from django.utils.translation import gettext as _
+from django.views.decorators.http import require_GET, require_POST
 
-from core.utils import normalize_product_images
+from core.media_upload import json_error, json_ok
+from core.utils import FEEDBACK_CATEGORY_CHOICES, get_client_ip, normalize_product_images
 from services import api_client
 
 logger = logging.getLogger(__name__)
@@ -80,3 +82,29 @@ def category_attributes_json(request, category_id):
     if not result.ok:
         return JsonResponse({"error": result.error}, status=result.status or 503)
     return JsonResponse(result.data, safe=False)
+
+
+@require_POST
+def feedback_submit(request):
+    """Boîte à idées : widget global (base.html), accessible à 100% des visiteurs
+    sans connexion. Rattaché au compte si connecté (request.jwt_token), sinon
+    déposé anonymement — voir UserFeedbackService côté backend."""
+    category = (request.POST.get("category") or "").strip().upper()
+    message = (request.POST.get("message") or "").strip()
+    contact_info = (request.POST.get("contact_info") or "").strip()
+
+    if category not in FEEDBACK_CATEGORY_CHOICES:
+        return json_error(_("Choisissez une catégorie."))
+    if not message:
+        return json_error(_("Le message est obligatoire."))
+
+    result = api_client.create_feedback(
+        category=category,
+        message=message,
+        contact_info=contact_info or None,
+        token=request.jwt_token,
+        client_ip=get_client_ip(request),
+    )
+    if result.ok:
+        return json_ok()
+    return json_error(result.error or str(api_client.UNAVAILABLE), status=result.status or 503)

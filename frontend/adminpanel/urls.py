@@ -71,6 +71,9 @@ urlpatterns = [
     # Notifications
     path("notifications/", views.notification_list, name="notification_list"),
     path("notifications/<int:notification_id>/lire/", views.notification_read, name="notification_read"),
+    # Boîte à idées / feedbacks
+    path("avis/", views.feedback_list, name="feedback_list"),
+    path("avis/<int:feedback_id>/statut/", views.feedback_mark, name="feedback_mark"),
     # Comptes
     path("utilisateurs/", views.user_list, name="user_list"),
     path("utilisateurs/creer/", views.user_create, name="user_create"),

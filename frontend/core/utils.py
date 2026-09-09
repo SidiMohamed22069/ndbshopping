@@ -15,6 +15,15 @@ VILLE_CHOICES = [
     "TIDJIKJA",
 ]
 ETAT_CHOICES = ["NEUF", "OCCASION"]
+FEEDBACK_CATEGORY_CHOICES = ["SUGGESTION", "BUG", "FEATURE_REQUEST", "OTHER"]
+
+
+def get_client_ip(request) -> str:
+    """IP réelle du visiteur : X-Forwarded-For (posé par le proxy) sinon REMOTE_ADDR."""
+    forwarded = request.META.get("HTTP_X_FORWARDED_FOR")
+    if forwarded:
+        return forwarded.split(",")[0].strip()
+    return request.META.get("REMOTE_ADDR") or ""
 
 IMAGE_PATH_KEYS = (
     "relativePath",

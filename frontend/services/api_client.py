@@ -36,7 +36,7 @@ class ApiResult:
         return self.data
 
 
-def _headers(token: str | None = None, json_body: bool = True) -> dict[str, str]:
+def _headers(token: str | None = None, json_body: bool = True, extra: dict[str, str] | None = None) -> dict[str, str]:
     headers: dict[str, str] = {}
     if json_body:
         headers["Content-Type"] = "application/json"
@@ -45,6 +45,8 @@ def _headers(token: str | None = None, json_body: bool = True) -> dict[str, str]
         headers["Accept"] = "application/json"
     if token:
         headers["Authorization"] = f"Bearer {token}"
+    if extra:
+        headers.update(extra)
     return headers
 
 
@@ -84,6 +86,7 @@ def call(
     params: dict | None = None,
     files: dict | None = None,
     timeout: int = DEFAULT_TIMEOUT,
+    extra_headers: dict[str, str] | None = None,
 ) -> ApiResult:
     """Point d'entrée unique. `files` désactive Content-Type JSON (multipart)."""
     json_body = files is None
@@ -92,7 +95,7 @@ def call(
         response = requests.request(
             method=method.upper(),
             url=url,
-            headers=_headers(token, json_body=json_body),
+            headers=_headers(token, json_body=json_body, extra=extra_headers),
             json=json if json_body else None,
             params=params,
             files=files,
@@ -672,3 +675,51 @@ def get_visitor_stats() -> ApiResult:
     """Compteurs de fréquentation courants. Appelé par le context processor
     (mis en cache quelques secondes côté Django) : timeout court également."""
     return call("GET", "/analytics/stats", timeout=4)
+
+
+# ---------------------------------------------------------------------------
+# Boîte à idées / feedbacks — dépôt public, pas de JWT requis
+# ---------------------------------------------------------------------------
+
+def create_feedback(
+    category: str,
+    message: str,
+    contact_info: str | None = None,
+    token: str | None = None,
+    client_ip: str | None = None,
+) -> ApiResult:
+    """Dépose un avis. `token` est optionnel : s'il est fourni, l'avis est
+    rattaché au compte ; sinon il reste anonyme. `client_ip` (IP réelle du
+    visiteur, vue par Django) est transmise via X-Forwarded-For pour que le
+    backend puisse limiter le spam."""
+    extra_headers = {"X-Forwarded-For": client_ip} if client_ip else None
+    return call(
+        "POST",
+        "/feedbacks",
+        token=token,
+        json={"category": category, "message": message, "contactInfo": contact_info or None},
+        extra_headers=extra_headers,
+    )
+
+
+def admin_get_feedbacks(
+    token: str,
+    category: str | None = None,
+    statut: str | None = None,
+    page: int = 0,
+    size: int = 20,
+) -> ApiResult:
+    params: dict[str, Any] = {"page": page, "size": size}
+    if category:
+        params["category"] = category
+    if statut:
+        params["statut"] = statut
+    return call("GET", "/admin/feedbacks", token=token, params=params)
+
+
+def admin_update_feedback_status(token: str, feedback_id: int | str, statut: str) -> ApiResult:
+    return call("PATCH", f"/admin/feedbacks/{feedback_id}/statut", token=token, json={"statut": statut})
+
+
+def admin_feedbacks_new_count(token: str) -> ApiResult:
+    return call("GET", "/admin/feedbacks/count-nouveaux", token=token)

@@ -64,6 +64,17 @@ NEGOTIATION_STATUSES = [
     ("REJECTED", _lazy("Refusée")),
 ]
 PUB_STATUSES = [("BROUILLON", _lazy("Brouillon")), ("PUBLIE", _lazy("Publié"))]
+FEEDBACK_CATEGORIES = [
+    ("SUGGESTION", _lazy("Suggestion")),
+    ("BUG", _lazy("Bug")),
+    ("FEATURE_REQUEST", _lazy("Nouvelle fonctionnalité")),
+    ("OTHER", _lazy("Autre")),
+]
+FEEDBACK_STATUSES = [
+    ("NOUVEAU", _lazy("Nouveau")),
+    ("LU", _lazy("Lu")),
+    ("TRAITE", _lazy("Traité")),
+]
 
 IMAGE_MAX_BYTES = 5 * 1024 * 1024
 IMAGE_CONTENT_TYPES = {"image/jpeg", "image/jpg", "image/png", "image/webp"}
@@ -180,13 +191,17 @@ def dashboard(request):
     recent = api_client.admin_get_orders(token, page=0, size=8)
     notifs = api_client.admin_get_notifications(token, lu=False, page=0, size=8)
     unread = api_client.admin_unread_count(token)
+    recent_feedback = api_client.admin_get_feedbacks(token, page=0, size=5)
+    feedback_new = api_client.admin_feedbacks_new_count(token)
 
     pending_data = pending.data if pending.ok else {}
     recent_data = recent.data if recent.ok else {}
     notifs_data = notifs.data if notifs.ok else {}
     unread_count = unread.data.get("count", 0) if unread.ok and isinstance(unread.data, dict) else 0
+    recent_feedback_data = recent_feedback.data if recent_feedback.ok else {}
+    feedback_new_count = feedback_new.data.get("count", 0) if feedback_new.ok and isinstance(feedback_new.data, dict) else 0
 
-    for result in (pending, recent, notifs, unread):
+    for result in (pending, recent, notifs, unread, recent_feedback, feedback_new):
         if not result.ok:
             messages.error(request, result.error or api_client.UNAVAILABLE)
             break
@@ -200,6 +215,8 @@ def dashboard(request):
             "recent_orders": recent_data.get("content") or [] if isinstance(recent_data, dict) else [],
             "notifications": notifs_data.get("content") or [] if isinstance(notifs_data, dict) else [],
             "unread_count": unread_count,
+            "recent_feedback": recent_feedback_data.get("content") or [] if isinstance(recent_feedback_data, dict) else [],
+            "feedback_new_count": feedback_new_count,
         },
     )
 
@@ -1112,6 +1129,59 @@ def notification_read(request, notification_id):
     if next_url.startswith("/") and not next_url.startswith("//"):
         return redirect(next_url)
     return redirect("adminpanel:notification_list")
+
+
+# ---------------------------------------------------------------------------
+# Boîte à idées / feedbacks
+# ---------------------------------------------------------------------------
+
+@admin_required_api
+@require_http_methods(["GET"])
+def feedback_list(request):
+    page = page_from_request(request)
+    category = request.GET.get("category") or ""
+    statut = request.GET.get("statut") or ""
+    result = api_client.admin_get_feedbacks(
+        _token(request),
+        category=category or None,
+        statut=statut or None,
+        page=page - 1,
+        size=20,
+    )
+    feedbacks, pagination = [], None
+    if result.ok and isinstance(result.data, dict):
+        feedbacks = result.data.get("content") or []
+        pagination = result.data
+    else:
+        messages.error(request, result.error or api_client.UNAVAILABLE)
+    return render(
+        request,
+        "adminpanel/feedback/list.html",
+        {
+            "feedbacks": feedbacks,
+            "pagination": pagination,
+            "page": page,
+            "category": category,
+            "statut": statut,
+            "categories": FEEDBACK_CATEGORIES,
+            "statuses": FEEDBACK_STATUSES,
+        },
+    )
+
+
+@admin_required_api
+@require_POST
+def feedback_mark(request, feedback_id):
+    statut = request.POST.get("statut") or "LU"
+    result = api_client.admin_update_feedback_status(_token(request), feedback_id, statut)
+    if result.ok:
+        messages.success(request, _("Avis mis à jour."))
+    else:
+        messages.error(request, result.error or _("Action impossible."))
+    next_url = request.POST.get("next") or reverse("adminpanel:feedback_list")
+    if next_url.startswith("/") and not next_url.startswith("//"):
+        return redirect(next_url)
+    return redirect("adminpanel:feedback_list")
 
 
 # ---------------------------------------------------------------------------

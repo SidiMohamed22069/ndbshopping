@@ -268,19 +268,26 @@
     </a>
   {% endif %}
 
+  {% include "includes/feedback_widget.html" %}
+
   <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
   <script>
     {% trans "Ajouté au panier" as ndb_added %}
     {% trans "Impossible d'ajouter au panier" as ndb_cannot_add %}
     {% trans "Service temporairement indisponible" as ndb_unavailable %}
+    {% trans "Choisissez une catégorie." as ndb_feedback_category %}
+    {% trans "Le message est obligatoire." as ndb_feedback_message %}
     window.NDB_I18N = {
       addedToCart: "{{ ndb_added|escapejs }}",
       cannotAddToCart: "{{ ndb_cannot_add|escapejs }}",
-      unavailable: "{{ ndb_unavailable|escapejs }}"
+      unavailable: "{{ ndb_unavailable|escapejs }}",
+      feedbackCategoryRequired: "{{ ndb_feedback_category|escapejs }}",
+      feedbackMessageRequired: "{{ ndb_feedback_message|escapejs }}"
     };
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{% static 'js/cart.js' %}"></script>
+  <script src="{% static 'js/feedback.js' %}"></script>
   <script src="{% static 'js/reveal.js' %}"></script>
   <script src="{% static 'js/forms.js' %}"></script>
   <script src="{% static 'js/password-toggle.js' %}"></script>

@@ -18,6 +18,12 @@
       <p class="display-6 mb-0">{{ unread_count }}</p>
     </div>
   </div>
+  <div class="col-md-4">
+    <div class="admin-stat card-body p-4">
+      <p class="muted small mb-1">{% trans "Nouveaux avis (boîte à idées)" %}</p>
+      <p class="display-6 mb-0">{{ feedback_new_count }}</p>
+    </div>
+  </div>
 </div>
 
 <div class="row g-4">
@@ -44,6 +50,34 @@
         </li>
       {% empty %}
         <li class="list-group-item muted">{% trans "Rien de nouveau." %}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<div class="row g-4 mt-1">
+  <div class="col-12">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h2 class="h6 mb-0">{% trans "Boîte à idées — derniers avis" %}</h2>
+      <a class="small" href="{% url 'adminpanel:feedback_list' %}">{% trans "Voir tous les avis" %}</a>
+    </div>
+    <ul class="list-group">
+      {% for f in recent_feedback %}
+        <li class="list-group-item">
+          <div class="d-flex justify-content-between align-items-start gap-2">
+            <div>
+              <span class="badge text-bg-secondary">{{ f.category|statut_label }}</span>
+              <span class="badge text-bg-{% if f.anonymous %}light text-dark border{% else %}info{% endif %}">
+                {% if f.anonymous %}{% trans "Visiteur anonyme" %}{% else %}{% trans "Membre" %}{% endif %}
+              </span>
+              <span class="badge text-bg-{{ f.statut|statut_badge }}">{{ f.statut|statut_label }}</span>
+              <p class="mb-0 mt-1">{{ f.message|truncatechars:140 }}</p>
+            </div>
+            <span class="small text-muted text-nowrap">{{ f.createdAt }}</span>
+          </div>
+        </li>
+      {% empty %}
+        <li class="list-group-item muted">{% trans "Aucun avis pour le moment." %}</li>
       {% endfor %}
     </ul>
   </div>

@@ -2726,6 +2726,59 @@ main {
     margin-bottom: 4.5rem;
 }
 
+/* --------------------------------------------------------------------------
+   Onglet flottant "Boîte à idées" — bord opposé au FAB "Ajouter une annonce"
+   (inset-inline-start : gauche en LTR, droite en RTL) pour ne rien recouvrir.
+   -------------------------------------------------------------------------- */
+
+.feedback-fab {
+    position: fixed;
+    top: 60%;
+    inset-inline-start: 0;
+    transform: translateY(-50%);
+    z-index: 9998;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: var(--color-primary);
+    color: var(--color-text-white);
+    border: 0;
+    border-start-end-radius: var(--radius-pill);
+    border-end-end-radius: var(--radius-pill);
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+    padding: 0.65rem 1rem 0.65rem 0.85rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    line-height: 1;
+    white-space: nowrap;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s ease, filter 0.15s ease, padding-inline-start 0.15s ease;
+}
+
+.feedback-fab i {
+    font-size: 1.05rem;
+}
+
+.feedback-fab:hover,
+.feedback-fab:focus {
+    color: var(--color-text-white);
+    filter: brightness(1.15);
+    padding-inline-start: 1.1rem;
+}
+
+@media (max-width: 575.98px) {
+    .feedback-fab span {
+        display: none;
+    }
+
+    .feedback-fab {
+        padding: 0.7rem;
+        border-start-end-radius: 50%;
+        border-end-end-radius: 50%;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.001ms !important;
