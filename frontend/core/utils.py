@@ -1,4 +1,19 @@
-VILLE_CHOICES = ["NOUADHIBOU", "ZOUERAT", "NOUAKCHOTT"]
+VILLE_CHOICES = [
+    "NOUAKCHOTT",
+    "NOUADHIBOU",
+    "ROSSO",
+    "KIFFA",
+    "KAEDI",
+    "ZOUERAT",
+    "ATAR",
+    "NEMA",
+    "BOGHE",
+    "ALEG",
+    "AKJOUJT",
+    "SELIBABY",
+    "AIOUN",
+    "TIDJIKJA",
+]
 ETAT_CHOICES = ["NEUF", "OCCASION"]
 
 IMAGE_PATH_KEYS = (

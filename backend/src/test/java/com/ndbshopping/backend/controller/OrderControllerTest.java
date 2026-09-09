@@ -144,30 +144,30 @@ class OrderControllerTest {
                                 {"villeLivraison":"Nouadhibou","adresseDetails":"Centre ville"}
                                 """))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.villeLivraison").value("Nouadhibou"));
+                .andExpect(jsonPath("$.villeLivraison").value("NOUADHIBOU"));
     }
 
     @Test
-    void create_legacyEnumCities_areIgnoredAndStoredAsNouadhibou() throws Exception {
+    void create_withAnyMauritanianCity_isHonored() throws Exception {
         seedCart();
         mockMvc.perform(post("/api/orders")
                         .header("Authorization", bearer(client))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                {"villeLivraison":"ZOUERAT","adresseDetails":"Ancien client Zouérat"}
+                                {"villeLivraison":"ZOUERAT","adresseDetails":"Client Zouérat"}
                                 """))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.villeLivraison").value("Nouadhibou"));
+                .andExpect(jsonPath("$.villeLivraison").value("ZOUERAT"));
 
         seedCart();
         mockMvc.perform(post("/api/orders")
                         .header("Authorization", bearer(client))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                {"villeLivraison":"NOUAKCHOTT","adresseDetails":"Ancien client Nouakchott"}
+                                {"villeLivraison":"nouakchott","adresseDetails":"Client Nouakchott"}
                                 """))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.villeLivraison").value("Nouadhibou"));
+                .andExpect(jsonPath("$.villeLivraison").value("NOUAKCHOTT"));
     }
 
     @Test

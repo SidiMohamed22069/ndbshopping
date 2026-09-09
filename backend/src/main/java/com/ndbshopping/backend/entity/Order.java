@@ -36,10 +36,9 @@ import java.util.List;
 public class Order {
 
     /**
-     * Unique ville desservie. Les anciennes commandes peuvent encore contenir
-     * les valeurs d'enum historiques NOUADHIBOU / ZOUERAT / NOUAKCHOTT (varchar inchangé).
+     * Ville de livraison par défaut si le client n'en précise pas (compat anciens clients).
      */
-    public static final String VILLE_LIVRAISON = "Nouadhibou";
+    public static final String VILLE_LIVRAISON = "NOUADHIBOU";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

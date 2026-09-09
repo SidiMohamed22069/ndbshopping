@@ -147,9 +147,20 @@ def stars(rating) -> str:
 @register.filter
 def ville_label(code: str | None) -> str:
     labels = {
-        "NOUADHIBOU": _("Nouadhibou"),
-        "ZOUERAT": _("Zouérat"),
         "NOUAKCHOTT": _("Nouakchott"),
+        "NOUADHIBOU": _("Nouadhibou"),
+        "ROSSO": _("Rosso"),
+        "KIFFA": _("Kiffa"),
+        "KAEDI": _("Kaédi"),
+        "ZOUERAT": _("Zouérat"),
+        "ATAR": _("Atar"),
+        "NEMA": _("Néma"),
+        "BOGHE": _("Boghé"),
+        "ALEG": _("Aleg"),
+        "AKJOUJT": _("Akjoujt"),
+        "SELIBABY": _("Sélibaby"),
+        "AIOUN": _("Aïoun"),
+        "TIDJIKJA": _("Tidjikja"),
     }
     return labels.get(code or "", code or "—")
 

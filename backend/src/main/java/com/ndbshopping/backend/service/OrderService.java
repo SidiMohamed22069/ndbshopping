@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class OrderService {
@@ -51,7 +52,7 @@ public class OrderService {
 
         Order order = Order.builder()
                 .user(user)
-                .villeLivraison(Order.VILLE_LIVRAISON)
+                .villeLivraison(normalizeVilleLivraison(request.villeLivraison()))
                 .adresseDetails(request.adresseDetails().trim())
                 .statut(OrderStatus.EN_ATTENTE)
                 .total(BigDecimal.ZERO)
@@ -130,6 +131,10 @@ public class OrderService {
             case LIVREE -> "Livrée";
             case ANNULEE -> "Annulée";
         };
+    }
+
+    private static String normalizeVilleLivraison(String ville) {
+        return (ville == null || ville.isBlank()) ? Order.VILLE_LIVRAISON : ville.trim().toUpperCase(Locale.ROOT);
     }
 
     private void touch(Order order) {

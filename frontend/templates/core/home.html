@@ -9,10 +9,10 @@
   <div class="container hero-inner">
     <h1 class="hero-title">
       Ndbshopping <span class="hero-title-dot" aria-hidden="true">·</span>
-      {% trans "Plateforme d'annonces et de shopping à Nouadhibou" %}
+      {% trans "Votre marché partout en Mauritanie" %}
     </h1>
     <ul class="hero-badges">
-      <li class="hero-badge"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> {% trans "Uniquement à Nouadhibou" %}</li>
+      <li class="hero-badge"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> {% trans "Disponible dans tout le pays" %}</li>
       <li class="hero-badge"><i class="bi bi-lightning-charge-fill" aria-hidden="true"></i> {% trans "Annonces rapides" %}</li>
       <li class="hero-badge"><i class="bi bi-headset" aria-hidden="true"></i> {% trans "Support local" %}</li>
       <li class="hero-badge"><i class="bi bi-patch-check-fill" aria-hidden="true"></i> {% trans "Vendeurs fiables" %}</li>
@@ -60,7 +60,7 @@
     <div class="row g-4 cat-banners">
       {% url 'catalog:categories' as categories_url %}
       {% trans "Téléphones et électronique" as electronics_title %}
-      {% trans "Immobilier à Nouadhibou" as real_estate_title %}
+      {% trans "Immobilier en Mauritanie" as real_estate_title %}
       {% trans "Voitures à vendre" as cars_title %}
       {% category_match nav_categories_flat keywords="téléphone,telephone,electron,ordinateur,phone" as electronics_cat %}
       <div class="col-lg-4 reveal">
@@ -102,7 +102,7 @@
       <div class="col-6 col-lg-3 reveal">
         <div class="stat-item">
           <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
-          <p>{% trans "Service local à Nouadhibou" %}</p>
+          <p>{% trans "Service partout en Mauritanie" %}</p>
         </div>
       </div>
       <div class="col-6 col-lg-3 reveal">

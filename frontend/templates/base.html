@@ -137,7 +137,7 @@
           </ul>
         </div>
         <a class="nav-link" href="{% url 'core:home' %}#vedettes">{% trans "Annonces vedettes" %}</a>
-        <a class="nav-link" href="{% url 'catalog:publication_list' %}">{% trans "Actualités de Nouadhibou" %}</a>
+        <a class="nav-link" href="{% url 'catalog:publication_list' %}">{% trans "Actualités" %}</a>
         <a class="nav-link" href="{% url 'core:help' %}">{% trans "Aide" %}</a>
       </div>
     </nav>
@@ -153,7 +153,7 @@
         <a class="nav-link" href="{% url 'core:home' %}">{% trans "Accueil" %}</a>
         <a class="nav-link" href="{% url 'catalog:categories' %}">{% trans "Catégories" %}</a>
         <a class="nav-link" href="{% url 'core:home' %}#vedettes">{% trans "Annonces vedettes" %}</a>
-        <a class="nav-link" href="{% url 'catalog:publication_list' %}">{% trans "Actualités de Nouadhibou" %}</a>
+        <a class="nav-link" href="{% url 'catalog:publication_list' %}">{% trans "Actualités" %}</a>
         <a class="nav-link" href="{% url 'core:help' %}">{% trans "Aide" %}</a>
       </nav>
       <div class="header-actions-mobile">
@@ -197,7 +197,7 @@
         <a class="site-logo-link site-logo-link--footer" href="{% url 'core:home' %}">
           <img src="{% static 'img/logo.png' %}" alt="NDB Shopping" class="site-logo">
         </a>
-        <p>{% trans "Marketplace mauritanienne — Nouadhibou." %}</p>
+        <p>{% trans "Votre marché, partout en Mauritanie." %}</p>
       </div>
       <div class="cta-band-action">
         <p class="cta-band-title">{% trans "Vous vendez quelque chose ?" %}</p>
@@ -213,8 +213,8 @@
           <a class="site-logo-link site-logo-link--footer" href="{% url 'core:home' %}">
             <img src="{% static 'img/logo.png' %}" alt="NDB Shopping" class="site-logo">
           </a>
-          <p>{% trans "Marketplace mauritanienne — Nouadhibou." %}</p>
-          <p class="footer-zone">{% trans "Livraison uniquement à Nouadhibou." %}</p>
+          <p>{% trans "Votre marché, partout en Mauritanie." %}</p>
+          <p class="footer-zone">{% trans "Livraison partout en Mauritanie." %}</p>
           <div class="footer-store-badges">
             <span class="footer-store-soon-badge">{% trans "Bientôt disponible" %}</span>
             <div class="footer-store-buttons">
@@ -235,7 +235,7 @@
             <li><a href="{% url 'core:home' %}">{% trans "Accueil" %}</a></li>
             <li><a href="{% url 'catalog:categories' %}">{% trans "Catégories" %}</a></li>
             <li><a href="{% url 'catalog:product_list' %}">{% trans "Annonces" %}</a></li>
-            <li><a href="{% url 'catalog:publication_list' %}">{% trans "Actualités de Nouadhibou" %}</a></li>
+            <li><a href="{% url 'catalog:publication_list' %}">{% trans "Actualités" %}</a></li>
             <li><a href="{% url 'accounts:sell' %}">{% trans "Ajouter une annonce" %}</a></li>
             {% if is_authenticated_api %}
               <li><a href="{% url 'accounts:my_listings' %}">{% trans "Mes annonces" %}</a></li>

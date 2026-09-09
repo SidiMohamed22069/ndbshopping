@@ -21,8 +21,6 @@ from core.media_upload import (
 from core.utils import ETAT_CHOICES, VILLE_CHOICES, normalize_product_images, page_from_request, safe_next_url
 from services import api_client
 
-VILLE_LIVRAISON = "NOUADHIBOU"
-
 
 def _establish_session(request, token: str, user: dict, next_url: str | None):
     """Enregistre le JWT Spring Boot en session et synchronise le panier."""
@@ -156,19 +154,22 @@ def checkout(request):
         return redirect("cart:detail")
 
     if request.method == "POST":
+        ville = request.POST.get("ville") or ""
         adresse = (request.POST.get("adresseDetails") or "").strip()
-        if not adresse:
+        if ville not in VILLE_CHOICES:
+            messages.error(request, _("Choisissez une ville de livraison."))
+        elif not adresse:
             messages.error(request, _("Indiquez une adresse."))
         else:
             sync_if_authenticated(request)
-            result = api_client.create_order(request.jwt_token, VILLE_LIVRAISON, adresse)
+            result = api_client.create_order(request.jwt_token, ville, adresse)
             if result.ok:
                 clear_cart(request.session)
                 messages.success(request, _("Commande enregistrée. Merci !"))
                 return redirect("accounts:orders")
             messages.error(request, result.error or _("Impossible de passer la commande."))
 
-    return render(request, "accounts/checkout.html")
+    return render(request, "accounts/checkout.html", {"ville_choices": VILLE_CHOICES})
 
 
 @login_required_api

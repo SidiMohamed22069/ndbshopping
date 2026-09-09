@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-07 23:06+0200\n"
+"POT-Creation-Date: 2026-09-09 23:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,82 +18,86 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\accounts\views.py:40
+#: .\accounts\views.py:38
 msgid "Connecté, mais le panier n'a pas pu être synchronisé. "
 msgstr "Connecté, mais le panier n'a pas pu être synchronisé. "
 
-#: .\accounts\views.py:42
+#: .\accounts\views.py:40
 #, python-format
 msgid "Bienvenue %(nom)s !"
 msgstr "Bienvenue %(nom)s !"
 
-#: .\accounts\views.py:49
+#: .\accounts\views.py:47
 msgid "Code envoyé par SMS."
 msgstr "Code envoyé par SMS."
 
-#: .\accounts\views.py:65
+#: .\accounts\views.py:63
 msgid "Téléphone et mot de passe sont obligatoires."
 msgstr "Téléphone et mot de passe sont obligatoires."
 
-#: .\accounts\views.py:76
+#: .\accounts\views.py:74
 msgid "Connexion impossible."
 msgstr "Connexion impossible."
 
-#: .\accounts\views.py:98 .\adminpanel\views.py:1178
+#: .\accounts\views.py:96 .\adminpanel\views.py:1178
 msgid "Nom, téléphone et mot de passe sont obligatoires."
 msgstr "Nom, téléphone et mot de passe sont obligatoires."
 
-#: .\accounts\views.py:107
+#: .\accounts\views.py:105
 msgid "Inscription impossible."
 msgstr "Inscription impossible."
 
-#: .\accounts\views.py:120
+#: .\accounts\views.py:118
 msgid "Commencez par renseigner vos informations."
 msgstr "Commencez par renseigner vos informations."
 
-#: .\accounts\views.py:126
+#: .\accounts\views.py:124
 msgid "Saisissez le code reçu par SMS."
 msgstr "Saisissez le code reçu par SMS."
 
-#: .\accounts\views.py:137
+#: .\accounts\views.py:135
 msgid "Code incorrect."
 msgstr "Code incorrect."
 
-#: .\accounts\views.py:145
+#: .\accounts\views.py:143
 msgid "Vous êtes déconnecté."
 msgstr "Vous êtes déconnecté."
 
-#: .\accounts\views.py:155
+#: .\accounts\views.py:153
 msgid "Votre panier est vide."
 msgstr "Votre panier est vide."
 
-#: .\accounts\views.py:161
+#: .\accounts\views.py:160
+msgid "Choisissez une ville de livraison."
+msgstr "Choisissez une ville de livraison."
+
+#: .\accounts\views.py:162
 msgid "Indiquez une adresse."
 msgstr "Indiquez une adresse."
 
-#: .\accounts\views.py:167
+#: .\accounts\views.py:168
 msgid "Commande enregistrée. Merci !"
 msgstr "Commande enregistrée. Merci !"
 
-#: .\accounts\views.py:169
+#: .\accounts\views.py:170
 msgid "Impossible de passer la commande."
 msgstr "Impossible de passer la commande."
 
-#: .\accounts\views.py:322
+#: .\accounts\views.py:323
 msgid "Le nom et la catégorie sont obligatoires."
 msgstr "Le nom et la catégorie sont obligatoires."
 
-#: .\accounts\views.py:330
+#: .\accounts\views.py:331
 msgid "Soumission impossible."
 msgstr "Soumission impossible."
 
-#: .\accounts\views.py:361 .\accounts\views.py:383 .\accounts\views.py:392
-#: .\accounts\views.py:404 .\accounts\views.py:413 .\adminpanel\views.py:549
+#: .\accounts\views.py:362 .\accounts\views.py:384 .\accounts\views.py:393
+#: .\accounts\views.py:405 .\accounts\views.py:414 .\adminpanel\views.py:549
 #: .\adminpanel\views.py:601 .\cart\views.py:114 .\negotiations\views.py:30
 msgid "Produit introuvable."
 msgstr "Produit introuvable."
 
-#: .\accounts\views.py:396 .\accounts\views.py:417 .\adminpanel\views.py:330
+#: .\accounts\views.py:397 .\accounts\views.py:418 .\adminpanel\views.py:330
 #: .\adminpanel\views.py:370 .\adminpanel\views.py:574
 #: .\adminpanel\views.py:621 .\adminpanel\views.py:638
 #: .\adminpanel\views.py:648 .\adminpanel\views.py:1066
@@ -101,21 +105,21 @@ msgstr "Produit introuvable."
 msgid "Suppression impossible."
 msgstr "Suppression impossible."
 
-#: .\accounts\views.py:453
+#: .\accounts\views.py:454
 msgid "Annonce marquée comme vendue."
 msgstr "Annonce marquée comme vendue."
 
-#: .\accounts\views.py:455 .\accounts\views.py:466 .\accounts\views.py:477
+#: .\accounts\views.py:456 .\accounts\views.py:467 .\accounts\views.py:478
 #: .\adminpanel\views.py:708 .\adminpanel\views.py:719
 #: .\adminpanel\views.py:730 .\adminpanel\views.py:1110
 msgid "Action impossible."
 msgstr "Action impossible."
 
-#: .\accounts\views.py:464
+#: .\accounts\views.py:465
 msgid "Annonce archivée."
 msgstr "Annonce archivée."
 
-#: .\accounts\views.py:475
+#: .\accounts\views.py:476
 msgid "Annonce remise en ligne."
 msgstr "Annonce remise en ligne."
 
@@ -205,11 +209,11 @@ msgstr "Produit créé."
 
 #: .\adminpanel\views.py:517
 msgid ""
-"Produit créé, mais certaines images importées n'ont pas pu être enregistrées"
-" : "
+"Produit créé, mais certaines images importées n'ont pas pu être "
+"enregistrées : "
 msgstr ""
-"Produit créé, mais certaines images importées n'ont pas pu être enregistrées"
-" : "
+"Produit créé, mais certaines images importées n'ont pas pu être "
+"enregistrées : "
 
 #: .\adminpanel\views.py:536
 msgid "Collez une URL."
@@ -501,71 +505,115 @@ msgid "UM"
 msgstr "UM"
 
 #: .\core\templatetags\ndb_tags.py:150
-msgid "Nouadhibou"
-msgstr "Nouadhibou"
-
-#: .\core\templatetags\ndb_tags.py:151
-msgid "Zouérat"
-msgstr "Zouérat"
-
-#: .\core\templatetags\ndb_tags.py:152
 msgid "Nouakchott"
 msgstr "Nouakchott"
 
+#: .\core\templatetags\ndb_tags.py:151
+msgid "Nouadhibou"
+msgstr "Nouadhibou"
+
+#: .\core\templatetags\ndb_tags.py:152
+msgid "Rosso"
+msgstr "Rosso"
+
+#: .\core\templatetags\ndb_tags.py:153
+msgid "Kiffa"
+msgstr "Kiffa"
+
+#: .\core\templatetags\ndb_tags.py:154
+msgid "Kaédi"
+msgstr "Kaédi"
+
+#: .\core\templatetags\ndb_tags.py:155
+msgid "Zouérat"
+msgstr "Zouérat"
+
+#: .\core\templatetags\ndb_tags.py:156
+msgid "Atar"
+msgstr "Atar"
+
+#: .\core\templatetags\ndb_tags.py:157
+msgid "Néma"
+msgstr "Néma"
+
+#: .\core\templatetags\ndb_tags.py:158
+msgid "Boghé"
+msgstr "Boghé"
+
+#: .\core\templatetags\ndb_tags.py:159
+msgid "Aleg"
+msgstr "Aleg"
+
 #: .\core\templatetags\ndb_tags.py:160
+msgid "Akjoujt"
+msgstr "Akjoujt"
+
+#: .\core\templatetags\ndb_tags.py:161
+msgid "Sélibaby"
+msgstr "Sélibaby"
+
+#: .\core\templatetags\ndb_tags.py:162
+msgid "Aïoun"
+msgstr "Aïoun"
+
+#: .\core\templatetags\ndb_tags.py:163
+msgid "Tidjikja"
+msgstr "Tidjikja"
+
+#: .\core\templatetags\ndb_tags.py:171
 msgid "Neuf"
 msgstr "Neuf"
 
-#: .\core\templatetags\ndb_tags.py:161
+#: .\core\templatetags\ndb_tags.py:172
 msgid "Occasion"
 msgstr "Occasion"
 
-#: .\core\templatetags\ndb_tags.py:169 .\core\templatetags\ndb_tags.py:200
+#: .\core\templatetags\ndb_tags.py:180 .\core\templatetags\ndb_tags.py:211
 msgid "En attente"
 msgstr "En attente"
 
-#: .\core\templatetags\ndb_tags.py:170
+#: .\core\templatetags\ndb_tags.py:181
 msgid "Confirmée"
 msgstr "Confirmée"
 
-#: .\core\templatetags\ndb_tags.py:171
+#: .\core\templatetags\ndb_tags.py:182
 msgid "En livraison"
 msgstr "En livraison"
 
-#: .\core\templatetags\ndb_tags.py:172
+#: .\core\templatetags\ndb_tags.py:183
 msgid "Livrée"
 msgstr "Livrée"
 
-#: .\core\templatetags\ndb_tags.py:173
+#: .\core\templatetags\ndb_tags.py:184
 msgid "Annulée"
 msgstr "Annulée"
 
-#: .\core\templatetags\ndb_tags.py:174
+#: .\core\templatetags\ndb_tags.py:185
 msgid "Brouillon"
 msgstr "Brouillon"
 
-#: .\core\templatetags\ndb_tags.py:175
+#: .\core\templatetags\ndb_tags.py:186
 msgid "Publié"
 msgstr "Publié"
 
-#: .\core\templatetags\ndb_tags.py:176
+#: .\core\templatetags\ndb_tags.py:187
 #: .\templates\accounts\my_listings.html:31
 msgid "Refusé"
 msgstr "Refusé"
 
-#: .\core\templatetags\ndb_tags.py:177
+#: .\core\templatetags\ndb_tags.py:188
 #: .\templates\accounts\my_listings.html:33
 #: .\templates\adminpanel\products\list.html:63
 msgid "Vendu"
 msgstr "Vendu"
 
-#: .\core\templatetags\ndb_tags.py:178
+#: .\core\templatetags\ndb_tags.py:189
 #: .\templates\accounts\my_listings.html:35
 #: .\templates\adminpanel\products\list.html:65
 msgid "Archivé"
 msgstr "Archivé"
 
-#: .\core\templatetags\ndb_tags.py:179
+#: .\core\templatetags\ndb_tags.py:190
 #: .\templates\adminpanel\negotiations\detail.html:13
 #: .\templates\adminpanel\negotiations\list.html:27
 #: .\templates\adminpanel\orders\detail.html:29 .\templates\cart\cart.html:20
@@ -573,92 +621,92 @@ msgstr "Archivé"
 msgid "Produit"
 msgstr "Produit"
 
-#: .\core\templatetags\ndb_tags.py:180
+#: .\core\templatetags\ndb_tags.py:191
 msgid "Hôtel"
 msgstr "Hôtel"
 
-#: .\core\templatetags\ndb_tags.py:181
+#: .\core\templatetags\ndb_tags.py:192
 msgid "Voiture"
 msgstr "Voiture"
 
-#: .\core\templatetags\ndb_tags.py:182
+#: .\core\templatetags\ndb_tags.py:193
 msgid "Service"
 msgstr "Service"
 
-#: .\core\templatetags\ndb_tags.py:183
+#: .\core\templatetags\ndb_tags.py:194
 msgid "Autre"
 msgstr "Autre"
 
-#: .\core\templatetags\ndb_tags.py:184
+#: .\core\templatetags\ndb_tags.py:195
 #: .\templates\adminpanel\users\list.html:49
 msgid "Utilisateur"
 msgstr "Utilisateur"
 
-#: .\core\templatetags\ndb_tags.py:185
+#: .\core\templatetags\ndb_tags.py:196
 #: .\templates\adminpanel\users\list.html:47
 msgid "Vendeur"
 msgstr "Vendeur"
 
-#: .\core\templatetags\ndb_tags.py:186
+#: .\core\templatetags\ndb_tags.py:197
 #: .\templates\adminpanel\users\list.html:45
 msgid "Admin"
 msgstr "Admin"
 
-#: .\core\templatetags\ndb_tags.py:187 .\templates\base_admin.html:78
+#: .\core\templatetags\ndb_tags.py:198 .\templates\base_admin.html:78
 msgid "Nouvelle commande"
 msgstr "Nouvelle commande"
 
-#: .\core\templatetags\ndb_tags.py:188 .\templates\base_admin.html:79
+#: .\core\templatetags\ndb_tags.py:199 .\templates\base_admin.html:79
 msgid "Produit à valider"
 msgstr "Produit à valider"
 
-#: .\core\templatetags\ndb_tags.py:189
+#: .\core\templatetags\ndb_tags.py:200
 msgid "Négociation de prix"
 msgstr "Négociation de prix"
 
-#: .\core\templatetags\ndb_tags.py:190
+#: .\core\templatetags\ndb_tags.py:201
 msgid "Réponse à ma négociation"
 msgstr "Réponse à ma négociation"
 
-#: .\core\templatetags\ndb_tags.py:191
+#: .\core\templatetags\ndb_tags.py:202
 msgid "Statut de commande"
 msgstr "Statut de commande"
 
-#: .\core\templatetags\ndb_tags.py:192
+#: .\core\templatetags\ndb_tags.py:203
 msgid "Solde SMS bas"
 msgstr "Solde SMS bas"
 
-#: .\core\templatetags\ndb_tags.py:193
+#: .\core\templatetags\ndb_tags.py:204
 msgid "Manuel"
 msgstr "Manuel"
 
-#: .\core\templatetags\ndb_tags.py:196
+#: .\core\templatetags\ndb_tags.py:207
 msgid "Texte"
 msgstr "Texte"
 
-#: .\core\templatetags\ndb_tags.py:197
+#: .\core\templatetags\ndb_tags.py:208
 msgid "Nombre"
 msgstr "Nombre"
 
-#: .\core\templatetags\ndb_tags.py:198
+#: .\core\templatetags\ndb_tags.py:209
 #: .\templates\adminpanel\products\pending.html:19
 #: .\templates\adminpanel\publications\list.html:15
 msgid "Date"
 msgstr "Date"
 
-#: .\core\templatetags\ndb_tags.py:199
+#: .\core\templatetags\ndb_tags.py:210
 msgid "Oui / Non"
 msgstr "Oui / Non"
 
-#: .\core\templatetags\ndb_tags.py:201
+#: .\core\templatetags\ndb_tags.py:212
 msgid "Acceptée"
 msgstr "Acceptée"
 
-#: .\core\templatetags\ndb_tags.py:202
+#: .\core\templatetags\ndb_tags.py:213
 msgid "Refusée"
 msgstr "Refusée"
 
-#: .\core\templatetags\ndb_tags.py:203
+#: .\core\templatetags\ndb_tags.py:214
 #: .\templates\adminpanel\negotiations\detail.html:65
 #: .\templates\negotiations\detail.html:65
 msgid "Contre-offre"
@@ -717,18 +765,22 @@ msgid "Finaliser la commande"
 msgstr "Finaliser la commande"
 
 #: .\templates\accounts\checkout.html:9
-msgid "Précisez l'adresse. Le paiement se fait à la livraison."
-msgstr "Précisez l'adresse. Le paiement se fait à la livraison."
+msgid "Précisez la ville et l'adresse. Le paiement se fait à la livraison."
+msgstr "Précisez la ville et l'adresse. Le paiement se fait à la livraison."
 
-#: .\templates\accounts\checkout.html:12
-msgid "Livraison à Nouadhibou"
-msgstr "Livraison à Nouadhibou"
+#: .\templates\accounts\checkout.html:13
+msgid "Ville de livraison"
+msgstr "Ville de livraison"
 
-#: .\templates\accounts\checkout.html:14
+#: .\templates\accounts\checkout.html:15
+msgid "Choisissez une ville"
+msgstr "Choisissez une ville"
+
+#: .\templates\accounts\checkout.html:22
 msgid "Adresse / précisions"
 msgstr "Adresse / précisions"
 
-#: .\templates\accounts\checkout.html:17
+#: .\templates\accounts\checkout.html:25
 msgid "Confirmer la commande"
 msgstr "Confirmer la commande"
 
@@ -931,11 +983,11 @@ msgstr "Retour à la connexion"
 
 #: .\templates\accounts\register.html:11
 msgid ""
-"Indiquez votre nom, votre numéro mauritanien et un mot de passe. Un code SMS"
-" vous sera envoyé pour vérifier le téléphone."
+"Indiquez votre nom, votre numéro mauritanien et un mot de passe. Un code SMS "
+"vous sera envoyé pour vérifier le téléphone."
 msgstr ""
-"Indiquez votre nom, votre numéro mauritanien et un mot de passe. Un code SMS"
-" vous sera envoyé pour vérifier le téléphone."
+"Indiquez votre nom, votre numéro mauritanien et un mot de passe. Un code SMS "
+"vous sera envoyé pour vérifier le téléphone."
 
 #: .\templates\accounts\register.html:15
 msgid "Ce numéro de téléphone est déjà utilisé."
@@ -1088,11 +1140,9 @@ msgstr "Annonce soumise"
 
 #: .\templates\accounts\sell_confirmation.html:11
 msgid ""
-"Votre produit a été soumis et sera visible après validation par notre "
-"équipe."
+"Votre produit a été soumis et sera visible après validation par notre équipe."
 msgstr ""
-"Votre produit a été soumis et sera visible après validation par notre "
-"équipe."
+"Votre produit a été soumis et sera visible après validation par notre équipe."
 
 #: .\templates\accounts\sell_confirmation.html:13
 msgid "Voir mes annonces"
@@ -1104,11 +1154,9 @@ msgstr "Ajouter une autre annonce"
 
 #: .\templates\accounts\sell_media.html:9
 msgid ""
-"Ajoutez jusqu'à 6 images et 2 vidéos. Vous pourrez aussi terminer sans "
-"média."
+"Ajoutez jusqu'à 6 images et 2 vidéos. Vous pourrez aussi terminer sans média."
 msgstr ""
-"Ajoutez jusqu'à 6 images et 2 vidéos. Vous pourrez aussi terminer sans "
-"média."
+"Ajoutez jusqu'à 6 images et 2 vidéos. Vous pourrez aussi terminer sans média."
 
 #: .\templates\accounts\sell_media.html:19
 msgid "Terminer"
@@ -1896,9 +1944,11 @@ msgid "Annonces vedettes"
 msgstr "Annonces vedettes"
 
 #: .\templates\base.html:140 .\templates\base.html:156
-#: .\templates\base.html:238
-msgid "Actualités de Nouadhibou"
-msgstr "Actualités de Nouadhibou"
+#: .\templates\base.html:238 .\templates\catalog\publication_detail.html:8
+#: .\templates\catalog\publication_list.html:4
+#: .\templates\catalog\publication_list.html:8
+msgid "Actualités"
+msgstr "Actualités"
 
 #: .\templates\base.html:141 .\templates\base.html:157
 #: .\templates\core\help.html:4
@@ -1916,16 +1966,16 @@ msgstr ""
 "Service temporairement indisponible. Veuillez réessayer dans un instant."
 
 #: .\templates\base.html:200 .\templates\base.html:216
-msgid "Marketplace mauritanienne — Nouadhibou."
-msgstr "Marketplace mauritanienne — Nouadhibou."
+msgid "Votre marché, partout en Mauritanie."
+msgstr "Votre marché, partout en Mauritanie."
 
 #: .\templates\base.html:203
 msgid "Vous vendez quelque chose ?"
 msgstr "Vous vendez quelque chose ?"
 
 #: .\templates\base.html:217
-msgid "Livraison uniquement à Nouadhibou."
-msgstr "Livraison uniquement à Nouadhibou."
+msgid "Livraison partout en Mauritanie."
+msgstr "Livraison partout en Mauritanie."
 
 #: .\templates\base.html:219
 msgid "Bientôt disponible"
@@ -2185,12 +2235,6 @@ msgstr "Trier par"
 msgid "Aucun produit ne correspond à votre recherche."
 msgstr "Aucun produit ne correspond à votre recherche."
 
-#: .\templates\catalog\publication_detail.html:8
-#: .\templates\catalog\publication_list.html:4
-#: .\templates\catalog\publication_list.html:8
-msgid "Actualités"
-msgstr "Actualités"
-
 #: .\templates\catalog\publication_detail.html:17
 msgid "Produit associé :"
 msgstr "Produit associé :"
@@ -2209,11 +2253,11 @@ msgstr "Aucune actualité publiée."
 
 #: .\templates\core\help.html:9
 msgid ""
-"Une question ? Retrouvez ici les réponses les plus utiles, ou contactez-nous"
-" directement."
+"Une question ? Retrouvez ici les réponses les plus utiles, ou contactez-nous "
+"directement."
 msgstr ""
-"Une question ? Retrouvez ici les réponses les plus utiles, ou contactez-nous"
-" directement."
+"Une question ? Retrouvez ici les réponses les plus utiles, ou contactez-nous "
+"directement."
 
 #: .\templates\core\help.html:18
 msgid "Comment publier une annonce ?"
@@ -2233,10 +2277,10 @@ msgstr "Comment fonctionne la livraison ?"
 
 #: .\templates\core\help.html:35
 msgid ""
-"La livraison est assurée uniquement à Nouadhibou. Le paiement se fait à la "
+"La livraison est assurée dans toute la Mauritanie. Le paiement se fait à la "
 "réception de la commande."
 msgstr ""
-"La livraison est assurée uniquement à Nouadhibou. Le paiement se fait à la "
+"La livraison est assurée dans toute la Mauritanie. Le paiement se fait à la "
 "réception de la commande."
 
 #: .\templates\core\help.html:42
@@ -2268,12 +2312,12 @@ msgid "Nous contacter"
 msgstr "Nous contacter"
 
 #: .\templates\core\home.html:12
-msgid "Plateforme d'annonces et de shopping à Nouadhibou"
-msgstr "Plateforme d'annonces et de shopping à Nouadhibou"
+msgid "Votre marché partout en Mauritanie"
+msgstr "Votre marché partout en Mauritanie"
 
 #: .\templates\core\home.html:15
-msgid "Uniquement à Nouadhibou"
-msgstr "Uniquement à Nouadhibou"
+msgid "Disponible dans tout le pays"
+msgstr "Disponible dans tout le pays"
 
 #: .\templates\core\home.html:16
 msgid "Annonces rapides"
@@ -2300,8 +2344,8 @@ msgid "Téléphones et électronique"
 msgstr "Téléphones et électronique"
 
 #: .\templates\core\home.html:63
-msgid "Immobilier à Nouadhibou"
-msgstr "Immobilier à Nouadhibou"
+msgid "Immobilier en Mauritanie"
+msgstr "Immobilier en Mauritanie"
 
 #: .\templates\core\home.html:64
 msgid "Voitures à vendre"
@@ -2320,8 +2364,8 @@ msgid "Aucune annonce publiée."
 msgstr "Aucune annonce publiée."
 
 #: .\templates\core\home.html:105
-msgid "Service local à Nouadhibou"
-msgstr "Service local à Nouadhibou"
+msgid "Service partout en Mauritanie"
+msgstr "Service partout en Mauritanie"
 
 #: .\templates\core\home.html:111
 #, python-format
@@ -2494,3 +2538,24 @@ msgstr "Expliquez votre offre…"
 #: .\templates\negotiations\start.html:30
 msgid "Envoyer ma proposition"
 msgstr "Envoyer ma proposition"
+
+#~ msgid "Livraison à Nouadhibou"
+#~ msgstr "Livraison à Nouadhibou"
+
+#~ msgid "Actualités de Nouadhibou"
+#~ msgstr "Actualités de Nouadhibou"
+
+#~ msgid "Marketplace mauritanienne — Nouadhibou."
+#~ msgstr "Marketplace mauritanienne — Nouadhibou."
+
+#~ msgid "Livraison uniquement à Nouadhibou."
+#~ msgstr "Livraison uniquement à Nouadhibou."
+
+#~ msgid "Plateforme d'annonces et de shopping à Nouadhibou"
+#~ msgstr "Plateforme d'annonces et de shopping à Nouadhibou"
+
+#~ msgid "Uniquement à Nouadhibou"
+#~ msgstr "Uniquement à Nouadhibou"
+
+#~ msgid "Service local à Nouadhibou"
+#~ msgstr "Service local à Nouadhibou"
