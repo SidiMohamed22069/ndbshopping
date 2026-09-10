@@ -142,6 +142,21 @@ def verify_otp(telephone: str, code: str) -> ApiResult:
     return call("POST", "/auth/verify-otp", json={"telephone": telephone, "code": code})
 
 
+def request_password_reset(telephone: str) -> ApiResult:
+    """Génère un code de réinitialisation (15 min). Pas de SMS payant pour ce
+    flux : `code` est renvoyé directement dans la réponse pour affichage
+    in-app côté Django (voir accounts.views.forgot_password)."""
+    return call("POST", "/auth/password-reset/request", json={"telephone": telephone})
+
+
+def confirm_password_reset(telephone: str, code: str, new_password: str) -> ApiResult:
+    return call(
+        "POST",
+        "/auth/password-reset/confirm",
+        json={"telephone": telephone, "code": code, "newPassword": new_password},
+    )
+
+
 def me(token: str) -> ApiResult:
     return call("GET", "/auth/me", token=token)
 

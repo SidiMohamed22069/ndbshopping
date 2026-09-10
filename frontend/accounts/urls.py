@@ -8,6 +8,12 @@ urlpatterns = [
     path("connexion/", views.login_view, name="login"),
     path("inscription/", views.register_view, name="register"),
     path("otp/", views.otp_view, name="otp"),
+    path("mot-de-passe-oublie/", views.forgot_password_view, name="forgot_password"),
+    path(
+        "mot-de-passe-oublie/reinitialiser/",
+        views.password_reset_confirm_view,
+        name="password_reset_confirm",
+    ),
     path("deconnexion/", views.logout_view, name="logout"),
     path("commander/", views.checkout, name="checkout"),
     path("commandes/", views.orders, name="orders"),

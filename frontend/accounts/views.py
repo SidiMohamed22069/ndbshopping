@@ -137,6 +137,68 @@ def otp_view(request):
     return render(request, "accounts/otp.html", {"telephone": telephone})
 
 
+@require_http_methods(["GET", "POST"])
+def forgot_password_view(request):
+    """Étape 1 : l'utilisateur saisit son numéro. Pas de SMS payant pour ce
+    flux — le code généré (15 min de validité) est affiché directement sur
+    l'écran de confirmation (voir password_reset_confirm_view)."""
+    if request.method == "POST":
+        telephone = (request.POST.get("telephone") or "").strip()
+        if not telephone:
+            messages.error(request, _("Indiquez votre numéro de téléphone."))
+        else:
+            result = api_client.request_password_reset(telephone)
+            data = result.data if isinstance(result.data, dict) else {}
+            if result.ok and data.get("code"):
+                request.session["reset_phone"] = telephone
+                return render(
+                    request,
+                    "accounts/password_reset_confirm.html",
+                    {"telephone": telephone, "reset_code": data.get("code")},
+                )
+            if result.status == 404:
+                messages.error(request, _("Aucun compte n'existe pour ce numéro."))
+            elif result.status == 429:
+                messages.error(request, result.error or _("Trop de demandes. Réessayez plus tard."))
+            else:
+                messages.error(request, result.error or _("Impossible de générer un code pour le moment."))
+
+    return render(request, "accounts/forgot_password.html")
+
+
+@require_http_methods(["GET", "POST"])
+def password_reset_confirm_view(request):
+    """Étape 2 : code (affiché à l'étape 1) + nouveau mot de passe."""
+    telephone = request.session.get("reset_phone")
+    if not telephone:
+        messages.warning(request, _("Commencez par indiquer votre numéro de téléphone."))
+        return redirect("accounts:forgot_password")
+
+    if request.method == "POST":
+        code = (request.POST.get("code") or "").strip()
+        new_password = request.POST.get("new_password") or ""
+        confirm_password = request.POST.get("confirm_password") or ""
+        if not code or not new_password:
+            messages.error(request, _("Le code et le nouveau mot de passe sont obligatoires."))
+        elif len(new_password) < 6:
+            messages.error(request, _("Le mot de passe doit contenir au moins 6 caractères."))
+        elif new_password != confirm_password:
+            messages.error(request, _("Les deux mots de passe ne correspondent pas."))
+        else:
+            result = api_client.confirm_password_reset(telephone, code, new_password)
+            if result.ok:
+                request.session.pop("reset_phone", None)
+                messages.success(request, _("Mot de passe réinitialisé. Vous pouvez vous connecter."))
+                return redirect("accounts:login")
+            if result.status == 429:
+                messages.error(request, result.error or _("Trop de tentatives. Redemandez un code."))
+                request.session.pop("reset_phone", None)
+                return redirect("accounts:forgot_password")
+            messages.error(request, result.error or _("Code incorrect ou expiré."))
+
+    return render(request, "accounts/password_reset_confirm.html", {"telephone": telephone})
+
+
 @require_http_methods(["POST", "GET"])
 def logout_view(request):
     request.session.flush()

@@ -58,6 +58,7 @@ public class SecurityConfig {
                                 "/ws/**"
                         ).permitAll()
                         .requestMatchers("/api/auth/register-or-login", "/api/auth/register", "/api/auth/verify-otp").permitAll()
+                        .requestMatchers("/api/auth/password-reset/request", "/api/auth/password-reset/confirm").permitAll()
                         .requestMatchers("/api/analytics/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/feedbacks").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/products/me").authenticated()
