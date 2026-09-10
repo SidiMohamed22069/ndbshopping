@@ -8,6 +8,7 @@
 {% trans "Marquer ce produit comme vendu ?" as confirm_sold %}
 {% trans "Archiver ce produit ? Il ne sera plus visible dans le catalogue." as confirm_archive %}
 {% trans "Remettre ce produit en ligne ?" as confirm_reactivate %}
+{% trans "Valider ce produit et le publier en ligne ?" as confirm_validate %}
 <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
   <h1 class="h4 mb-0">{% trans "Produits" %}</h1>
   <div class="btn-group">
@@ -48,6 +49,7 @@
         <th>{% trans "Nom" %}</th>
         <th>{% trans "Catégorie" %}</th>
         <th>{% trans "Prix" %}</th>
+        <th>{% trans "Vendeur" %}</th>
         <th>{% trans "Statut" %}</th>
         <th></th>
       </tr>
@@ -59,6 +61,13 @@
           <td>{{ p.categoryNom }}</td>
           <td>{{ p.prix|mru }}</td>
           <td>
+            {% if p.soumisParNom %}
+              <span class="badge text-bg-info">{{ p.soumisParNom }}</span>
+            {% else %}
+              <span class="text-muted small">{% trans "Admin" %}</span>
+            {% endif %}
+          </td>
+          <td>
             {% if p.statut == "VENDU" %}
               <span class="badge badge-vendu">{% trans "Vendu" %}</span>
             {% elif p.statut == "ARCHIVE" %}
@@ -69,7 +78,13 @@
           </td>
           <td>
             <div class="d-flex flex-wrap gap-1">
-              {% if p.statut == "PUBLIE" %}
+              {% if p.statut == "EN_ATTENTE" %}
+                <form class="d-inline" method="post" action="{% url 'adminpanel:product_validate' p.id %}" onsubmit="return confirm('{{ confirm_validate|escapejs }}');">
+                  {% csrf_token %}
+                  <button class="btn btn-sm btn-success" type="submit">{% trans "Valider" %}</button>
+                </form>
+                <button class="btn btn-sm btn-outline-danger" type="button" data-bs-toggle="collapse" data-bs-target="#reject-{{ p.id }}" aria-expanded="false">{% trans "Rejeter" %}</button>
+              {% elif p.statut == "PUBLIE" %}
                 <form method="post" action="{% url 'adminpanel:product_mark_sold' p.id %}" onsubmit="return confirm('{{ confirm_sold|escapejs }}');">
                   {% csrf_token %}
                   <button class="btn btn-sm btn-outline-dark" type="submit">{% trans "Marquer comme vendu" %}</button>
@@ -91,10 +106,20 @@
                 <button class="btn btn-sm btn-outline-danger" type="submit">{% trans "Supprimer" %}</button>
               </form>
             </div>
+            {% if p.statut == "EN_ATTENTE" %}
+              <div class="collapse mt-2" id="reject-{{ p.id }}">
+                <form method="post" action="{% url 'adminpanel:product_reject' p.id %}">
+                  {% csrf_token %}
+                  <label class="form-label small" for="raison-{{ p.id }}">{% trans "Raison du rejet" %}</label>
+                  <textarea class="form-control form-control-sm mb-2" id="raison-{{ p.id }}" name="raison" rows="2" required></textarea>
+                  <button class="btn btn-sm btn-danger" type="submit">{% trans "Confirmer le rejet" %}</button>
+                </form>
+              </div>
+            {% endif %}
           </td>
         </tr>
       {% empty %}
-        <tr><td colspan="5" class="text-muted">{% trans "Aucun produit." %}</td></tr>
+        <tr><td colspan="6" class="text-muted">{% trans "Aucun produit." %}</td></tr>
       {% endfor %}
     </tbody>
   </table>

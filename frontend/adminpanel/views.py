@@ -468,8 +468,15 @@ def product_list(request):
     )
     products, pagination = [], None
     if result.ok and isinstance(result.data, dict):
-        products = result.data.get("content") or []
+        products = [p for p in (result.data.get("content") or []) if isinstance(p, dict)]
         pagination = result.data
+        names = _submitter_names(_token(request), [p.get("soumisParUserId") for p in products])
+        for product in products:
+            uid = product.get("soumisParUserId")
+            if uid is None:
+                product["soumisParNom"] = ""
+            else:
+                product["soumisParNom"] = names.get(str(uid)) or f"#{uid}"
     else:
         messages.error(request, result.error or api_client.UNAVAILABLE)
     cats = api_client.get_categories()
